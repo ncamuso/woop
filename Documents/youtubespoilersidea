@@ -1,0 +1,4 @@
+My idea is to create an app that allows a user to enter in any shows, movies, or games they would like to avoid spoilers for. The app would then, using the YouTube api,
+filter out any videos from the user's YouTube recommendations or search results that contain any keywords or phrases related to the selected shows, games, and movies. 
+This app would use a ASP.NET Core MVC style front-end web app and an algorithm designed to filter out certain content based on keywords and phrases related to the show.
+Possibly using a search engine or something similar to find popular topics or articles/videos related to the media.
