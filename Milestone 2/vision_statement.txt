@@ -1,0 +1,10 @@
+For viewers who wish to browse and engage with YouTube without the fear of being exposed to 
+spoilers for shows or movies they are currently watching or plan on watching. Spoil Block is 
+designed to allow users to enjoy all the features and conveniences of YouTube’s extensive video 
+library but with additional features provided from our application that enables them to select 
+movies or shows they wish to avoid spoilers for. Unlike browser extensions that claim to block 
+YouTube spoilers, our application will provide users with the opportunity to customize their level 
+of spoiler blockage, from blurring thumbnails to redacting video titles. Spoil Block also blocks 
+videos relating only to movies and shows selected by the user, whereas competitors only 
+provide universal changes to all YouTube videos. Our product will implement a complex 
+algorithm that determines whether or not a video contains spoilers.
