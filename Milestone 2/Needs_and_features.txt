@@ -1,0 +1,23 @@
+Spoil Block Needs and Features
+Initial Features:
+-Log in to the website
+-Import a list of shows from IMDB to form your list
+-Add and remove a show to your watch list directly
+-View your list of shows and update it to reflect watch status
+-Adjust the spoiler blockage level of a show and the settings around it
+-View youtube without risk of spoilers through the site
+-Search bar
+-Users can flag videos as having spoilers
+Potential Features:
+-Extend to other sites such as MAL
+-Generate spoiler-free suggestions
+-Extend to different types of media
+
+Needs:
+-System requirements: SQL server and web app deployed to Azure
+-Users need to have secure access to the site
+-Users need understand how we use their watch data
+-Database needs to have integrity and reliability
+-Site needs reasonable response time and intuitive to use
+-We need to consider legal factors around security and copyright
+
