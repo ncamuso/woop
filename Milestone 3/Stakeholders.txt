@@ -1,0 +1,16 @@
+Scott Morse - Advisor
+Professor and advisor to the team as they engage in development practices.
+
+Eddie Borello - Developer and Team Lead
+Developer who also manages the source repository for the project.
+
+Ankit Shrestha - Developer
+Developer working on the project.
+
+Nathan Camuso - Developer
+Developer working on the project.
+
+**Fictional**
+John @ TeamYoutube - Expert/Contact
+Contact for consultation with working with youtube pages.
+
