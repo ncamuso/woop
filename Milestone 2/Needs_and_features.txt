@@ -8,7 +8,6 @@ Initial Features:
 -View youtube without risk of spoilers through the site
 -Search bar
 -Users can flag videos as having spoilers
--Block videos based on their upload date in relation to a product's release date
 Potential Features:
 -Extend to other sites such as MAL
 -Generate spoiler-free suggestions

@@ -9,6 +9,7 @@ Initial Features:
 -Search bar
 -Users can flag videos as having spoilers
 -Web extension that affects youtube itself and interfaces with our servers
+-Block videos based on their upload date in relation to a product's release date
 Potential Features:
 -Extend to other sites such as MAL
 -Generate spoiler-free suggestions
