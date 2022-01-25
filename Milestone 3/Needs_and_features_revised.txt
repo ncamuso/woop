@@ -1,26 +1,39 @@
 Spoil Block Needs and Features
-Initial Features:
--Log in to the website
--Import a list of shows from IMDB to form your list
--Add and remove a show to your watch list directly
--View your list of shows and update it to reflect watch status
--Adjust the spoiler blockage level of a show and the settings around it
--View youtube without risk of spoilers through the site
--Search bar
--Users can flag videos as having spoilers
--Web extension that affects youtube itself and interfaces with our servers
--Block videos based on their upload date in relation to a product's release date
+General Features:
+	-Log in to the website
+		-Email authentication
+	-Search bar
+
+Watchlist Features:
+	-Add and remove a show to your watch list directly
+	-View your list of shows and update it to reflect watch status
+		-Import a list of shows from IMDB to form your list
+
+Spoiler Blocking Features:
+	-Adjust the spoiler blockage level of a show and the settings around it
+	-Download our browser extension
+	-Use the browser extension to browse youtube while the extension blocks spoilers
+	-Users can flag videos as having spoilers
+	-Block videos based on their upload date in relation to a product's release date
+
 Potential Features:
--Extend to other sites such as MAL
--Generate spoiler-free suggestions
--Extend to different types of media
+	-Extend to other sites such as MAL
+	-Generate spoiler-free suggestions
+	-Extend to different types of media
+	-Support other browsers
 
 Needs:
--System requirements: SQL server and web app deployed to Azure
--Users need to have secure access to the site
--Users need understand how we use their watch data
--Browser needs to support our web extension
--Database needs to have integrity and reliability
--Site needs reasonable response time and intuitive to use
--We need to consider legal factors around security and copyright
+	-System requirements: SQL server and web app deployed to Azure
+	-Users need to have secure access to the site
+	-Users need understand how we use their watch data
+	-Database needs to have integrity and reliability
+	-Interface with IMDB
+	-Extension needs to be available on the Chrome
+		-Need to get it signed
+	-Mail server for authentication
+	-Users need a valid email address
+	-User needs to be using Chrome
+	-Site needs reasonable response time and intuitive to use
+	-We need to consider legal factors around security and copyright
+	-Browser extension should not cause insane lag
 
