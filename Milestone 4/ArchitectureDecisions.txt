@@ -5,13 +5,13 @@ What .NET Core version to use?
 6
 
 What front-end CSS library and version are you going to use?
-Bootstrap
+Bootstrap 5.0 (latest)
 
 Decide on how you'll use Javascript: jQuery (which version) or go for plain old JS. Any other libraries you think you'll want to use?
 jQuery v3.6.0 (latest)
 
 How will you name your Git branches?
-Feature Branches named after user story IDs
+Jira story ID's followed by the feature name. (woop-1-feature)
 
 Will you use eager loading or enable lazy loading of related entities in Entity Framework Core?
-Probably Lazy Loading
+Lazy Loading
