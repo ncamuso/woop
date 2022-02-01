@@ -5,6 +5,7 @@ CREATE TABLE [User] (
 
 CREATE TABLE [Media] (
     [ID] int PRIMARY KEY,
+    [IMDBID] int NOT NULL,
     [Title] nvarchar(50) NOT NULL
 );
 
@@ -14,6 +15,9 @@ CREATE TABLE [UserMedia] (
     [UserID] int NOT NULL,
     [MediaID] int NOT NULL
 );
+
+ALTER TABLE [Media] ADD CONSTRAINT [Unique_IMDBID]
+     UNIQUE (IMDBID);
 
 ALTER TABLE [UserMedia] ADD CONSTRAINT [Fk_UserMedia_User_ID]
     FOREIGN KEY ([UserID]) REFERENCES [User] ([ID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
