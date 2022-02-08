@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpoilBlock", "SpoilBlock\SpoilBlock.csproj", "{35FA8678-8A1A-45C2-85AD-FFDA818730DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpoilBlock_Tests", "SpoilBlock_Tests\SpoilBlock_Tests.csproj", "{C8D98904-2075-4161-BF1C-1C76B957897D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35FA8678-8A1A-45C2-85AD-FFDA818730DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35FA8678-8A1A-45C2-85AD-FFDA818730DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35FA8678-8A1A-45C2-85AD-FFDA818730DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35FA8678-8A1A-45C2-85AD-FFDA818730DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8D98904-2075-4161-BF1C-1C76B957897D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8D98904-2075-4161-BF1C-1C76B957897D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8D98904-2075-4161-BF1C-1C76B957897D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8D98904-2075-4161-BF1C-1C76B957897D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5667BEBE-D851-45C0-8E97-DF618523411F}
+	EndGlobalSection
+EndGlobal
