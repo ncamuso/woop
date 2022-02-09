@@ -12,7 +12,7 @@ using SpoilBlock.Data;
 namespace SpoilBlock.Migrations
 {
     [DbContext(typeof(IdentityDbContext))]
-    [Migration("20220209045431_CreateIdentitySchema")]
+    [Migration("20220209050218_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
