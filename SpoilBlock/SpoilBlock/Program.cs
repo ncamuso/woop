@@ -1,5 +1,10 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using SpoilBlock.Data;
 var builder = WebApplication.CreateBuilder(args);
-
+var connectionString = builder.Configuration.GetConnectionString("IdentityDbContextConnection");builder.Services.AddDbContext<IdentityDbContext>(options =>
+    options.UseSqlServer(connectionString));builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<IdentityDbContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -17,11 +22,23 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
+app.MapRazorPages();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllerRoute(
+                                name: "default",
+                                pattern: "{controller=Home}/{action=Index}/{id?}");
+                    endpoints.MapRazorPages();
+
+                });
+
+
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();
