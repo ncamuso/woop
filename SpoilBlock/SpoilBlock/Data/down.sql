@@ -1,0 +1,7 @@
+ALTER TABLE [UserMedia] DROP CONSTRAINT [Fk_UserMedia_User_ID];
+ALTER TABLE [UserMedia] DROP CONSTRAINT [Fk_UserMedia_Media_ID];
+ALTER TABLE [Media] DROP CONSTRAINT [Unique_IMDBID];
+
+DROP TABLE [User];
+DROP TABLE [Media];
+DROP TABLE [UserMedia];
