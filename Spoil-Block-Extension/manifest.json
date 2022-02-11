@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "Spoil Block",
+    "description": "Block spoilers from YouTube.",
+    "version": "1.0",
+    "icons": {
+        "16": "/images/16_SpoilBlockLogo.png",
+        "48": "/images/48_SpoilBlockLogo.png",
+        "128": "/images/128_SpoilBlockLogo.png"
+    },
+    "page_action": {
+        "default_icon": {
+            "16": "/images/16_SpoilBlockLogo.png",
+            "48": "/images/48_SpoilBlockLogo.png",
+            "128": "/images/128_SpoilBlockLogo.png"
+        }
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://www.youtube.com/*"],
+            "js": ["content.js"]
+        }
+    ]
+}
