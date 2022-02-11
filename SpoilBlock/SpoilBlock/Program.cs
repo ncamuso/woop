@@ -1,9 +1,15 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SpoilBlock.Data;
+using SpoilBlock.Models;
+
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("IdentityDbContextConnection");builder.Services.AddDbContext<IdentityDbContext>(options =>
-    options.UseSqlServer(connectionString));builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+
+var connectionString = builder.Configuration.GetConnectionString("WOOPServerConnection");builder.Services.AddDbContext<WOOPDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+var identityConnectionString = builder.Configuration.GetConnectionString("WOOPIdentityServerConnection");builder.Services.AddDbContext<IdentityDbContext>(options =>
+    options.UseSqlServer(identityConnectionString));builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<IdentityDbContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
