@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Spoil_Block</RootNamespace>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <UserSecretsId>f90f7ad3-0715-4710-8eea-a4ca1f6431b6</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,18 +1,26 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SpoilBlock.DAL.Abstract;
+using SpoilBlock.DAL.Concrete;
 using SpoilBlock.Data;
 using SpoilBlock.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("WOOPServerConnection");builder.Services.AddDbContext<WOOPDbContext>(options =>
-    options.UseSqlServer(connectionString));
-
-var identityConnectionString = builder.Configuration.GetConnectionString("WOOPIdentityServerConnection");builder.Services.AddDbContext<IdentityDbContext>(options =>
-    options.UseSqlServer(identityConnectionString));builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<IdentityDbContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//This needs to be replaced with a line that gets the key from an Azure Key Vault!!
+builder.Services.AddSingleton<IIMDbSearchService>(s => new IMDbSearchService(builder.Configuration["IMDb:ServiceApiKey"]));
+
+var connectionString = builder.Configuration.GetConnectionString("WOOPServerConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
+     options.UseSqlServer(connectionString));
+
+var identityConnectionString = builder.Configuration.GetConnectionString("WOOPIdentityServerConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
+     options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+      .AddEntityFrameworkStores<IdentityDbContext>();
+
+
 
 var app = builder.Build();
 
@@ -45,6 +53,5 @@ app.UseEndpoints(endpoints =>
 //app.MapControllerRoute(
 //    name: "default",
 //    pattern: "{controller=Home}/{action=Index}/{id?}");
-
 
 app.Run();

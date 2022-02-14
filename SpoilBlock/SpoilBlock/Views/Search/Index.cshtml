@@ -1,0 +1,19 @@
+﻿@model SpoilBlock.Models.ViewModels.SearchViewModel
+@{
+    ViewData["Title"] = "Search Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Search Titles</h1>
+</div>
+<form asp-action="Search" method="get">
+    <div class="row">
+        <div class="col-7">
+            <input asp-for="query" class="form-control" placeholder="Title"/>
+            <span asp-validation-for="query"></span>
+        </div>
+        <div class="col">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+    </div>
+</form>

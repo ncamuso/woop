@@ -5,9 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Spoil_Block.DAL.Abstract;
+using Spoil_Block.DAL.Concrete;
+using Spoil_Block.Models;
 
 namespace Spoil_Block
 {
@@ -24,6 +28,11 @@ namespace Spoil_Block
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<WOOPDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("WOOPConnections")));
+            services.AddScoped<DbContext, WOOPDbContext>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddSingleton<IIMDbSearchService>(s => new IMDbSearchService(Configuration["IMDb:ServiceApiKey"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
