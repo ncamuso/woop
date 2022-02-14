@@ -10,10 +10,11 @@
 </head>
 
 
-<div class="card-body" style= "opacity:1;">
+<div class="card-body">
+
     <header>
         <div class= "titlelogo">
-            <img src="~/images/SpoilBlock_Title.png" style= "max-width: 100%;max-height: 100%;"/>
+            <img src="~/images/SpoilBlock_Title.png" style= "max-width: 100%;max-height: 100%;"asp-controller="Home" asp-action="Index"/>
         </div> 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3" style= "border-radius: 5px;">
             <div class="container-fluid">
@@ -38,12 +39,13 @@
     </header>
 
   
-       <div class="container" style= "border-style: groove;border-radius: 5px;">
-                <div class="backGround">
+    <div class="container" style= "border-style: groove;border-radius: 5px;color:darkred">
+            <div class="backGround">
                 <main role="main" class="pb-3">
-                    @RenderBody()
-                </main></div>
-       </div>
+                     @RenderBody()
+                </main>
+            </div>
+    </div>
   
     
     

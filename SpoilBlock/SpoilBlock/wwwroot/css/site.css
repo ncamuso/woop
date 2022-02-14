@@ -16,10 +16,8 @@ html {
 body {
     margin-bottom: 60px;
     font-family: "PT Sans";
-    display: flex;
+    height: 100%;
     justify-content: center;
-    
-    
 }
 
 .titlelogo {
