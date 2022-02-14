@@ -14,5 +14,25 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    font-family: "PT Sans";
+    display: flex;
+    justify-content: center;
+    
+    
+}
+
+.titlelogo {
+    width: 300px;
+    height: 150px;
+    margin:0 auto;
+    margin-bottom: 30px;
+}
+
+.backGround {
+    background-position: center center;
+    background-image: url(../images/spoiler-alert.png);
+    background-repeat: no-repeat;
+    background-size: auto;
+    
 }
