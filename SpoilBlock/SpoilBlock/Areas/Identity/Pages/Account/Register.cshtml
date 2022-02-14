@@ -1,0 +1,40 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity.UI.V5.Pages.Account.Internal
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="text-center" style="width: 20rem;margin:auto;color:darkred;border-style:groove;border-width: thick; border-radius: 5px;">
+
+        
+            <form id="registerForm" method="post" action="/Identity/Account/Register" novalidate="novalidate">
+                <h2>Create a new account.</h2>
+                <hr>
+                
+                <div class="form-floating">
+                    <input class="form-control" autocomplete="username" aria-required="true" type="email" data-val="true" data-val-email="The Email field is not a valid e-mail address." data-val-required="The Email field is required." id="Input_Email" name="Input.Email" value="">
+                    <label for="Input_Email">Email</label>
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Input.Email" data-valmsg-replace="true"></span>
+                </div>
+                <div class="form-floating">
+                    <input class="form-control" autocomplete="new-password" aria-required="true" type="password" data-val="true" data-val-length="The Password must be at least 6 and at max 100 characters long." data-val-length-max="100" data-val-length-min="6" data-val-required="The Password field is required." id="Input_Password" maxlength="100" name="Input.Password">
+                    <label for="Input_Password">Password</label>
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Input.Password" data-valmsg-replace="true"></span>
+                </div>
+                <div class="form-floating">
+                    <input class="form-control" autocomplete="new-password" aria-required="true" type="password" data-val="true" data-val-equalto="The password and confirmation password do not match." data-val-equalto-other="*.Password" id="Input_ConfirmPassword" name="Input.ConfirmPassword">
+                    <label for="Input_ConfirmPassword">Confirm password</label>
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Input.ConfirmPassword" data-valmsg-replace="true"></span>
+                </div>
+                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            </form>
+
+    </div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
