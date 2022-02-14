@@ -16,5 +16,13 @@ html {
 body {
     margin-bottom: 60px;
     font-family: "PT Sans";
+    display: flex;
+    justify-content: center;
+}
 
+.titlelogo {
+    width: 300px;
+    height: 150px;
+    margin:0 auto;
+    margin-bottom: 30px;
 }
