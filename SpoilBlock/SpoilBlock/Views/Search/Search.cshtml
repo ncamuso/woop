@@ -1,0 +1,49 @@
+﻿@model SpoilBlock.Models.ViewModels.SearchViewModel
+@{
+    ViewData["Title"] = "Search Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Search Titles</h1>
+</div>
+<form asp-action="Search" method="get">
+    <div class="row">
+        <div class="col-7">
+            <input asp-for="query" class="form-control" placeholder="Title"/>
+            <span asp-validation-for="query"></span>
+        </div>
+        <div class="col">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+@if (Model != null && Model.query != null && Model.resultsList != null)
+{
+    if (!Model.resultsList.Any())
+    {
+        <p class="text-center">Sorry, there are no results for @Model.query.</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (IMDbEntry entry in Model.resultsList)
+                {
+                    <tr>
+                        <td>@entry.title</td>
+                        <td>@entry.description</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    }
+}
+
