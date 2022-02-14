@@ -10,14 +10,14 @@
 </head>
 
 
-<div class="card-body">
+<div class="card-body" style= "opacity:1;">
     <header>
         <div class= "titlelogo">
             <img src="~/images/SpoilBlock_Title.png" style= "max-width: 100%;max-height: 100%;"/>
         </div> 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3" style= "border-radius: 5px;">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SpoilBlock</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -36,13 +36,16 @@
         </nav>
     </header>
 
-   
+  
+       <div class="container" style= "border-style: groove;border-radius: 5px;">
+                <div class="backGround">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main></div>
+       </div>
+  
     
-        <div class="container" style= "border-style: double;border-radius: 5px;">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
+    
     
 
     <footer class="border-top footer text-muted">
