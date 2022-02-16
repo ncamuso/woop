@@ -14,7 +14,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IIMDbSearchService>(s => new IMDbSearchService(builder.Configuration["IMDb:ServiceApiKey"]));
 
 var connectionString = builder.Configuration.GetConnectionString("WOOPServerConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
-     options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString));
 
 var identityConnectionString = builder.Configuration.GetConnectionString("WOOPIdentityServerConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
      options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
