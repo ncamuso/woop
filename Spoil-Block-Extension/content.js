@@ -7,7 +7,9 @@ async function IsLoaded() {
     let el = document.getElementById("video-title");
     if (el) {
         console.log(el);
-        el.innerHTML += "spoiler";
+        //el.innerHTML += "spoiler";
+        el.style.color = 'transparent';
+        el.style.textShadow = '0 0 5px rgba(0,0,0,0.5)';
     } else {
         console.log("Not yet loaded");
     }
@@ -17,7 +19,7 @@ function pageWait() {
 return new Promise(resolve => {
     setTimeout(() => {
     IsLoaded();
-    }, 1000);
+    }, 100);
 });
 }
   
