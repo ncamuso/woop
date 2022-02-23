@@ -6,6 +6,6 @@ namespace SpoilBlock.DAL.Abstract
 {
     public interface IUserMediumRepository
     {
-        IEnumerable<UserMedium> GetListOfShowsForUser(int id);
+        IEnumerable<Medium> GetListOfShowsForUser(int id);
     }
 }

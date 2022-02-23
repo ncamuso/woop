@@ -9,9 +9,9 @@ namespace SpoilBlock.DAL.Concrete
     {
         public UserMediumRepository(WOOPDbContext ctx) : base(ctx) 
         { }
-        IEnumerable<UserMedium> IUserMediumRepository.GetListOfShowsForUser(int id)
+        IEnumerable<Medium> IUserMediumRepository.GetListOfShowsForUser(int id)
         {
-            return GetAll().Where(um => um.UserId == id).Select(um => um.MediaId; um=> um.user.ToList();
+            return GetAll().Where(um => um.UserId == id).Select(um => um.MediaId).ToList();
         }
     }
 }

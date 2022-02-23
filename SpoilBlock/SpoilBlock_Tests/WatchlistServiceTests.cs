@@ -34,7 +34,8 @@ namespace SpoilBlock_Tests
         public void Setup()
         {
             _mockUserMediumDbSet = GetMockDbSet(userMedia.AsQueryable());
-            _mockUserMediumDbSet.Setup(a => a.Find(It.IsAny<object[]>())).Returns((object[] x) => {
+            _mockUserMediumDbSet.Setup(a => a.Find(It.IsAny<object[]>())).Returns((object[] x) =>
+            {
                 int id = (int)x[0];
                 return userMedia.Where(c => c.Id == id).First();
             });
@@ -42,13 +43,37 @@ namespace SpoilBlock_Tests
             _mockContext = new Mock<WOOPDbContext>();
             _mockContext.Setup(ctx => ctx.UserMedia).Returns(_mockUserMediumDbSet.Object);
             _mockContext.Setup(ctx => ctx.Set<UserMedium>()).Returns(_mockUserMediumDbSet.Object);
-        
+
         }
 
         [Test]
         public void SanityTest()
         {
             Assert.Pass();
+        }
+
+        [Test]
+        public void UserMediumRepository_GetListOfShowsForUser_Should_ReturnUserAndTheirListOfMedias()
+        {
+            // Arrange
+            IUserMediumRepository umRepo = new UserMediumRepository(_mockContext.Object);
+            int userId = 1;
+            var expectedList = new List<UserMedium>
+            {
+                new UserMedium{ Id = 1, BlockageLevel = 0 , UserId=1, MediaId =1 },
+                new UserMedium{ Id = 1, BlockageLevel = 1 , UserId=1, MediaId =2 }
+            };
+
+            //Act
+            IEnumerable<UserMedium> actualList = umRepo.GetListOfShowsForUser(userId);
+            //Assert
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(expectedList, actualList);
+            }
+                
+                );
         }
     }
 }
