@@ -65,7 +65,7 @@ namespace SpoilBlock_Tests
             };
 
             //Act
-            IEnumerable<UserMedium> actualList = umRepo.GetListOfShowsForUser(userId);
+            //IEnumerable<UserMedium> actualList = umRepo.GetListOfShowsForUser(userId);
             //Assert
 
             Assert.Multiple(() =>

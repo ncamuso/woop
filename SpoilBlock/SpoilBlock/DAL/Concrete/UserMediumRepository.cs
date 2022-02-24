@@ -11,7 +11,8 @@ namespace SpoilBlock.DAL.Concrete
         { }
         IEnumerable<Medium> IUserMediumRepository.GetListOfShowsForUser(int id)
         {
-            return GetAll().Where(um => um.UserId == id).Select(um => um.MediaId).ToList();
+            //return GetAll().Where(um => um.MediaId).ToList();
+            throw new NotImplementedException();
         }
     }
 }
