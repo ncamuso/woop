@@ -1,11 +1,19 @@
-function blurElement (element) {
+function blurTitle (element) {
     element.style.color = 'transparent';
     element.style.textShadow = '0 0 5px rgba(0,0,0,0.5)';
 }
 
+function blurThumbnail (element) {
+    element.style.filter = 'blur(10px)';
+}
+
 function checkSpoiler(element) {
-    if(element.innerHTML.toString().toLowerCase().includes('spoiler')) {
-        blurElement(element);
+    let title = element.querySelector("#video-title");
+    let thumbnail = element.querySelector("#img")
+
+    if(title.innerHTML.toString().toLowerCase().includes('spoiler')) {
+        blurTitle(title);
+        blurThumbnail(thumbnail);
     }
 }
 
@@ -13,7 +21,7 @@ async function IsLoaded() {
     let el = document.getElementById("video-title");
         
     if (el) {
-        let els = document.querySelectorAll('[id=video-title]');
+        let els = document.querySelectorAll('[id=dismissible]');
         els.forEach(
             function(currentValue) {
                 checkSpoiler(currentValue);
@@ -28,7 +36,7 @@ function pageWait() {
 return new Promise(resolve => {
     setTimeout(() => {
     IsLoaded();
-    }, 1000);
+    }, 500);
 });
 }
   
