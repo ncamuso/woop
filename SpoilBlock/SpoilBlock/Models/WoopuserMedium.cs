@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SpoilBlock.Models
 {
-    public partial class UserMedium
+    [Table("WOOPUserMedia")]
+    public partial class WoopuserMedium
     {
         [Key]
         [Column("ID")]
@@ -18,10 +19,10 @@ namespace SpoilBlock.Models
         public int MediaId { get; set; }
 
         [ForeignKey(nameof(MediaId))]
-        [InverseProperty(nameof(Medium.UserMedia))]
+        [InverseProperty(nameof(Medium.WoopuserMedia))]
         public virtual Medium Media { get; set; } = null!;
         [ForeignKey(nameof(UserId))]
-        [InverseProperty("UserMedia")]
-        public virtual User User { get; set; } = null!;
+        [InverseProperty(nameof(Woopuser.WoopuserMedia))]
+        public virtual Woopuser User { get; set; } = null!;
     }
 }
