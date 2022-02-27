@@ -15,10 +15,10 @@ namespace SpoilBlock_Tests
     public class WatchlistServiceTests
     {
         private Mock<WOOPDbContext> _mockContext;
-        private Mock<DbSet<UserMedium>> _mockUserMediumDbSet;
-        private List<User> _users = WatchlistFakeData.Users;
+        private Mock<DbSet<WoopuserMedium>> _mockUserMediumDbSet;
+        private List<Woopuser> _users = WatchlistFakeData.UsersList;
         private List<Medium> _medium = WatchlistFakeData.MediumList;
-        private List<UserMedium> userMedia = WatchlistFakeData.UserMediumList;
+        private List<WoopuserMedium> userMedia = WatchlistFakeData.UserMediumList;
 
         private Mock<DbSet<T>> GetMockDbSet<T>(IQueryable<T> entities) where T : class
         {
@@ -41,8 +41,8 @@ namespace SpoilBlock_Tests
             });
 
             _mockContext = new Mock<WOOPDbContext>();
-            _mockContext.Setup(ctx => ctx.UserMedia).Returns(_mockUserMediumDbSet.Object);
-            _mockContext.Setup(ctx => ctx.Set<UserMedium>()).Returns(_mockUserMediumDbSet.Object);
+            _mockContext.Setup(ctx => ctx.WoopuserMedia).Returns(_mockUserMediumDbSet.Object);
+            _mockContext.Setup(ctx => ctx.Set<WoopuserMedium>()).Returns(_mockUserMediumDbSet.Object);
 
         }
 
@@ -56,24 +56,26 @@ namespace SpoilBlock_Tests
         public void UserMediumRepository_GetListOfShowsForUser_Should_ReturnUserAndTheirListOfMedias()
         {
             // Arrange
-            IUserMediumRepository umRepo = new UserMediumRepository(_mockContext.Object);
+            IWoopUserMediumRepository umRepo = new WoopUserMediumRepository(_mockContext.Object);
             int userId = 1;
-            var expectedList = new List<UserMedium>
+            var expectedList = new List<Medium>
             {
-                new UserMedium{ Id = 1, BlockageLevel = 0 , UserId=1, MediaId =1 },
-                new UserMedium{ Id = 1, BlockageLevel = 1 , UserId=1, MediaId =2 }
+                new Medium{Id = 1, Imdbid= 1, Title= "The Green Mile"},
+                new Medium{Id = 2, Imdbid= 2, Title= "Deadpool"}
             };
 
             //Act
-            //IEnumerable<UserMedium> actualList = umRepo.GetListOfShowsForUser(userId);
-            //Assert
+            IEnumerable<Medium> actualList = umRepo.GetListOfShowsForUser(userId);
+            
 
-            Assert.Multiple(() =>
-            {
-                Assert.AreEqual(expectedList, actualList);
-            }
-                
-                );
+            
+                Assert.That(actualList.Count(), Is.EqualTo(expectedList.Count));
+                foreach (var a in expectedList)
+                {
+                    Assert.That(actualList.Any(i => i.Title.Equals(a.Title)));
+               };
         }
+
+
     }
 }

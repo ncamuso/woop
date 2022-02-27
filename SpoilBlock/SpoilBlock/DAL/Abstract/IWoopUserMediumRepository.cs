@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SpoilBlock.DAL.Abstract
 {
-    public interface IUserMediumRepository
+    public interface IWoopUserMediumRepository
     {
         IEnumerable<Medium> GetListOfShowsForUser(int id);
     }
