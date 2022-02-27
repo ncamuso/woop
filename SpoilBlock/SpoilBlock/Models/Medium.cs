@@ -11,7 +11,7 @@ namespace SpoilBlock.Models
     {
         public Medium()
         {
-            UserMedia = new HashSet<UserMedium>();
+            WoopuserMedia = new HashSet<WoopuserMedium>();
         }
 
         [Key]
@@ -21,8 +21,10 @@ namespace SpoilBlock.Models
         public int Imdbid { get; set; }
         [StringLength(50)]
         public string Title { get; set; } = null!;
+        [StringLength(400)]
+        public string Description { get; set; } = null!;
 
-        [InverseProperty(nameof(UserMedium.Media))]
-        public virtual ICollection<UserMedium> UserMedia { get; set; }
+        [InverseProperty(nameof(WoopuserMedium.Media))]
+        public virtual ICollection<WoopuserMedium> WoopuserMedia { get; set; }
     }
 }
