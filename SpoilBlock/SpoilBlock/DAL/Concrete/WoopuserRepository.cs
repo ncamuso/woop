@@ -21,8 +21,7 @@ namespace SpoilBlock.DAL.Concrete
 
         public virtual Woopuser? GetWoopUserByIdentityId(string identityID)
         {
-
-            return _dbSet.FirstOrDefault<Woopuser>(user => user.AspnetIdentityId == identityID);
+            return _dbSet.Where(u => u.AspnetIdentityId == identityID).FirstOrDefault();
         }
 
 
@@ -51,7 +50,6 @@ namespace SpoilBlock.DAL.Concrete
 
             return output;
 
-
         }
 
         public virtual async Task ListShowsAsync(Woopuser user, int mediaID, int blockageLevel)
@@ -69,6 +67,9 @@ namespace SpoilBlock.DAL.Concrete
             return;
         }
 
-        
+        public IEnumerable<Medium> GetCountOfListOfShows(IEnumerable<Medium> mediaList, Woopuser user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
