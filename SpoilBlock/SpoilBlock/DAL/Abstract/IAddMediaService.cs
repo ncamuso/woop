@@ -2,6 +2,6 @@
 {
     public interface IAddMediaService
     {
-        public bool Add(string imdbId, string title, string description);
+        public void Add(string imdbId, string title, string description);
     }
 }

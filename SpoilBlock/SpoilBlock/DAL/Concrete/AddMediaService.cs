@@ -6,23 +6,38 @@ namespace SpoilBlock.DAL.Concrete
 {
     public class AddMediaService : IAddMediaService
     {
-        private IRepository<Medium> _mediaRepository;
+        private IMediumRepository _mediaRepository;
         private IRepository<WoopuserMedium> _woopusermediumRepository;
-        private IRepository<Woopuser> _woopuserRepository;
+        private IWoopuserRepository _woopuserRepository;
 
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AddMediaService(IRepository<Medium> mediaRepo, IRepository<WoopuserMedium> userMediaRepo, IRepository<Woopuser> woopuserRepo, IHttpContextAccessor httpContextAccessor)
+        public AddMediaService(IMediumRepository mediaRepo, IRepository<WoopuserMedium> userMediaRepo, IWoopuserRepository woopuserRepo, IHttpContextAccessor httpContextAccessor)
         {
             _mediaRepository = mediaRepo;
             _woopusermediumRepository = userMediaRepo;
             _woopuserRepository = woopuserRepo;
             _httpContextAccessor = httpContextAccessor;
         }
-        public bool Add(string imdbId, string title, string description)
+        public void Add(string imdbId, string title, string description)
         {
             var userIdentityId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            
+
+
+            Woopuser user = _woopuserRepository.GetWoopUserByIdentityId(userIdentityId);
+
+            Medium medium = new Medium { Description = description, Imdbid = imdbId, Title = title };
+
+            if (!_mediaRepository.ExistsByImdbID(imdbId))
+            {
+                medium = _mediaRepository.AddOrUpdate(medium);
+            }
+
+            medium = _mediaRepository.FindByImdbID(imdbId);
+
+            WoopuserMedium woopuserMedium = new WoopuserMedium { BlockageLevel = 0, Media = medium, User = user};
+
+            _woopusermediumRepository.AddOrUpdate(woopuserMedium);
         }
     }
 }

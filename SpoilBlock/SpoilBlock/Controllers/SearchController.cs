@@ -38,7 +38,13 @@ namespace SpoilBlock.Controllers
         public IActionResult Add(SearchViewModel model)
         {
 
-            _addMediaService.Add(model.addSelectionId, model.addSelectionTitle, model.addSelectionDescription);
+            try
+            {
+                _addMediaService.Add(model.addSelectionId, model.addSelectionTitle, model.addSelectionDescription);
+            } catch(Exception e)
+            {
+
+            }
             return RedirectToAction("Index");
         }
     }

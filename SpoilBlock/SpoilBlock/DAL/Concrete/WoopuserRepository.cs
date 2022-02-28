@@ -21,6 +21,7 @@ namespace SpoilBlock.DAL.Concrete
 
         public virtual Woopuser? GetWoopUserByIdentityId(string identityID)
         {
+            return _dbSet.FirstOrDefault<Woopuser>(user => user.AspnetIdentityId == identityID);
         }
 
         public virtual async Task  ListShowsAsync(Woopuser user, int mediaID, int blockageLevel)
@@ -36,6 +37,11 @@ namespace SpoilBlock.DAL.Concrete
             _context.Add(coreUser);
             await _context.SaveChangesAsync();
             return;
+        }
+
+        public IEnumerable<Medium> GetCountOfListOfShows(IEnumerable<Medium> mediaList, Woopuser user)
+        {
+            throw new NotImplementedException();
         }
     }
 }
