@@ -4,11 +4,14 @@ using SpoilBlock.DAL.Abstract;
 using SpoilBlock.DAL.Concrete;
 using SpoilBlock.Data;
 using SpoilBlock.Models;
-
+using SpoilBlock.DAL.Abstract;
+using SpoilBlock.DAL.Concrete;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IWoopUserMediumRepository, WoopUserMediumRepository>();
+builder.Services.AddScoped<IWoopuserRepository, WoopuserRepository>();
 
 builder.Services.AddSingleton<IIMDbSearchService>(s => new IMDbSearchService(builder.Configuration["IMDbServiceApiKey"]));
 
