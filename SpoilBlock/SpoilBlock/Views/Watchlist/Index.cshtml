@@ -16,10 +16,10 @@
 
 
     <div class="text-center">
-        <h1 class="display-4">Your Watchlist</h1>
+        <h1 class="display-4">@Model.Username 's Watchlist</h1>
     </div>
 
-    @if (Model.AllShows != null)
+    @if (Model.IsEmpty == false)
     {
         <div class="text-center">
             <table class="table table-hover">     

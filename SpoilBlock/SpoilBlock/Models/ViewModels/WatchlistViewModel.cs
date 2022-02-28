@@ -11,7 +11,7 @@ namespace SpoilBlock.Models.ViewModels
 
         public string Username { get; set; }
 
-        //public int BlockageLevel { get; set; }
+        public bool IsEmpty { get; set; }
 
         public  IEnumerable<Medium> AllShows { get; set; }
 
