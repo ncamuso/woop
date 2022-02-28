@@ -17,8 +17,8 @@ namespace SpoilBlock.Models
         }
 
         public virtual DbSet<Medium> Media { get; set; } = null!;
-        public virtual DbSet<User> Users { get; set; } = null!;
-        public virtual DbSet<UserMedium> UserMedia { get; set; } = null!;
+        public virtual DbSet<Woopuser> Woopusers { get; set; } = null!;
+        public virtual DbSet<WoopuserMedium> WoopuserMedia { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,21 +35,21 @@ namespace SpoilBlock.Models
                 entity.Property(e => e.Id).ValueGeneratedNever();
             });
 
-            modelBuilder.Entity<UserMedium>(entity =>
+            modelBuilder.Entity<WoopuserMedium>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.HasOne(d => d.Media)
-                    .WithMany(p => p.UserMedia)
+                    .WithMany(p => p.WoopuserMedia)
                     .HasForeignKey(d => d.MediaId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Fk_UserMedia_Media_ID");
+                    .HasConstraintName("Fk_WOOPUserMedia_Media_ID");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.UserMedia)
+                    .WithMany(p => p.WoopuserMedia)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Fk_UserMedia_User_ID");
+                    .HasConstraintName("Fk_WOOPUserMedia_User_ID");
             });
 
             OnModelCreatingPartial(modelBuilder);
