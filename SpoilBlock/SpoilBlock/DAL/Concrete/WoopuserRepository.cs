@@ -67,9 +67,6 @@ namespace SpoilBlock.DAL.Concrete
             return;
         }
 
-        public IEnumerable<Medium> GetCountOfListOfShows(IEnumerable<Medium> mediaList, Woopuser user)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
