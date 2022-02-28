@@ -1,17 +1,48 @@
-﻿@*@using Microsoft.AspNetCore.Identity
+﻿@model SpoilBlock.Models.ViewModels.WatchlistViewModel
+@using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager*@
+@inject UserManager<IdentityUser> UserManager
 
 @*@model SpoilBlock.Models.UserMedium This needs a VM to hold list of Shows for one user*@
 @{
     ViewData["Title"] = "Watchlist Page";
 }
 
-@*@if (SignInManager.IsSignedIn(User))
+@if (SignInManager.IsSignedIn(User) && Model.HasWoopUser)
 {
+
     //When the user is logged in view watchlist page
-}*@
+
+
+    <div class="text-center">
+        <h1 class="display-4">@Model.Username's Watchlist</h1>
+    </div>
+    
+    <div class="text-center">
+        <table class="table table-hover">     
+            <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Description</th>
+                  @*<th scope="col">Blockage Level</th>*@
+                </tr>
+            </thead>
+    
+            <tbody>
+                @foreach(var items in @Model.AllShows)
+                {
+                  <tr>
+                    <th scope="row">1++</th>
+                    <td>@items.Title</td>
+                    <td>@items.Description</td>
+                  </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
 
 
 @*If the watchlist is not empty. Also create for when its empty*@

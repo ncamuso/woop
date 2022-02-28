@@ -17,7 +17,7 @@ namespace SpoilBlock.DAL.Abstract
 
         Task ListShowsAsync(Woopuser user, int mediaID, int blockageLevel);
 
-        IEnumerable<Medium> GetCountOfListOfShows(IEnumerable<Medium> mediaList, Woopuser user);
+        IEnumerable<Medium> GetListOfShows(IEnumerable<Medium> mediaList, Woopuser user);
 
     }
 }

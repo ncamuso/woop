@@ -23,7 +23,9 @@ namespace SpoilBlock.DAL.Concrete
             return _dbSet.Where(u => u.AspnetIdentityId == identityID).FirstOrDefault();
         }
 
-        public virtual IEnumerable<Medium> GetCountOfListOfShows(IEnumerable<Medium> mediaList, Woopuser user)
+
+
+        public virtual IEnumerable<Medium> GetListOfShows(IEnumerable<Medium> mediaList, Woopuser user)
         {
             if (user == null)
             {
@@ -49,7 +51,7 @@ namespace SpoilBlock.DAL.Concrete
 
         }
 
-        public virtual async Task  ListShowsAsync(Woopuser user, int mediaID, int blockageLevel)
+        public virtual async Task ListShowsAsync(Woopuser user, int mediaID, int blockageLevel)
         {
             WoopuserMedium coreUser = new WoopuserMedium
             {
@@ -58,7 +60,7 @@ namespace SpoilBlock.DAL.Concrete
                 MediaId = mediaID,
                 BlockageLevel = blockageLevel
             };
-            
+
             _context.Add(coreUser);
             await _context.SaveChangesAsync();
             return;
