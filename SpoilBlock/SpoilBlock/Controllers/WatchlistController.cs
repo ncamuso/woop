@@ -38,6 +38,11 @@ namespace SpoilBlock.Controllers
                 AllShows = _woopuserRepository.GetListOfShows(_woopusermediumRepository.GetListOfShowsForUser(wum.Id), wum)
 
             };
+            if (vm.AllShows.Count() == 0)
+            {
+                vm.IsEmpty = true;
+                return View(vm);
+            }else
 
 
             return View(vm);
