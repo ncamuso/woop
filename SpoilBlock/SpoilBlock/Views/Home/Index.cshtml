@@ -1,15 +1,36 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4" >Welcome to Spoil Block</h1>
-    <p style= "font-size: 1.2em;">
-        The internet has become a bubble of spoiler and it is hard not to see anything spoiled from our favourite shows. Our main purpose is to deliver spoiler free youtube content as per the user's choices.
-    </p>
-    <br />
-    <p style= "font-size: 1.2em;">
-        Please login to proceed
-        <a class="btn btn-primary" id="login" asp-area ="Identity" asp-page="/Account/Login">Login</a>
-    </p>
-</div>
+@if (SignInManager.IsSignedIn(User))
+{ 
+    <div class="text-center" style= "margin-top: 100px; margin-bottom: 100px;">
+        <h1>
+            Welcome To SpoilBlock @UserManager.GetUserName(User)!!!
+        </h1>
+        <h2>Ready to block some shows </h2>
+    </div>
+
+
+
+}
+else
+{
+
+    <div class="text-center" style= "margin-top: 100px; margin-bottom 100px;">
+        <h1 class="display-4" >Welcome to Spoil Block</h1>
+        <p style= "font-size: 1.2em; margin:20px 20px 10px 10px;">
+            The internet has become a bubble of spoiler and it is hard not to see anything spoiled from our favourite shows. Our main purpose is to deliver spoiler free youtube content as per the user's choices.
+        </p>
+        <br />
+        <p style= "font-size: 1.2em;">
+            Please login to proceed
+            <a class="btn btn-primary" id="login" asp-area ="Identity" asp-page="/Account/Login">Login</a>
+        </p>
+    </div>
+}
