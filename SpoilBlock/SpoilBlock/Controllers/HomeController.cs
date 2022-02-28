@@ -29,7 +29,7 @@ namespace SpoilBlock.Controllers
         public IActionResult Index()
         {
             SearchViewModel model = new SearchViewModel();
-            if (model.query == null) return View();
+            //if (model.query == null) return View();
 
             model.resultsList = _newShowsService.GetNewShowsResult();
             return View(model);
