@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SpoilBlock.Models;
 using SpoilBlock.DAL.Abstract;
+using SpoilBlock.Models;
 
 namespace SpoilBlock.DAL.Concrete
 {
@@ -20,33 +21,7 @@ namespace SpoilBlock.DAL.Concrete
 
         public virtual Woopuser? GetWoopUserByIdentityId(string identityID)
         {
-            return _dbSet.Where(u => u.AspnetIdentityId == identityID).FirstOrDefault();
-        }
-
-        public virtual IEnumerable<Medium> GetCountOfListOfShows(IEnumerable<Medium> mediaList, Woopuser user)
-        {
-            if (user == null)
-            {
-                throw new ArgumentNullException();
-
-            }
-            Woopuser? foundUser = _dbSet.Include(x => x.WoopuserMedia).Where(x => x.Id == user.Id).FirstOrDefault();
-
-            List<Medium> output = new List<Medium>();
-
-            if (foundUser == null || mediaList == null)
-            {
-                return output;
-            }
-
-            foreach (Medium media in mediaList)
-            {
-                var temp = foundUser.WoopuserMedia.Where(um => um.MediaId == media.Id).Select(um => um.Media).Single();
-                output.Add(temp);
-            }
-
-            return output;
-
+            return _dbSet.FirstOrDefault<Woopuser>(user => user.AspnetIdentityId == identityID);
         }
 
         public virtual async Task  ListShowsAsync(Woopuser user, int mediaID, int blockageLevel)
@@ -62,6 +37,11 @@ namespace SpoilBlock.DAL.Concrete
             _context.Add(coreUser);
             await _context.SaveChangesAsync();
             return;
+        }
+
+        public IEnumerable<Medium> GetCountOfListOfShows(IEnumerable<Medium> mediaList, Woopuser user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

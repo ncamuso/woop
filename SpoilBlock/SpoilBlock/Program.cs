@@ -10,7 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//This needs to be replaced with a line that gets the key from an Azure Key Vault!!
 builder.Services.AddSingleton<IIMDbSearchService>(s => new IMDbSearchService(builder.Configuration["IMDbServiceApiKey"]));
 
 //var connectionString = builder.Configuration.GetConnectionString("WOOPServerConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
@@ -26,7 +25,13 @@ var identityConnectionString = builder.Configuration.GetConnectionString("Identi
      options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
       .AddEntityFrameworkStores<IdentityDbContext>();
 
-
+builder.Services.AddScoped<IAddMediaService, AddMediaService>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IWoopuserRepository, WoopuserRepository>();
+builder.Services.AddScoped<IWoopUserMediumRepository, WoopUserMediumRepository>();
+builder.Services.AddScoped<IMediumRepository, MediumRepository>();
+builder.Services.AddScoped<DbContext, WOOPDbContext>();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

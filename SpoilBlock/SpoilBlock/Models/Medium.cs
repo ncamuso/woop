@@ -18,7 +18,8 @@ namespace SpoilBlock.Models
         [Column("ID")]
         public int Id { get; set; }
         [Column("IMDBID")]
-        public int Imdbid { get; set; }
+        [StringLength(50)]
+        public string Imdbid { get; set; } = null!;
         [StringLength(50)]
         public string Title { get; set; } = null!;
         [StringLength(400)]
