@@ -14,6 +14,7 @@ builder.Services.AddScoped<IWoopUserMediumRepository, WoopUserMediumRepository>(
 builder.Services.AddScoped<IWoopuserRepository, WoopuserRepository>();
 
 builder.Services.AddSingleton<IIMDbSearchService>(s => new IMDbSearchService(builder.Configuration["IMDbServiceApiKey"]));
+builder.Services.AddSingleton<IIMDbNewShowsService>(s => new IMDbNewShowsService(builder.Configuration["IMDbNewShowsApiKey"]));
 
 //var connectionString = builder.Configuration.GetConnectionString("WOOPServerConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
 //    options.UseSqlServer(connectionString));
@@ -64,8 +65,6 @@ app.UseEndpoints(endpoints =>
                 });
 
 
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();
