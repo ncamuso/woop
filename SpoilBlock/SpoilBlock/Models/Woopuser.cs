@@ -17,9 +17,11 @@ namespace SpoilBlock.Models
         [Key]
         [Column("ID")]
         public int Id { get; set; }
+
         [Column("ASPNetIdentityId")]
         [StringLength(450)]
         public string AspnetIdentityId { get; set; } = null!;
+
         [StringLength(30)]
         public string Username { get; set; } = null!;
 
