@@ -1,15 +1,32 @@
-//alert('Welcome to Spoil Block')
+function blurTitle (element) {
+    element.style.color = 'transparent';
+    element.style.textShadow = '0 0 5px rgba(0,0,0,0.5)';
+}
 
-//const myElement = document.getElementById("video-title");
-//    myElement.innerText = "spoiler";
+function blurThumbnail (element) {
+    element.style.filter = 'blur(10px)';
+}
+
+function checkSpoiler(element) {
+    let title = element.querySelector("#video-title");
+    let thumbnail = element.querySelector("#img")
+
+    if(title.innerHTML.toString().toLowerCase().includes('spoiler')) {
+        blurTitle(title);
+        blurThumbnail(thumbnail);
+    }
+}
 
 async function IsLoaded() {
     let el = document.getElementById("video-title");
+        
     if (el) {
-        console.log(el);
-        //el.innerHTML += "spoiler";
-        el.style.color = 'transparent';
-        el.style.textShadow = '0 0 5px rgba(0,0,0,0.5)';
+        let els = document.querySelectorAll('[id=dismissible]');
+        els.forEach(
+            function(currentValue) {
+                checkSpoiler(currentValue);
+            }
+        );
     } else {
         console.log("Not yet loaded");
     }
@@ -19,17 +36,18 @@ function pageWait() {
 return new Promise(resolve => {
     setTimeout(() => {
     IsLoaded();
-    }, 100);
+    }, 500);
 });
 }
   
 async function asyncCall() {
-console.log('calling');
-const result = await pageWait();
+    console.log('calling');
+    const result = await pageWait();
 
-console.log(result);
-
-// expected output: "resolved"
+    console.log(result);
 }
+
+
+//contentEl.addEventListener("DOMSubtreeModified", test)
 
 asyncCall();
