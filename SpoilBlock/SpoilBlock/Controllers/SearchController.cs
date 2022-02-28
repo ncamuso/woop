@@ -8,9 +8,11 @@ namespace SpoilBlock.Controllers
     public class SearchController : Controller
     {
         private IIMDbSearchService _searchService;
-        public SearchController(IIMDbSearchService searchService)
+        private IAddMediaService _addMediaService;
+        public SearchController(IIMDbSearchService searchService, IAddMediaService addService)
         {
             _searchService = searchService;
+            _addMediaService = addService;
         }
         public IActionResult Index()
         {
@@ -24,6 +26,13 @@ namespace SpoilBlock.Controllers
 
             model.resultsList = _searchService.GetSearchResults(model.query);
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Add(SearchViewModel model)
+        {
+
+            return RedirectToAction("Index");
         }
     }
 }
