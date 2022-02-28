@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SpoilBlock.Models;
 using SpoilBlock.DAL.Abstract;
+using SpoilBlock.Models;
 
 namespace SpoilBlock.DAL.Concrete
 {
@@ -20,7 +21,8 @@ namespace SpoilBlock.DAL.Concrete
 
         public virtual Woopuser? GetWoopUserByIdentityId(string identityID)
         {
-            return _dbSet.Where(u => u.AspnetIdentityId == identityID).FirstOrDefault();
+
+            return _dbSet.FirstOrDefault<Woopuser>(user => user.AspnetIdentityId == identityID);
         }
 
 
@@ -49,6 +51,7 @@ namespace SpoilBlock.DAL.Concrete
 
             return output;
 
+
         }
 
         public virtual async Task ListShowsAsync(Woopuser user, int mediaID, int blockageLevel)
@@ -65,5 +68,7 @@ namespace SpoilBlock.DAL.Concrete
             await _context.SaveChangesAsync();
             return;
         }
+
+        
     }
 }

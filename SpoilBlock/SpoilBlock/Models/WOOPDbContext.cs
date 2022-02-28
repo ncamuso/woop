@@ -30,15 +30,8 @@ namespace SpoilBlock.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Medium>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-            });
-
             modelBuilder.Entity<WoopuserMedium>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.HasOne(d => d.Media)
                     .WithMany(p => p.WoopuserMedia)
                     .HasForeignKey(d => d.MediaId)

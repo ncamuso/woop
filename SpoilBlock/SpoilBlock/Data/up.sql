@@ -1,18 +1,20 @@
 CREATE TABLE [WOOPUser] (
     [ID] int PRIMARY KEY IDENTITY(1,1),
+
     [ASPNetIdentityId] NVARCHAR(450) NOT NULL,
+
     [Username] nvarchar(30) NOT NULL
 );
 
 CREATE TABLE [Media] (
-    [ID] int PRIMARY KEY,
-    [IMDBID] int NOT NULL,
+    [ID] int PRIMARY KEY IDENTITY(1,1),
+    [IMDBID] nvarchar(50) NOT NULL,
     [Title] nvarchar(50) NOT NULL,
     [Description] nvarchar(400) NOT NULL
 );
 
 CREATE TABLE [WOOPUserMedia] (
-    [ID] int PRIMARY KEY,
+    [ID] int PRIMARY KEY IDENTITY(1,1),
     [BlockageLevel] int NOT NULL,
     [UserID] int NOT NULL,
     [MediaID] int NOT NULL
