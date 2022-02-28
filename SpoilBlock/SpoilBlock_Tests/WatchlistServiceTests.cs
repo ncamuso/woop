@@ -60,8 +60,8 @@ namespace SpoilBlock_Tests
             int userId = 1;
             var expectedList = new List<Medium>
             {
-                new Medium{Id = 1, Imdbid= "1", Title= "The Green Mile"},
-                new Medium{Id = 2, Imdbid= "2", Title= "Deadpool"}
+                new Medium{Id = 1, Imdbid= "as0110912", Title= "The Green Mile"},
+                new Medium{Id = 2, Imdbid= "tgf010912", Title= "Deadpool"}
             };
 
             //Act
