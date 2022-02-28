@@ -1,5 +1,6 @@
 ﻿using SpoilBlock.DAL.Abstract;
 using SpoilBlock.Models;
+using System.Security.Claims;
 
 namespace SpoilBlock.DAL.Concrete
 {
@@ -7,14 +8,21 @@ namespace SpoilBlock.DAL.Concrete
     {
         private IRepository<Medium> _mediaRepository;
         private IRepository<WoopuserMedium> _woopusermediumRepository;
-        public AddMediaService(IRepository<Medium> mediaRepo, IRepository<WoopuserMedium> userMediaRepo)
+        private IRepository<Woopuser> _woopuserRepository;
+
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public AddMediaService(IRepository<Medium> mediaRepo, IRepository<WoopuserMedium> userMediaRepo, IRepository<Woopuser> woopuserRepo, IHttpContextAccessor httpContextAccessor)
         {
             _mediaRepository = mediaRepo;
             _woopusermediumRepository = userMediaRepo;
+            _woopuserRepository = woopuserRepo;
+            _httpContextAccessor = httpContextAccessor;
         }
-        public bool Add(string imdbId, string title, string description, string woopUserId)
+        public bool Add(string imdbId, string title, string description)
         {
-            throw new NotImplementedException();
+            var userIdentityId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
         }
     }
 }

@@ -25,6 +25,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddScoped<IAddMediaService, AddMediaService>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<DbContext, WOOPDbContext>();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
