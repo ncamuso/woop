@@ -15,6 +15,9 @@ namespace SpoilBlock.DAL.Abstract
         Woopuser? GetWoopUserByIdentityId(string identityID);
         bool Exists(Woopuser user);
 
+        Task ListShowsAsync(Woopuser user, int mediaID, int blockageLevel);
+
+        IEnumerable<Medium> GetCountOfListOfShows(IEnumerable<Medium> mediaList, Woopuser user);
 
     }
 }

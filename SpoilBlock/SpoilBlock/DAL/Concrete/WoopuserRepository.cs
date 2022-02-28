@@ -18,9 +18,50 @@ namespace SpoilBlock.DAL.Concrete
             return _dbSet.Any(x => x.AspnetIdentityId == user.AspnetIdentityId && x.Username == user.Username);
         }
 
-        public Woopuser? GetWoopUserByIdentityId(string identityID)
+        public virtual Woopuser? GetWoopUserByIdentityId(string identityID)
         {
             return _dbSet.Where(u => u.AspnetIdentityId == identityID).FirstOrDefault();
+        }
+
+        public virtual IEnumerable<Medium> GetCountOfListOfShows(IEnumerable<Medium> mediaList, Woopuser user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException();
+
+            }
+            Woopuser? foundUser = _dbSet.Include(x => x.WoopuserMedia).Where(x => x.Id == user.Id).FirstOrDefault();
+
+            List<Medium> output = new List<Medium>();
+
+            if (foundUser == null || mediaList == null)
+            {
+                return output;
+            }
+
+            foreach (Medium media in mediaList)
+            {
+                var temp = foundUser.WoopuserMedia.Where(um => um.MediaId == media.Id).Select(um => um.Media).Single();
+                output.Add(temp);
+            }
+
+            return output;
+
+        }
+
+        public virtual async Task  ListShowsAsync(Woopuser user, int mediaID, int blockageLevel)
+        {
+            WoopuserMedium coreUser = new WoopuserMedium
+            {
+
+                User = user,
+                MediaId = mediaID,
+                BlockageLevel = blockageLevel
+            };
+            
+            _context.Add(coreUser);
+            await _context.SaveChangesAsync();
+            return;
         }
     }
 }

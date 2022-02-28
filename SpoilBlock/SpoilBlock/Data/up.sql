@@ -1,6 +1,6 @@
 CREATE TABLE [WOOPUser] (
     [ID] int PRIMARY KEY IDENTITY(1,1),
-    [IdentityID] int NOT NULL,
+    [ASPNetIdentityId] NVARCHAR(450) NOT NULL,
     [Username] nvarchar(30) NOT NULL
 );
 

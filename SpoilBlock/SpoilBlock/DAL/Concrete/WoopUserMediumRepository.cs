@@ -14,8 +14,7 @@ namespace SpoilBlock.DAL.Concrete
         { }
         IEnumerable<Medium> IWoopUserMediumRepository.GetListOfShowsForUser(int id)
         {
-            //Medium temp = new Medium();
-            //var temp = GetAll().Include(m => m.WoopuserMedia).Where(m => m.WoopuserMedia.Where(um => um.UserId == id)).ToList();
+            
             return GetAll().Where(u => u.UserId == id).Select(u => u.Media).ToList();
         }
     }
