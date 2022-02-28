@@ -7,12 +7,12 @@ namespace SpoilBlock.DAL.Concrete
     public class AddMediaService : IAddMediaService
     {
         private IMediumRepository _mediaRepository;
-        private IRepository<WoopuserMedium> _woopusermediumRepository;
+        private IWoopUserMediumRepository _woopusermediumRepository;
         private IWoopuserRepository _woopuserRepository;
 
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AddMediaService(IMediumRepository mediaRepo, IRepository<WoopuserMedium> userMediaRepo, IWoopuserRepository woopuserRepo, IHttpContextAccessor httpContextAccessor)
+        public AddMediaService(IMediumRepository mediaRepo, IWoopUserMediumRepository userMediaRepo, IWoopuserRepository woopuserRepo, IHttpContextAccessor httpContextAccessor)
         {
             _mediaRepository = mediaRepo;
             _woopusermediumRepository = userMediaRepo;
@@ -24,7 +24,10 @@ namespace SpoilBlock.DAL.Concrete
             var userIdentityId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
 
+
             Woopuser user = _woopuserRepository.GetWoopUserByIdentityId(userIdentityId);
+            if (_woopusermediumRepository.GetListOfShowsForUser(user.Id).Where(m => m.Imdbid == imdbId).Any())
+                return;
 
             Medium medium = new Medium { Description = description, Imdbid = imdbId, Title = title };
 
