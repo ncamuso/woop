@@ -18,18 +18,24 @@ function checkSpoiler(element) {
 }
 
 async function IsLoaded() {
+    document.getElementById("contents").addEventListener("DOMSubtreeModified", function (event) {
+        console.log("modified");
+        if (el) {
+            let els = document.querySelectorAll('[id=dismissible]');
+            els.forEach(
+                function(currentValue) {
+                    checkSpoiler(currentValue);
+                }
+            );
+        } else {
+            console.log("Not yet loaded");
+        }
+    });
+    //------------------------------------------------
+
     let el = document.getElementById("video-title");
         
-    if (el) {
-        let els = document.querySelectorAll('[id=dismissible]');
-        els.forEach(
-            function(currentValue) {
-                checkSpoiler(currentValue);
-            }
-        );
-    } else {
-        console.log("Not yet loaded");
-    }
+    
 }
 
 function pageWait() {
