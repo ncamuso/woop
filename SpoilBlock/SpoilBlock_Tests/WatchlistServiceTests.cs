@@ -60,8 +60,8 @@ namespace SpoilBlock_Tests
             int userId = 1;
             var expectedList = new List<Medium>
             {
-                new Medium{Id = 1, Imdbid= "1", Title= "The Green Mile"},
-                new Medium{Id = 2, Imdbid= "2", Title= "Deadpool"}
+                new Medium{Id = 1, Imdbid= "as0110912", Title= "The Green Mile"},
+                new Medium{Id = 2, Imdbid= "tgf010912", Title= "Deadpool"}
             };
 
             //Act
@@ -76,6 +76,39 @@ namespace SpoilBlock_Tests
                };
         }
 
+        [Test]
+        public void UserMediumRepository_GetListOfShowsForUserForNonExisting_Should_ReturnEmptyList()
+        {
+            // Arrange
+            IWoopUserMediumRepository umRepo = new WoopUserMediumRepository(_mockContext.Object);
+            int userId = 22;
+            
+
+            //Act
+            IEnumerable<Medium> actualList = umRepo.GetListOfShowsForUser(userId);
+
+
+            //Assert
+            Assert.That(actualList.Count(), Is.EqualTo(0));
+           
+        }
+
+        [Test]
+        public void UserMediumRepository_GetListOfShowsForUserForNullId_Should_ThrowException()
+        {
+            // Arrange
+            IWoopUserMediumRepository umRepo = new WoopUserMediumRepository(_mockContext.Object);
+            int? userId = null;
+
+
+            //Act
+            //IEnumerable<Medium> actualList = umRepo.GetListOfShowsForUser(userId);
+
+
+            //Assert
+            Assert.Throws<ArgumentNullException>(() => umRepo.GetListOfShowsForUser(userId));
+
+        }
 
     }
 }

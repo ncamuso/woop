@@ -8,6 +8,6 @@ namespace SpoilBlock.DAL.Abstract
     {
 
         int GetBlockageLevel(int id);
-        IEnumerable<Medium> GetListOfShowsForUser(int id);
+        IEnumerable<Medium> GetListOfShowsForUser(int? id);
     }
 }

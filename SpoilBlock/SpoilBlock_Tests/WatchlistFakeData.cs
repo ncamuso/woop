@@ -21,10 +21,10 @@ namespace SpoilBlock_Tests
 
         public static readonly List<Medium> MediumList = new List<Medium>
         {
-            new Medium{Id = 1, Imdbid= "1", Title= "The Green Mile"},
-            new Medium{Id = 2, Imdbid= "2", Title= "Deadpool"},
-            new Medium{Id = 3, Imdbid= "4", Title= "Deadpool-2"},
-            new Medium{Id = 4, Imdbid= "10", Title= "Batman Begins"}
+            new Medium{Id = 1, Imdbid= "as0110912", Title= "The Green Mile"},
+            new Medium{Id = 2, Imdbid= "tgf010912", Title= "Deadpool"},
+            new Medium{Id = 3, Imdbid= "hf0134523", Title= "Deadpool-2"},
+            new Medium{Id = 4, Imdbid= "ef5555912", Title= "Batman Begins"}
         };
 
         public static readonly List<WoopuserMedium> UserMediumList = new List<WoopuserMedium>
