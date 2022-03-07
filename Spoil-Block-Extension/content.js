@@ -39,7 +39,7 @@ async function IsLoaded() {
 //        console.log("Not yet loaded");
 //        asyncCall();
 //    }
-
+    console.log("adding listener");
     document.getElementById("contents").addEventListener("DOMNodeInserted", function (event) {
         if (el) {
             let els = document.querySelectorAll('[id=dismissible]');
@@ -52,6 +52,7 @@ async function IsLoaded() {
             console.log("Not yet loaded");
         }
     });
+    
     //------------------------------------------------
     let el = document.getElementById("contents");
     
@@ -77,4 +78,43 @@ async function asyncCall() {
 
 //contentEl.addEventListener("DOMSubtreeModified", test)
 
-asyncCall();
+//asyncCall();
+
+async function checkPageLoad() {
+    setTimeout(() => {
+        let el = document.getElementById("video-title");
+        if (!el) {
+            console.log("Tried to check contents... wasn't loaded. Running again.");
+            setTimeout(() => { checkPageLoad() }, 50)
+            //checkPageLoad();
+        } else {
+            console.log("Tried to check contents... IT'S LOADED! Breaking out of checkPageLoad()");
+            if (el.innerHTML === null) {
+                console.log("Page was loaded but video title was not yet readable. Calling again.")
+                checkPageLoad();
+            } else {
+                console.log("Page was loaded and video title is readable.")
+                IsLoaded();
+            }
+        }
+    }, 0);
+}
+
+let lastUrl = location.href; 
+new MutationObserver(() => {
+  const url = location.href;
+  if (url !== lastUrl) {
+    lastUrl = url;
+    onUrlChange();
+  }
+}).observe(document, {subtree: true, childList: true});
+ 
+ 
+function onUrlChange() {
+    //document.getElementById("contents").removeEventListener("DOMNodeInserted", function(event){});
+    location.reload();
+    //checkPageLoad();
+}
+
+checkPageLoad();
+
