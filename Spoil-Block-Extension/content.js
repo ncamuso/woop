@@ -100,21 +100,21 @@ async function checkPageLoad() {
     }, 0);
 }
 
-//let lastUrl = location.href; 
-//new MutationObserver(() => {
-//  const url = location.href;
-//  if (url !== lastUrl) {
-//    lastUrl = url;
-//    onUrlChange();
-//  }
-//}).observe(document, {subtree: true, childList: true});
+let lastUrl = location.href; 
+new MutationObserver(() => {
+  const url = location.href;
+  if (url !== lastUrl) {
+    lastUrl = url;
+    onUrlChange();
+  }
+}).observe(document, {subtree: true, childList: true});
  
  
-//function onUrlChange() {
+function onUrlChange() {
     //document.getElementById("contents").removeEventListener("DOMNodeInserted", function(event){});
-//    location.reload();
+    location.reload();
     //checkPageLoad();
-//}
+}
 
 checkPageLoad();
 
