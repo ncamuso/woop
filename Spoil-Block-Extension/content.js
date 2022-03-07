@@ -9,9 +9,15 @@ function blurThumbnail (element) {
 
 function checkSpoiler(element) {
     let title = element.querySelector("#video-title");
-    let thumbnail = element.querySelector("#img")
+    let thumbnail = element.querySelector("#img");
 
-    if(title.innerHTML.toString().toLowerCase().includes('spoiler')) {
+    let titleText = title.innerHTML.toString().toLowerCase();
+    let isSpoiler = false;
+
+    if (titleText.includes('spoiler') && !titleText.includes('no spoiler')) { isSpoiler = true; }
+    if (titleText.includes('spoiler-free') || titleText.includes('spoiler free')) {isSpoiler = false; }
+
+    if(isSpoiler) {
         blurTitle(title);
         blurThumbnail(thumbnail);
     }
