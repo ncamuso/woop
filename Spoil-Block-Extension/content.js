@@ -76,11 +76,6 @@ async function asyncCall() {
     console.log(result);
 }
 
-
-//contentEl.addEventListener("DOMSubtreeModified", test)
-
-//asyncCall();
-
 async function checkPageLoad() {
     setTimeout(() => {
         let title = document.getElementById("video-title");
@@ -110,7 +105,6 @@ new MutationObserver(() => {
 }).observe(document, {subtree: true, childList: true});
 
 function onUrlChange() {
-    //document.getElementById("contents").removeEventListener("DOMNodeInserted", function(event){});
     location.reload();
 }
 
