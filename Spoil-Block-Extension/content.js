@@ -15,7 +15,7 @@ function checkSpoiler(element) {
     let isSpoiler = false;
 
     if (titleText.includes('spoiler') && !titleText.includes('no spoiler')) { isSpoiler = true; }
-    if (titleText.includes('spoiler-free') || titleText.includes('spoiler free')) {isSpoiler = false; }
+    if (titleText.includes('spoiler-free') || titleText.includes('spoiler free') || titleText.includes('non-spoiler')) {isSpoiler = false; }
 
     if(isSpoiler) {
         blurTitle(title);
@@ -39,6 +39,7 @@ async function IsLoaded() {
 //        console.log("Not yet loaded");
 //        asyncCall();
 //    }
+    console.log(location.href);
     console.log("adding listener");
     document.getElementById("contents").addEventListener("DOMNodeInserted", function (event) {
         if (el) {
@@ -82,20 +83,19 @@ async function asyncCall() {
 
 async function checkPageLoad() {
     setTimeout(() => {
-        let el = document.getElementById("video-title");
-        if (!el) {
-            console.log("Tried to check contents... wasn't loaded. Running again.");
-            setTimeout(() => { checkPageLoad() }, 50)
-            //checkPageLoad();
-        } else {
-            console.log("Tried to check contents... IT'S LOADED! Breaking out of checkPageLoad()");
-            if (el.innerHTML === null) {
-                console.log("Page was loaded but video title was not yet readable. Calling again.")
-                checkPageLoad();
+        let title = document.getElementById("video-title");
+        if (title) {
+            if (title.innerHTML === null) {
+                console.log("Tried to check contents... wasn't loaded. Running again.");
+                setTimeout(() => { checkPageLoad() }, 50)
+                //checkPageLoad();
             } else {
-                console.log("Page was loaded and video title is readable.")
+                console.log("Tried to check contents... IT'S LOADED! Breaking out of checkPageLoad()");
                 IsLoaded();
             }
+        } else {
+            console.log("title was null. Running again.");
+            setTimeout(() => { checkPageLoad() }, 50);
         }
     }, 0);
 }
@@ -108,12 +108,10 @@ new MutationObserver(() => {
     onUrlChange();
   }
 }).observe(document, {subtree: true, childList: true});
- 
- 
+
 function onUrlChange() {
     //document.getElementById("contents").removeEventListener("DOMNodeInserted", function(event){});
     location.reload();
-    //checkPageLoad();
 }
 
 checkPageLoad();
