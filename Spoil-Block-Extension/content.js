@@ -23,25 +23,15 @@ function checkSpoiler(element) {
     }
 }
 
-async function IsLoaded() {
-//    let el = document.getElementById("contents");
-//    if (el) {
-//        console.log("loaded");
-//        document.getElementById("contents").addEventListener("DOMSubtreeModified", function (event) {
-//            let els = document.querySelectorAll('[id=dismissible]');
-//            els.forEach(
-//                function(currentValue) {
-//                    checkSpoiler(currentValue);
-//                }
-//            )
-//        });
-//    } else {
-//        console.log("Not yet loaded");
-//        asyncCall();
-//    }
-    console.log(location.href);
-    console.log("adding listener");
-    document.getElementById("contents").addEventListener("DOMNodeInserted", function (event) {
+function removeListeners() {
+    
+    
+}
+
+function addListenerContents(element) {
+    document.getElementById(element).removeEventListener("DOMNodeInserted", function (event) {});
+
+    document.getElementById(element).addEventListener("DOMNodeInserted", function (event) {
         if (el) {
             let els = document.querySelectorAll('[id=dismissible]');
             els.forEach(
@@ -55,10 +45,38 @@ async function IsLoaded() {
     });
     
     //------------------------------------------------
-    let el = document.getElementById("contents");
-    
-        
-    
+    let el = document.getElementById(element);
+}
+
+function addListenerItems(element) {
+    let related = document.getElementById(element).querySelector("#items");
+
+    let relatedDiv = document.getElementById("related").querySelector('#items');
+    relatedDiv.removeEventListener("DOMNodeInserted", function (event) {} );
+
+    console.log(document.getElementById(element).children[1]);
+    console.log(document.getElementById(element).children[1].querySelector(":scope > #items"));
+
+    related.addEventListener("DOMNodeInserted", function (event) {
+        let els = related.querySelectorAll('#dismissible');
+        els.forEach(
+            function(currentValue) {
+                checkSpoiler(currentValue);
+                //console.log(currentValue);
+            }
+        );
+    });
+}
+
+async function IsLoaded() {
+    console.log(location.href);
+    console.log("adding listener");
+    if (location.href.includes('youtube.com/watch')) {
+        console.log("adding listener to related div");
+        addListenerItems("related");
+    } else {
+        addListenerContents("contents");
+    }
 }
 
 function pageWait() {
