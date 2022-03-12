@@ -25,7 +25,7 @@ namespace SpoilBlock_Tests
         {
             IMDbSearchService service = new IMDbSearchService("");
 
-            List<IMDbEntry> result = service.ParseIMDbJSON(_searchServiceData.validIMDbJSON).ToList();
+            var result = service.ParseIMDbJSON(_searchServiceData.validIMDbJSON).Item1.ToList();
             List<IMDbEntry> expected = _searchServiceData.expectedValidIMDbJSONResponse.results.ToList();
 
             CollectionAssert.AreEqual(expected, result);
@@ -36,21 +36,20 @@ namespace SpoilBlock_Tests
         {
             IMDbSearchService service = new IMDbSearchService("");
 
-            List<IMDbEntry> result = service.ParseIMDbJSON(_searchServiceData.validIMDbJSONNoResults).ToList();
+            List<IMDbEntry> result = service.ParseIMDbJSON(_searchServiceData.validIMDbJSONNoResults).Item1.ToList();
             List<IMDbEntry> expected = new List<IMDbEntry>();
 
             CollectionAssert.AreEqual(expected, result);
         }
 
         [Test]
-        public void Test_SearchService_SearchReturnsEmptyListIfErrorMessage()
+        public void Test_SearchService_Throws_ArgumentNullException_If_JSON_is_null()
         {
             IMDbSearchService service = new IMDbSearchService("");
 
-            List<IMDbEntry> result = service.ParseIMDbJSON(_searchServiceData.validIMDbJSONNoResultsErrorMessage).ToList();
-            List<IMDbEntry> expected = new List<IMDbEntry>();
-
-            CollectionAssert.AreEqual(expected, result);
+            Assert.Throws<ArgumentNullException>(delegate { service.ParseIMDbJSON(null!); });
         }
+
+
     }
 }

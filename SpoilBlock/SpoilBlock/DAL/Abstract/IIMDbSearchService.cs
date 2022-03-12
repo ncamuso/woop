@@ -5,6 +5,6 @@ namespace SpoilBlock.DAL.Abstract
 {
     public interface IIMDbSearchService
     {
-        IEnumerable<IMDbEntry> GetSearchResults(string search);
+        Task<Tuple<IEnumerable<IMDbEntry>, string?>> GetSearchResultsAsync(string search);
     }
 }
