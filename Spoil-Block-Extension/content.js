@@ -18,25 +18,46 @@ function checkSpoiler(element) {
 }
 
 async function IsLoaded() {
-    let el = document.getElementById("video-title");
+//    let el = document.getElementById("contents");
+//    if (el) {
+//        console.log("loaded");
+//        document.getElementById("contents").addEventListener("DOMSubtreeModified", function (event) {
+//            let els = document.querySelectorAll('[id=dismissible]');
+//            els.forEach(
+//                function(currentValue) {
+//                    checkSpoiler(currentValue);
+//                }
+//            )
+//        });
+//    } else {
+//        console.log("Not yet loaded");
+//        asyncCall();
+//    }
+
+    document.getElementById("contents").addEventListener("DOMNodeInserted", function (event) {
+        if (el) {
+            let els = document.querySelectorAll('[id=dismissible]');
+            els.forEach(
+                function(currentValue) {
+                    checkSpoiler(currentValue);
+                }
+            );
+        } else {
+            console.log("Not yet loaded");
+        }
+    });
+    //------------------------------------------------
+    let el = document.getElementById("contents");
+    
         
-    if (el) {
-        let els = document.querySelectorAll('[id=dismissible]');
-        els.forEach(
-            function(currentValue) {
-                checkSpoiler(currentValue);
-            }
-        );
-    } else {
-        console.log("Not yet loaded");
-    }
+    
 }
 
 function pageWait() {
 return new Promise(resolve => {
     setTimeout(() => {
     IsLoaded();
-    }, 500);
+    }, 200);
 });
 }
   
