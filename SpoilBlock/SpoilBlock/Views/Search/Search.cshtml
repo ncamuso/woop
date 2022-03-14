@@ -1,10 +1,10 @@
-﻿@model SpoilBlock.Models.ViewModels.SearchViewModel
+﻿@*@model SpoilBlock.Models.ViewModels.SearchViewModel
 @{
     ViewData["Title"] = "Search Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Search Titles</h1>
+<div class="text-left">
+    <p class="lead">This tool allows you to search for the title of a movie or show so that you can add it to your SpoilBlock Watchlist.</p>
 </div>
 <form asp-action="Search" method="get">
     <div class="row">
@@ -59,3 +59,6 @@
     }
 }
 
+@section Scripts {
+    <script type="text/javascript" src="~/js/search.js"></script>
+}*@
