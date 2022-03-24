@@ -1,0 +1,16 @@
+Loved:
+Ankit enjoyed making the login and register pages.
+Nathan enjoyed working with Razor pages.
+Nathan also enjoyed working with Entity Framework.
+Eddie enjoys working in Agile workflow.
+Longed For:
+Nathan wishes he left more time for testing.
+Ankit wished to get more test cases written.
+Loathed:
+Nathan disliked working through some bad Entity Framework documentation.
+Eddie disliked working through Javascript documentation and syntax.
+Learned:
+Nathan and Ankit learned to start their work earlier.
+Action Plans:
+Nathan and Ankit will use a better TDD workflow to create more time for testing.
+Eddie will do Javascript tutorials to help him better understand the Javascript syntax.

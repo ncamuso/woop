@@ -3,17 +3,29 @@
     ViewData["Title"] = "Search Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Search Titles</h1>
-</div>
-<form asp-action="Search" method="get">
+
+<h3 class="text-left">Search</h3>
+<p class="text-left font-italic lead">This tool allows you to search for the title of a movie or show so that you can add it to your SpoilBlock Watchlist.</p>
+
+<div class="container-fluid">
     <div class="row">
-        <div class="col-7">
-            <input asp-for="query" class="form-control" placeholder="Title"/>
-            <span asp-validation-for="query"></span>
+        <div class="col-10">
+            <input id="searchQuery" class="form-control" placeholder="Title" />
+            <span asp-validation-for=query></span>
         </div>
-        <div class="col">
-            <input type="submit" value="Search" class="btn btn-primary" />
+        <div class="col" id="buttonCol">
+            <button type="button" class="btn btn-primary" id="searchButton">Search</button>
         </div>
     </div>
-</form>
+</div>
+
+<div class="container-fluid mt-3">
+    <div id="resultsTableDiv">
+
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript" src="~/js/search.js"></script>
+}
