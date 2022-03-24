@@ -5,6 +5,6 @@ namespace SpoilBlock.DAL.Abstract
 {
     public interface IIMDbNewShowsService
     {
-        IEnumerable<IMDbEntry> GetNewShowsResult();
+        Task<Tuple<IEnumerable<IMDbEntry>, string?>> GetNewShowsResult();
     }
 }

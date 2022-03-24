@@ -40,8 +40,9 @@ builder.Services.AddScoped<IMediumRepository, MediumRepository>();
 builder.Services.AddScoped<DbContext, WOOPDbContext>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient();
-builder.Services.AddSingleton<IAPIKeyAccessor>(k => new APIKeyAccessor(builder.Configuration["IMDbServiceApiKey"]));
+builder.Services.AddSingleton<IAPIKeyAccessor>(k => new APIKeyAccessor(builder.Configuration["IMDbToken:IMDbNewShowsApiKey"]));
 builder.Services.AddScoped<IIMDbSearchService, IMDbSearchService>();
+builder.Services.AddScoped<IIMDbNewShowsService, IMDbNewShowsService>();
 
 
 var app = builder.Build();

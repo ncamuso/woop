@@ -9,18 +9,19 @@ namespace SpoilBlock.DAL.Concrete
 {
     public class IMDbNewShowsService: IIMDbNewShowsService
     {
-        private readonly string _IMDbApiKey; //k_8fxastb5
+        private readonly string _IMDbApiKey; 
         private static readonly string _IMDbUrlBase = "https://imdb-api.com/en/API/ComingSoon/{0}";
-        private static readonly HttpClient _httpClient = new HttpClient();
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public IMDbNewShowsService(string IMDbApiKey)
+        public IMDbNewShowsService(IHttpClientFactory factory, IAPIKeyAccessor accessor)
         {
-            _IMDbApiKey = IMDbApiKey;
+            _httpClientFactory = factory;
+            _IMDbApiKey = accessor.IMDbKey;
         }
 
-        public IEnumerable<IMDbEntry> GetNewShowsResult()
+        public async Task<Tuple<IEnumerable<IMDbEntry>, string?>> GetNewShowsResult()
         {
-            return ParseIMDbJSON(SendRequest(string.Format(_IMDbUrlBase, _IMDbApiKey)));
+            return (Tuple<IEnumerable<IMDbEntry>, string?>)ParseIMDbJSON(await SendRequestAsync(string.Format(_IMDbUrlBase, _IMDbApiKey)));
         }
 
         public IEnumerable<IMDbEntry> ParseIMDbJSON(string rawJSON)
@@ -44,19 +45,16 @@ namespace SpoilBlock.DAL.Concrete
             return result.results;
         }
 
-        private string SendRequest(string uri)
+        private async Task<string> SendRequestAsync(string uri)
         {
             HttpRequestMessage request = new HttpRequestMessage(new HttpMethod("Get"), uri);
             HttpResponseMessage response = new HttpResponseMessage();
-            try
-            {
-                response = _httpClient.Send(request);
-            }
-            catch (Exception e)
-            {
-                return string.Empty;
-            }
             
+            
+            var client = _httpClientFactory.CreateClient();
+            
+            response =  await client.SendAsync(request);
+
             return response.Content.ReadAsStringAsync().Result;
         }
     }

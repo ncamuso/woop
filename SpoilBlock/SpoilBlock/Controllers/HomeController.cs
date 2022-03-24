@@ -28,11 +28,12 @@ namespace SpoilBlock.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            SearchViewModel model = new SearchViewModel();
-            //if (model.query == null) return View();
+            //SearchViewModel model = new SearchViewModel();
+            ////if (model.query == null) return View();
 
-            model.resultsList = _newShowsService.GetNewShowsResult();
-            return View(model);
+            //model.resultsList = _newShowsService.GetNewShowsResult();
+            //return View(model);
+            return View();
         }
        
 

@@ -1,4 +1,4 @@
-﻿@model SpoilBlock.Models.ViewModels.SearchViewModel
+﻿@*@model SpoilBlock.Models.ViewModels.SearchViewModel*@
 @using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<IdentityUser> SignInManager
@@ -16,34 +16,43 @@
         </h1>
         <h2>Ready to block some shows </h2>
     </div>
+    <div class="row">
+        <div class ="col">
+            <table class="table table-hover">     
+                 <thead class="thead-dark">
+                     <tr>
+                         <th scope="col">Title</th>
+                         <th scope="col">Description</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     @*@foreach (IMDbEntry entry in Model.resultsList)
+                     {
 
-        <table class="table table-hover">     
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (IMDbEntry entry in Model.resultsList)
-                {
+                         <tr>
+                             <td>@entry.title</td>
+                             <td>@entry.description</td>
+                             <td>
+                                 <form asp-action="Add" method="post">
+                                     <input asp-for=addSelectionId type="hidden" value=@entry.id>
+                                     <input asp-for=addSelectionTitle type="hidden" value=@entry.title>
+                                     <input asp-for=addSelectionDescription type="hidden" value=@entry.description>
+                                     <input type="submit" value="Add" class="btn btn-primary" />
+                                 </form>
+                             </td>
+                         </tr>
+                     }*@
+                 </tbody>
 
-                    <tr>
-                        <td>@entry.title</td>
-                        <td>@entry.description</td>
-                        <td>
-                            <form asp-action="Add" method="post">
-                                <input asp-for=addSelectionId type="hidden" value=@entry.id>
-                                <input asp-for=addSelectionTitle type="hidden" value=@entry.title>
-                                <input asp-for=addSelectionDescription type="hidden" value=@entry.description>
-                                <input type="submit" value="Add" class="btn btn-primary" />
-                            </form>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-
-        </table>
+            </table>
+        </div> 
+        <div class ="col">
+            <table>
+                
+            </table>
+        </div> 
+    </div>
+        
 
 }
 else
