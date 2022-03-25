@@ -17,40 +17,53 @@
         <h2>Ready to block some shows </h2>
     </div>
     <div class="row">
-        <div class ="col">
-            <table class="table table-hover">     
-                 <thead class="thead-dark">
-                     <tr>
-                         <th scope="col">Title</th>
-                         <th scope="col">Release Date</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     @foreach (var entry in Model.resultsList)
-                     {
-
+       
+            <div class ="col-5"  style="max-height: 550px; overflow:auto">
+               
+                <table class="table table-hover">     
+                     <thead class="thead-dark">
                          <tr>
-                             <td>@entry.title</td>
-                             <td>@entry.releaseState</td>
-                             <td>
-                                 @*<form asp-action="Add" method="post">
-                                     <input asp-for=addSelectionId type="hidden" value=@entry.id>
-                                     <input asp-for=addSelectionTitle type="hidden" value=@entry.title>
-                                     <input asp-for=addSelectionDescription type="hidden" value=@entry.re>
-                                     <input type="submit" value="Add" class="btn btn-primary" />
-                                 </form>*@
-                             </td>
+                             <th scope="col">Title</th>
+                             <th scope="col" style="padding-left: 60%;">Release</th>
                          </tr>
-                     }
-                 </tbody>
+                     </thead>
+                    
+                     <tbody >
+                         @foreach (var entry in Model.resultsList)
+                         {
+                             <form asp-controller="Home" asp-action="Add" method="post" id="myform">
+                                <tr>
+                                    <td><div class="img-max"><img src="@entry.image" class="img-fluid"></div></td>
+                                    <td>@entry.fullTitle</td>
+                                    <td>@entry.releaseState</td>
+                                    <td>
+                                        
+                                        <input asp-for=addSelectionId type="hidden" value=@entry.id>
+                                        <input asp-for=addSelectionTitle type="hidden" value=@entry.title>
+                                        <input asp-for=addSelectionDescription type="hidden" value=@entry.plot>    
+                                        <input type="submit" value="Add" class="btn btn-primary" />
+                                    </td>
+                                    <td>
 
-            </table>
-        </div> 
-        <div class ="col">
-            <table>
-                
-            </table>
-        </div> 
+                                        @*<input type="checkbox" asp-for=IsChecked>*@
+
+                                    </td>
+                                </tr>
+                             </form>
+                         }
+                     </tbody>
+                     
+
+                </table>
+
+            </div>
+            @*<input form="myform" type="submit" value="Add" class="btn btn-primary" style="width:328px;float:left; margin-top:20px"/>*@
+        
+            <div class ="col-5">
+                <table>
+                    
+                </table>
+            </div> 
     </div>
         
 

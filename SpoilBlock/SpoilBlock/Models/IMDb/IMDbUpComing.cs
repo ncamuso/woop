@@ -1,4 +1,6 @@
-﻿namespace SpoilBlock.Models
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace SpoilBlock.Models
 {
     public class IMDbUpComing
     {
@@ -30,6 +32,9 @@
             if (id != other.id) return false;
             return true;
         }
+
+       
+        
     }
 
 }

@@ -15,12 +15,15 @@ namespace SpoilBlock.Models.ViewModels
 
         public  IEnumerable<Medium> AllShows { get; set; }
 
+        
         public WatchlistViewModel()
         { 
             HasWoopUser = false;
             Username = String.Empty;
             AllShows = new List<Medium>();
         }
+
+        
 
     }
 }

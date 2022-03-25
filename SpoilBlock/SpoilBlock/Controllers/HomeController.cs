@@ -36,9 +36,25 @@ namespace SpoilBlock.Controllers
             model.errorMessage = result.Item2;
 
             return View(model);
-            //return View();
+           
         }
-       
+        
+        [Authorize]
+        [HttpPost]
+        public IActionResult Add(NewShowsViewModel model)
+        {
+
+            try
+            {
+                _addMediaService.Add(model.addSelectionId, model.addSelectionTitle, model.addSelectionDescription);
+                //_addMediaService.MultiSelectAdd(model.AreChecked);
+            }
+            catch (Exception e)
+            {
+
+            }
+            return RedirectToAction("Index");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
