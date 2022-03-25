@@ -42,5 +42,16 @@ namespace SpoilBlock.DAL.Concrete
 
             _woopusermediumRepository.AddOrUpdate(woopuserMedium);
         }
+
+        public void MultiSelectAdd(IEnumerable<IMDbUpComing> addToList)
+        {
+            
+            foreach (var add in addToList)
+            {
+                Add(add.id, add.title, add.plot);
+            }
+
+
+        }
     }
 }
