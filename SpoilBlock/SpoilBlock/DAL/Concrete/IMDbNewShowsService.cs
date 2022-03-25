@@ -19,33 +19,34 @@ namespace SpoilBlock.DAL.Concrete
             _IMDbApiKey = accessor.IMDbKey;
         }
 
-        public async Task<Tuple<IEnumerable<IMDbEntry>, string?>> GetNewShowsResult()
+        public async Task<Tuple<IEnumerable<IMDbUpComing>, string?>> GetNewShowsResult()
         {
-            return (Tuple<IEnumerable<IMDbEntry>, string?>)ParseIMDbJSON(await SendRequestAsync(string.Format(_IMDbUrlBase, _IMDbApiKey)));
+            return ParseIMDbUpComingJSON(await SendUpComingRequestAsync(string.Format(_IMDbUrlBase, _IMDbApiKey)));
         }
 
-        public IEnumerable<IMDbEntry> ParseIMDbJSON(string rawJSON)
+        public Tuple<IEnumerable<IMDbUpComing>, string?> ParseIMDbUpComingJSON(string rawJSON)
         {
-            if (rawJSON == null || rawJSON == "") { return new List<IMDbEntry>(); }
-            IMDbResult? result;
-
-            try
-            {
-                result = JsonConvert.DeserializeObject<IMDbResult>(rawJSON);
-            }
-            catch (Exception e)
-            {
-                return new List<IMDbEntry>();
-            }
+            if (rawJSON == null)
+                throw new ArgumentNullException(nameof(rawJSON));
+            else if (rawJSON.Length == 0)
+                throw new ArgumentException("rawJSON was empty");
 
 
-            if (result == null) { return new List<IMDbEntry>(); }
-            else if (result.errormessage != "") { return new List<IMDbEntry>(); }
+            IMDbNewShows result;
 
-            return result.results;
+            result = JsonConvert.DeserializeObject<IMDbNewShows>(rawJSON);
+
+            if (result == null)
+                throw new ArgumentException("rawJSON didn't parse correctly");
+
+            string? errorMessage = result.errorMessage;
+
+            if (result.items == null) { throw new InvalidJSONException("The JSON parse didn't populate results"); }
+
+            return new Tuple<IEnumerable<IMDbUpComing>, string?>(result.items, errorMessage);
         }
 
-        private async Task<string> SendRequestAsync(string uri)
+        private async Task<string> SendUpComingRequestAsync(string uri)
         {
             HttpRequestMessage request = new HttpRequestMessage(new HttpMethod("Get"), uri);
             HttpResponseMessage response = new HttpResponseMessage();
@@ -58,4 +59,6 @@ namespace SpoilBlock.DAL.Concrete
             return response.Content.ReadAsStringAsync().Result;
         }
     }
+
+    
 }

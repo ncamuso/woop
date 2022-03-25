@@ -1,4 +1,4 @@
-﻿@*@model SpoilBlock.Models.ViewModels.SearchViewModel*@
+﻿@model SpoilBlock.Models.ViewModels.NewShowsViewModel
 @using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<IdentityUser> SignInManager
@@ -22,26 +22,26 @@
                  <thead class="thead-dark">
                      <tr>
                          <th scope="col">Title</th>
-                         <th scope="col">Description</th>
+                         <th scope="col">Release Date</th>
                      </tr>
                  </thead>
                  <tbody>
-                     @*@foreach (IMDbEntry entry in Model.resultsList)
+                     @foreach (var entry in Model.resultsList)
                      {
 
                          <tr>
                              <td>@entry.title</td>
-                             <td>@entry.description</td>
+                             <td>@entry.releaseState</td>
                              <td>
-                                 <form asp-action="Add" method="post">
+                                 @*<form asp-action="Add" method="post">
                                      <input asp-for=addSelectionId type="hidden" value=@entry.id>
                                      <input asp-for=addSelectionTitle type="hidden" value=@entry.title>
-                                     <input asp-for=addSelectionDescription type="hidden" value=@entry.description>
+                                     <input asp-for=addSelectionDescription type="hidden" value=@entry.re>
                                      <input type="submit" value="Add" class="btn btn-primary" />
-                                 </form>
+                                 </form>*@
                              </td>
                          </tr>
-                     }*@
+                     }
                  </tbody>
 
             </table>

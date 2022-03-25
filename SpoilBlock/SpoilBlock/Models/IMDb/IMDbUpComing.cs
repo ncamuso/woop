@@ -16,11 +16,11 @@
         public string? imDbRatingCount { get; set; }
         public string? metacriticRating { get; set; }
         public string? genres { get; set; }
-        public List<GenreList> genreList { get; set; }
+        public IEnumerable<GenreList> genreList { get; set; }
         public string? directors { get; set; }
-        public List<DirectorList> directorList { get; set; }
+        public IEnumerable<DirectorList> directorList { get; set; }
         public string? stars { get; set; }
-        public List<StarList> starList { get; set; }
+        public IEnumerable<StarList> starList { get; set; }
 
         public override bool Equals(object? obj)
         {
@@ -32,23 +32,4 @@
         }
     }
 
-    public class GenreList
-    {
-        public string? key { get; set; }
-        public string? value { get; set; }
-    }
-
-    public class DirectorList
-    {
-        public string? g id { get; set; }
-        public string? name { get; set; }
-    }
-
-    public class StarList
-    {
-        public string? id { get; set; }
-        public string? name { get; set; }
-    }
-
-    
 }

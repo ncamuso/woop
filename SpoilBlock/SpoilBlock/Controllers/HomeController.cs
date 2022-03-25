@@ -26,14 +26,17 @@ namespace SpoilBlock.Controllers
         //    return View();
         //}
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            //SearchViewModel model = new SearchViewModel();
+            var model = new NewShowsViewModel();
             ////if (model.query == null) return View();
 
-            //model.resultsList = _newShowsService.GetNewShowsResult();
-            //return View(model);
-            return View();
+            var result =  await _newShowsService.GetNewShowsResult();
+            model.resultsList = result.Item1;
+            model.errorMessage = result.Item2;
+
+            return View(model);
+            //return View();
         }
        
 
