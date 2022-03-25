@@ -17,7 +17,16 @@ namespace SpoilBlock.DAL.Concrete
         {
             return GetAll().Where(x => x.Id == id).Select(x => x.BlockageLevel).Single();   
         }
-         IEnumerable<Medium> IWoopUserMediumRepository.GetListOfShowsForUser(int id)
+
+        IEnumerable<Medium> IWoopUserMediumRepository.GetListOfBlockedShows()
+        {
+            var mediaList = new List<Medium>();
+            mediaList = GetAll().Include(s => s.Media).Select(a => a.Media).ToList();
+            return mediaList.OrderBy(u => u.Imdbid);
+
+        }
+
+        IEnumerable<Medium> IWoopUserMediumRepository.GetListOfShowsForUser(int id)
         {
             
             var accounts = GetAll().Select(a => a.UserId).ToList();
@@ -41,15 +50,6 @@ namespace SpoilBlock.DAL.Concrete
 
             }
 
-            //catch (NullReferenceException err)
-            //{
-            //    throw new ArgumentNullException();
-            //}
-            //catch (InvalidDataException err)
-            //{
-            //    //throw new ArgumentException();
-            //    return Enumerable.Empty<Medium>();
-            //}
             catch (Exception err)
             {
                 return Enumerable.Empty<Medium>();
