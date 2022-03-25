@@ -21,7 +21,7 @@ namespace SpoilBlock.Controllers
             _woopuserRepository = woopuserRepository;
         }
         
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             string? id = _userManager.GetUserId(User);
             Woopuser? wum = null;

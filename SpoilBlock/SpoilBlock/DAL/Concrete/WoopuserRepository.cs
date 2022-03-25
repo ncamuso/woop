@@ -19,7 +19,7 @@ namespace SpoilBlock.DAL.Concrete
             return _dbSet.Any(x => x.AspnetIdentityId == user.AspnetIdentityId && x.Username == user.Username);
         }
 
-        public virtual Woopuser? GetWoopUserByIdentityId(string identityID)
+        public  Woopuser? GetWoopUserByIdentityId(string identityID)
         {
             return _dbSet.Where(u => u.AspnetIdentityId == identityID).FirstOrDefault();
         }
