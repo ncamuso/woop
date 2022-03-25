@@ -14,7 +14,7 @@ builder.Services.AddScoped<IWoopUserMediumRepository, WoopUserMediumRepository>(
 builder.Services.AddScoped<IWoopuserRepository, WoopuserRepository>();
 
 
-builder.Services.AddSingleton<IAPIKeyAccessor>(k => new APIKeyAccessor(builder.Configuration[" IMDbServiceApiKey"]));
+builder.Services.AddSingleton<IAPIKeyAccessor>(k => new APIKeyAccessor(builder.Configuration["IMDbServiceApiKey"]));
 //builder.Services.AddSingleton<IAPIKeyAccessor>(k => new APIKeyAccessor(builder.Configuration["IMDbToken:IMDbNewShowsApiKey"]));
 
 
