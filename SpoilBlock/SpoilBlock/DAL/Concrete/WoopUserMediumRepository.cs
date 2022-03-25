@@ -31,31 +31,21 @@ namespace SpoilBlock.DAL.Concrete
                         mediaList = GetAll().Include(a => a.Media).Where(a => a.UserId == id).Select(a => a.Media).ToList();
                         if (mediaList != null)
                         {
-                            return mediaList.OrderBy(u => u.Title);
+                            return mediaList.OrderBy(u => u.Imdbid);
                         }
                         throw new Exception();
                     }
-                    throw new InvalidDataException();
+                    return Enumerable.Empty<Medium>();
                 }
-                throw new NullReferenceException();
-
-            }
-
-            catch (NullReferenceException err)
-            {
                 throw new ArgumentNullException();
+
             }
-            catch (InvalidDataException err)
-            {
-                
-                return Enumerable.Empty<Medium>();
-            }
+
             catch (Exception err)
             {
                 return Enumerable.Empty<Medium>();
             }
-            
-           
+
         }
     }
 }

@@ -4,71 +4,69 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-@*@model SpoilBlock.Models.UserMedium This needs a VM to hold list of Shows for one user*@
+
 @{
     ViewData["Title"] = "Watchlist Page";
 }
-
-@if (SignInManager.IsSignedIn(User) && Model.HasWoopUser)
-{
-
-    //When the user is logged in view watchlist page
-
-
-    <div class="text-center">
-        <h1 class="display-4">@Model.Username's Watchlist</h1>
-    </div>
+<div>
+    @if (SignInManager.IsSignedIn(User) && Model.HasWoopUser)
+    {
     
-    <div class="text-center">
-        <table class="table table-hover">     
-            <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Title</th>
-                  <th scope="col">Description</th>
-                  @*<th scope="col">Blockage Level</th>*@
-                </tr>
-            </thead>
+        //When the user is logged in view watchlist page
     
-            <tbody>
-                @foreach(var items in @Model.AllShows)
-                {
-                  <tr>
-                    <th scope="row">1++</th>
-                    <td>@items.Title</td>
-                    <td>@items.Description</td>
-                  </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-}
+    
+        
+        <h2 class="display-4" style="float:left; margin-bottom:30px;">Your Watchlist</h2>
+        
+    
+        @if (Model.IsEmpty == false)
+        {
+            <div class="text-center" stye="margin-top:60px;">
+                <table class="table table-dark table-hover">     
+                    <thead >
+                        <tr>
+                            
+                            <th scope="col">Title</th>
+                            <th scope="col">Description</th>
+                            
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+    
+                            @foreach (var items in @Model.AllShows)
+                            {
+                                <tr>
+                                    <td>@items.Title</td>
+                                    <td>@items.Description</td>
+                                    
+                                </tr>
+                            }
+                            
+                        
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        { 
+            <div class = "text-center">
+    
+                <h2> You dont have anything in your watchlist. Do you want add some shows?</h2>
+                <a class="btn btn-primary" asp-controller="Search" asp-action="Index">Click Here!</a>
+            </div>
+        }
+    
+    } 
+    else
+    {
+        <div class="text-center">
+             <h2 class="display-4">Please login to view the watchlist</h2>
+        </div>
+    
+    }
 
-
-@*If the watchlist is not empty. Also create for when its empty*@
-<div class="text-center">
-    <h1 class="display-4">Your Watchlist</h1>
 </div>
 
-<div class="text-center">
-    <table class="table table-hover">     
-        <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Title</th>
-              <th scope="col">Description</th>
-              <th scope="col">Blockage Level</th>
-            </tr>
-        </thead>
 
-        <tbody>
-              <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-        </tbody>
-    </table>
-</div>
+

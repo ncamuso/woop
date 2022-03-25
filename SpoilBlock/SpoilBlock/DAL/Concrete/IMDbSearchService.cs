@@ -7,55 +7,60 @@ using System.Net;
 
 namespace SpoilBlock.DAL.Concrete
 {
+    class InvalidJSONException : Exception
+    {
+        public InvalidJSONException(string message)
+        {
+            
+        }
+    }
+
     public class IMDbSearchService : IIMDbSearchService
     {
-        private readonly string _IMDbApiKey;
+        private string _IMDbApiKey;
         private static readonly string _IMDbUrlBase = "https://imdb-api.com/en/API/SearchTitle/{0}/{1}";
-        private static readonly HttpClient _httpClient = new HttpClient();
-        public IMDbSearchService(string IMDbApiKey)
+        private readonly IHttpClientFactory _httpClientFactory;
+        public IMDbSearchService(IHttpClientFactory factory, IAPIKeyAccessor accessor)
         {
-            _IMDbApiKey = IMDbApiKey;
+            _httpClientFactory = factory;
+            _IMDbApiKey = accessor.IMDbKey;
         }
 
-        public IEnumerable<IMDbEntry> GetSearchResults(string search)
+        public async Task<Tuple<IEnumerable<IMDbEntry>, string?>> GetSearchResultsAsync(string search)
         {
-            return ParseIMDbJSON(SendRequest(string.Format(_IMDbUrlBase, _IMDbApiKey, search)));
+            return ParseIMDbJSON(await SendRequestAsync(string.Format(_IMDbUrlBase, _IMDbApiKey, search)));
         }
 
-        public IEnumerable<IMDbEntry> ParseIMDbJSON(string rawJSON)
+        public  Tuple<IEnumerable<IMDbEntry>, string?> ParseIMDbJSON(string rawJSON)
         {
-            if(rawJSON == null || rawJSON == "") { return new List<IMDbEntry>(); }
+            if (rawJSON == null)
+                throw new ArgumentNullException(nameof(rawJSON));
+            else if (rawJSON.Length == 0)
+                throw new ArgumentException("rawJSON was empty");
+
             IMDbResult? result;
 
-            try
-            {
-                result = JsonConvert.DeserializeObject<IMDbResult>(rawJSON);
-            }
-            catch (Exception e)
-            {
-                return new List<IMDbEntry>();
-            }
+            result = JsonConvert.DeserializeObject<IMDbResult>(rawJSON);
 
+            if (result == null)
+                throw new ArgumentException("rawJSON didn't parse correctly");
 
-            if (result == null) { return new List<IMDbEntry>(); }
-            else if (result.errormessage != "") { return new List<IMDbEntry>(); }
+            string? errorMessage = result.errormessage;
 
-            return result.results;
+            if (result.results == null) { throw new InvalidJSONException("The JSON parse didn't populate results"); }
+
+            return new Tuple<IEnumerable<IMDbEntry>, string?>(result.results, errorMessage);
         }
 
-        private string SendRequest(string uri)
+        private async Task<string> SendRequestAsync(string uri)
         {
             HttpRequestMessage request = new HttpRequestMessage(new HttpMethod("Get"), uri);
             HttpResponseMessage response = new HttpResponseMessage();
-            try
-            {
-                response = _httpClient.Send(request);
-            }
-            catch (Exception e)
-            {
-                return string.Empty;
-            }
-            //Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+
+            var client = _httpClientFactory.CreateClient();
+
+            response = await client.SendAsync(request);
+
             return response.Content.ReadAsStringAsync().Result;
         }
     }

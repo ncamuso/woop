@@ -101,10 +101,6 @@ namespace SpoilBlock_Tests
             int? userId = null;
 
 
-            //Act
-            //IEnumerable<Medium> actualList = umRepo.GetListOfShowsForUser(userId);
-
-
             //Assert
             Assert.Throws<ArgumentNullException>(() => umRepo.GetListOfShowsForUser(userId));
 

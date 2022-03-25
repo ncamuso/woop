@@ -31,7 +31,7 @@ namespace SpoilBlock.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly IWoopuserRepository _wuRepo;
+        private readonly IWoopuserRepository _woopuserRepository;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -39,7 +39,7 @@ namespace SpoilBlock.Areas.Identity.Pages.Account
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            IWoopuserRepository wuRepo)
+            IWoopuserRepository woopuserRepository)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -47,7 +47,7 @@ namespace SpoilBlock.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-            _wuRepo = wuRepo;
+            _woopuserRepository = woopuserRepository;
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace SpoilBlock.Areas.Identity.Pages.Account
                         AspnetIdentityId = user.Id,
                         Username = Input.Username
                     };
-                      _wuRepo.AddOrUpdate(wu);
+                      _woopuserRepository.AddOrUpdate(wu);
                     //
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -152,7 +152,7 @@ namespace SpoilBlock.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                     _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
