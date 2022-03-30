@@ -1,0 +1,88 @@
+﻿@model SpoilBlock.Models.ViewModels.NewShowsViewModel
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{ 
+    <div class="text-center" style= "margin-top: 100px; margin-bottom: 100px;">
+        <h1>
+            Welcome To SpoilBlock @UserManager.GetUserName(User)!!!
+        </h1>
+        <h2>Ready to block some shows </h2>
+    </div>
+    <div class="row">
+       
+            <div class ="col-5"  style="max-height: 550px; overflow-x: hidden; overflow-y: scroll;">
+               
+                <table class="table table-dark table-hover">     
+                     <thead class="thead-light">
+                         <tr>
+                             <th>Title</th>
+                             <th></th>
+                             <th>Release</th>
+                             <th></th>
+                             <th></th>
+                         </tr>
+                     </thead>
+                    
+                     <tbody >
+                         @foreach (var entry in Model.resultsList)
+                         {
+                             <form asp-controller="Home" asp-action="Add" method="post" id="myform">
+                                <tr>
+                                    <td><div class="img-max"><img src="@entry.image" class="img-fluid"></div></td>
+                                    <td>@entry.fullTitle</td>
+                                    <td>@entry.releaseState</td>
+                                    <td>
+                                        
+                                        <input asp-for=addSelectionId type="hidden" value=@entry.id>
+                                        <input asp-for=addSelectionTitle type="hidden" value=@entry.title>
+                                        <input asp-for=addSelectionDescription type="hidden" value=@entry.plot>    
+                                        <input type="submit" value="Add" class="btn btn-primary" />
+                                    </td>
+                                    <td>
+
+                                        @*<input type="checkbox" asp-for=IsChecked>*@
+
+                                    </td>
+                                </tr>
+                             </form>
+                         }
+                     </tbody>
+                     
+
+                </table>
+
+            </div>
+            @*<input form="myform" type="submit" value="Add" class="btn btn-primary" style="width:328px;float:left; margin-top:20px"/>*@
+        
+            <div class ="col-5">
+                <table>
+                    
+                </table>
+            </div> 
+    </div>
+        
+
+}
+else
+{
+
+    <div class="text-center" style= "margin-top: 100px; margin-bottom 100px;">
+        <h1 class="display-4" >Welcome to Spoil Block</h1>
+        <p style= "font-size: 1.2em; margin:20px 20px 10px 10px;">
+            The internet has become a bubble of spoiler and it is hard not to see anything spoiled from our favourite shows. Our main purpose is to deliver spoiler free youtube content as per the user's choices.
+        </p>
+        <br />
+        <p style= "font-size: 1.2em;">
+            Please login to proceed
+            <a class="btn btn-primary" id="login" asp-area ="Identity" asp-page="/Account/Login">Login</a>
+        </p>
+    </div>
+}

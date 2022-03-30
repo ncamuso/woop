@@ -1,0 +1,64 @@
+﻿@*@model SpoilBlock.Models.ViewModels.SearchViewModel
+@{
+    ViewData["Title"] = "Search Page";
+}
+
+<div class="text-left">
+    <p class="lead">This tool allows you to search for the title of a movie or show so that you can add it to your SpoilBlock Watchlist.</p>
+</div>
+<form asp-action="Search" method="get">
+    <div class="row">
+        <div class="col-7">
+            <input asp-for="query" class="form-control" placeholder="Title"/>
+            <span asp-validation-for="query"></span>
+        </div>
+        <div class="col">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+@if (Model != null && Model.query != null && Model.resultsList != null)
+{
+    if(Model.errorMessage != "")
+    {
+        <div class="container">
+            <h3>Sorry, there was a problem.</h3>
+            <h4>Error: @Model.errorMessage</h4>
+        </div>
+    }
+    else if (!Model.resultsList.Any())
+    {
+        <div class="container">
+            <h3>Sorry, there are no results for @Model.query.</h3>
+        </div>
+    }
+    else
+    {
+        <table class="table">
+            <tbody>
+                @foreach (IMDbEntry entry in Model.resultsList)
+                {
+
+                    <tr>
+                        <td>@entry.title</td>
+                        <td>@entry.description</td>
+                        <td>
+                            <form asp-action="Add" method="post">
+                                <input asp-for=addSelectionId type="hidden" value=@entry.id>
+                                <input asp-for=addSelectionTitle type="hidden" value=@entry.title>
+                                <input asp-for=addSelectionDescription type="hidden" value=@entry.description>
+                                <input type="submit" value="Add" class="btn btn-primary" />
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    }
+}
+
+@section Scripts {
+    <script type="text/javascript" src="~/js/search.js"></script>
+}*@

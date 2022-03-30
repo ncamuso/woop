@@ -1,0 +1,72 @@
+﻿@model SpoilBlock.Models.ViewModels.WatchlistViewModel
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@{
+    ViewData["Title"] = "Watchlist Page";
+}
+<div>
+    @if (SignInManager.IsSignedIn(User) && Model.HasWoopUser)
+    {
+    
+        //When the user is logged in view watchlist page
+    
+    
+        
+        <h2 class="display-4" style="float:left; margin-bottom:30px;">Your Watchlist</h2>
+        
+    
+        @if (Model.IsEmpty == false)
+        {
+            <div class="text-center" stye="margin-top:60px;">
+                <table class="table table-dark table-hover">     
+                    <thead >
+                        <tr>
+                            
+                            <th scope="col">Title</th>
+                            <th scope="col">Description</th>
+                            
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+    
+                            @foreach (var items in @Model.AllShows)
+                            {
+                                <tr>
+                                    <td>@items.Title</td>
+                                    <td>@items.Description</td>
+                                    
+                                </tr>
+                            }
+                            
+                        
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        { 
+            <div class = "text-center">
+    
+                <h2> You dont have anything in your watchlist. Do you want add some shows?</h2>
+                <a class="btn btn-primary" asp-controller="Search" asp-action="Index">Click Here!</a>
+            </div>
+        }
+    
+    } 
+    else
+    {
+        <div class="text-center">
+             <h2 class="display-4">Please login to view the watchlist</h2>
+        </div>
+    
+    }
+
+</div>
+
+
+
