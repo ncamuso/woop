@@ -17,7 +17,7 @@ namespace SpoilBlock.DAL.Concrete
         {
             return GetAll().Where(x => x.Id == id).Select(x => x.BlockageLevel).Single();   
         }
-         IEnumerable<Medium> IWoopUserMediumRepository.GetListOfShowsForUser(int? id)
+        public  IEnumerable<Medium> GetListOfShowsForUser(int? id)
         {
             
             var accounts = GetAll().Select(a => a.UserId).ToList();
