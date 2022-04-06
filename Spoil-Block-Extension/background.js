@@ -1,16 +1,27 @@
 console.log("hi from background");
 
-chrome.tabs.onActivated.addListener(tab => {
-    chrome.tabs.get(tab.tabId, current_tab_info => {
-        if (/^https:\/\/www\.youtube/.test(current_tab_info.url)) {
+let hasSetYouTubeListener = false;
+
+chrome.tabs.onUpdated.addListener(tab => {
+    chrome.tabs.get(tab, current_tab_info => {
+        if (/^https:\/\/www\.youtube/.test(current_tab_info.url) && current_tab_info.status === "complete" && hasSetListener === false) {
+            console.log(current_tab_info);
+            hasSetYouTubeListener = true;
             chrome.scripting.executeScript({
                 target: {tabId: current_tab_info.id},
                 files: ['foreground.js']
             });
         }
+        else if (current_tab_info.url.includes('spoilblock.azurewebsites.net/Watchlist'))
+        {
+            console.log('hello watchlist');
+            chrome.scripting.executeScript({
+                target: {tabId: current_tab_info.id},
+                files: ['watchlist-update.js']
+            });
+        }
     });
 });
-
 
 
 // chrome.tabs.onActivated.addListener(tab => {
