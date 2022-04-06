@@ -1,9 +1,5 @@
-document.querySelector('#sign-in').addEventListener('click', function () {
-    chrome.runtime.sendMessage({ message: 'login' }, function (response) {
-    });
-});
-
-document.querySelector('button').addEventListener('click', function () {
-    chrome.runtime.sendMessage({ message: 'isUserSignedIn' }, function (response) {
+document.querySelector('#goto-watchlist-btn').addEventListener('click', function () {
+    chrome.tabs.create({
+        url: 'https://spoilblock.azurewebsites.net/Watchlist'
     });
 });
