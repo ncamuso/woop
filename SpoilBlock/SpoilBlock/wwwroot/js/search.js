@@ -34,7 +34,7 @@ function buildSearchResults(data) {
 
     var results = JSON.parse(data.list);
 
-    let searchTable = $('<table class="table"><tbody>');
+    let searchTable = $('<table class="table" id="resultsTable"><tbody>');
     $.each(results, function (i) {
         let tr = $(`<tr><td><div class="img-max"><img src=${results[i].image} class="img-fluid"></div></td><td>${results[i].title}</td><td>${results[i].description}</td><td>`).appendTo(searchTable);
     });
