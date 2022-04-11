@@ -20,7 +20,7 @@
         @if (Model.IsEmpty == false)
         {
             <div class="text-center" stye="margin-top:60px;">
-                <table id="sortTable" class="table table-bordered" style="border-radius:5px;">    
+                <table id="sortTable" class="table table-bordered" style="border-radius:5px; font-size:20px;">    
                     <caption>Your Watchlist</caption>
                     <thead class="table-dark">
                         <tr>
@@ -33,11 +33,13 @@
     
                     <tbody>
     
-                            @foreach (var items in @Model.AllShows)
+                            @foreach (var item in @Model.AllShows)
                             {
                                 <tr>
-                                    <td>@items.Title</td>
-                                    <td>@items.Description</td>
+                                    <td style="max-width:100px;max-height:100px;">
+                                        <div><img src= "@item.Image" class="img-fluid">@item.Title</div>
+                                    </td>
+                                    <td style="padding-top:50px;">@item.Description</td>
                                 </tr>
                             }
                             
