@@ -7,7 +7,7 @@ using SpoilBlock.DAL.Concrete;
 using SpoilBlock.Models;
 using SpoilBlock.Models.ViewModels;
 using Newtonsoft.Json;
-
+using System.Security.Claims;
 
 namespace SpoilBlock.Controllers
 {
@@ -26,10 +26,61 @@ namespace SpoilBlock.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
-        [Authorize]
+
         public async Task<JsonResult> GetCurrentWatchListIDs()
         {
-            var currentUser = 
+
+            try
+            {
+                var currentUserID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                var currentUser = await _woopUserRepository.GetWoopUserByIdentityIdAsync(currentUserID);
+
+                var watchlist = _woopUserMediumRepository.GetListOfShowsForUser(currentUser.Id);
+
+                List<string> resultsList = new List<string>();
+
+                foreach (Medium medium in watchlist)
+                    resultsList.Add(medium.Imdbid);
+
+                string resultsListJSON = JsonConvert.SerializeObject(resultsList);
+
+                return Json(new { success = true, message = "OK", list = resultsListJSON });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
+        public async Task<JsonResult> AddMediaToWatchlist(string media)
+        {
+            try
+            {
+                var userIdentityId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                Woopuser user = await _woopUserRepository.GetWoopUserByIdentityIdAsync(userIdentityId);
+
+                Medium selectedMedia = JsonConvert.DeserializeObject<Medium>(media);
+
+                if (!_mediumRepository.ExistsByImdbID(selectedMedia.Imdbid))
+                {
+                    selectedMedia = _mediumRepository.AddOrUpdate(selectedMedia);
+                }
+
+                selectedMedia = _mediumRepository.FindByImdbID(selectedMedia.Imdbid);
+
+                WoopuserMedium woopuserMedium = new WoopuserMedium { BlockageLevel = 0, Media = selectedMedia, User = user };
+
+                _woopUserMediumRepository.AddOrUpdate(woopuserMedium);
+
+                return await GetCurrentWatchListIDs();
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Json(new { success = false, message = ex.Message });
+            }
         }
     }
 }

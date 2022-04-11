@@ -19,6 +19,7 @@ namespace SpoilBlock.Controllers
             _searchService = searchService;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
