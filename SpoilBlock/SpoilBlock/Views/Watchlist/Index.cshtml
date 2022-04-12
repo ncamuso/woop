@@ -23,27 +23,32 @@
                     <thead class="table-dark">
 
                         <tr>
-                            
+                            <th data-type="number">#</th>
                             <th data-type="string"><button class="table_header">Title</button></th>
                             <th data-type="string"><button class="table_header">Description</button></th>
                             <th data-type="number"><button class="table_header">Block-Level</button></th>
-                            
+
                         </tr>
                     </thead>
-    
+
                     <tbody>
-    
+                          @{
+                                int i = 1;
+                           }
                             @foreach (var item in @Model.AllShows)
                             {
                                 <tr>
+                                    <td>@(i++)</td>
                                     <td style="max-width:100px;max-height:100px;">
                                         <div><img src= "@item.Image" class="img-fluid">@item.Title</div>
                                     </td>
                                     <td style="padding-top:50px;">@item.Description</td>
                                     <td>@Model.Levels</td>
                                     
-                                </tr>
-                            }
+                            </tr>
+                            
+                        }
+                          
 
                     </tbody>
                 </table>
