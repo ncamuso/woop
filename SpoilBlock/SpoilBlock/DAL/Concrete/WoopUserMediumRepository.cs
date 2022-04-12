@@ -17,6 +17,7 @@ namespace SpoilBlock.DAL.Concrete
         {
             return GetAll().Where(x => x.UserId == id).Select(x => x.BlockageLevel).ToList();   
         }
+
         public  IEnumerable<Medium> GetListOfShowsForUser(int? id)
         {
             
