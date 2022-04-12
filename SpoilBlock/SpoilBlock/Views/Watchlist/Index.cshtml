@@ -4,75 +4,78 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-@*@model SpoilBlock.Models.UserMedium This needs a VM to hold list of Shows for one user*@
+
+
+
 @{
     ViewData["Title"] = "Watchlist Page";
 }
 <div>
-@if (SignInManager.IsSignedIn(User) && Model.HasWoopUser)
-{
-
-    //When the user is logged in view watchlist page
-
-
-    <div class="text-center">
-        <h1 class="display-4">@Model.Username 's Watchlist</h1>
-    </div>
-
-    @if (Model.IsEmpty == false)
+    @if (SignInManager.IsSignedIn(User) && Model.HasWoopUser)
     {
-        <div class="text-center">
-            <table class="table table-hover">     
-                <thead class="thead-dark">
-                    <tr>
-                        
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
-                        
-                    </tr>
-                </thead>
 
-                <tbody>
-                    
+        @if (Model.IsEmpty == false)
+        {
+            <div class="text-center" stye="margin-top:60px;">
 
-                        @foreach (var items in @Model.AllShows)
-                        {
+                <table id="sortTable" class="table table-bordered" style="border-radius:5px; font-size:20px;">    
+                    <caption>Your Watchlist</caption>
+                    <thead class="table-dark">
 
-                            <tr>
-                                
-                                <td>@items.Title</td>
-                                <td>@items.Description</td>
-                                
+                        <tr>
+                            <th data-type="number">#</th>
+                            <th data-type="string"><button class="table_header">Title</button></th>
+                            <th data-type="string"><button class="table_header">Description</button></th>
+                            <th data-type="number"><button class="table_header">Block-Level</button></th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                          @{
+                                int i = 1;
+                           }
+                            @foreach (var item in @Model.AllShows)
+                            {
+                                <tr>
+                                    <td>@(i++)</td>
+                                    <td style="max-width:100px;max-height:100px;">
+                                        <div><img src= "@item.Image" class="img-fluid">@item.Title</div>
+                                    </td>
+                                    <td style="padding-top:50px;">@item.Description</td>
+                                    <td>@Model.Levels</td>
+                                    
                             </tr>
                             
                         }
-                        
-                    
-                </tbody>
-            </table>
-        </div>
-    }
+                          
+
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        { 
+            <div class = "text-center">
+    
+                <h2> You dont have anything in your watchlist. Do you want add some shows?</h2>
+                <a class="btn btn-primary" asp-controller="Search" asp-action="Index">Click Here!</a>
+            </div>
+        }
+    
+    } 
     else
-    { 
-        <div class = "text-center">
-
-            <h2> You dont have anything in your watchlist. Do you want add some shows?</h2>
-            <a class="btn btn-primary" asp-controller="Search" asp-action="Index">Click Here!</a>
+    {
+        <div class="text-center">
+             <h2 class="display-4">Please login to view the watchlist</h2>
         </div>
+    
     }
-
-} 
-else
-{
-    <div class="text-center">
-         <h2 class="display-4">Please login to view the watchlist</h2>
-    </div>
-
-}
-
-
 
 </div>
 
 
 
+@section WatchlistScript{
+    <script type="text/javascript" src="~/js/watchlist.js"></script>
+}
