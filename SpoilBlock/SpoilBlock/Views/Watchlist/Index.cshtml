@@ -43,10 +43,8 @@
                                         <div><img src= "@item.Image" class="img-fluid">@item.Title</div>
                                     </td>
                                     <td style="padding-top:50px;">@item.Description</td>
-                                    @foreach (var level in @Model.Levels)
-                                    {
-                                    <td>@level</td>
-                                    }
+                                    <td>@Model.Levels</td>
+                                    
                                 </tr>
                             
                         }

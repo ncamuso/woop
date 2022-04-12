@@ -40,16 +40,9 @@ namespace SpoilBlock.Controllers
                 HasWoopUser = wum != null,
                 Username = wum.Username ?? String.Empty,
                 AllShows = _woopusermediumRepository.GetListOfShowsForUser(wum.Id),
-                Levels = _woopusermediumRepository.GetBlockageLevel(wum.Id)
-
-            //AllShows = _woopuserRepository.GetListOfShows(_woopusermediumRepository.GetListOfShowsForUser(wum.Id), wum)
-
-
+            
             };
-            //foreach (var item in vm.AllShows)
-            //{ 
-            //    vm.Level = _woopusermediumRepository.GetBlockageLevel(item.Id);
-            //}
+            
 
 
             if (vm.AllShows.Count() == 0)
