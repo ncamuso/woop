@@ -23,7 +23,6 @@ $(document).ready(function (){
     });
 
     $(document).on("click", ".btn", function () {
-        alert($(event.target).attr("id"));
         $.ajax({
             url: '/Add/AddMediaToWatchlist',
             data: {
@@ -46,10 +45,12 @@ function buildSearchResults(data) {
         $('#resultsTableDiv').empty().append(`<p class="text-danger">Sorry, there were no results for ${data.query}</p>`)
         return;
     }
+
     try {
         var results = JSON.parse(data.list);
     } catch (error) {
         errorState("There was a problem with IMDb");
+        return;
     }
 
 
