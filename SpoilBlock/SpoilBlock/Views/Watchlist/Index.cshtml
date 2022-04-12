@@ -16,7 +16,7 @@
 
         @if (Model.IsEmpty == false)
         {
-            <div class="text-center" stye="margin-top:60px;">
+            <div class="text-center" style="margin-top:60px;">
 
                 <table id="sortTable" class="table table-bordered" style="border-radius:5px; font-size:20px;">    
                     <caption>Your Watchlist</caption>
@@ -37,11 +37,11 @@
                             {
                                 <tr>
                                     <td style="max-width:100px;max-height:100px;">
-                                        <div><img src= "@item.Image" class="img-fluid">@item.Title</div>
+                                        <div class="imageandname"><img src= "@item.Image" class="img-fluid">@item.Title</div>
                                     </td>
                                     <td style="padding-top:50px;">@item.Description</td>
                                     <td>@Model.Levels</td>
-                                    
+                                    <td><button name="deleteButton" class="btn btn-danger" id="@item.Id">Delete</button></td>
                                 </tr>
                             }
 
@@ -54,7 +54,7 @@
             <div class = "text-center">
     
                 <h2> You dont have anything in your watchlist. Do you want add some shows?</h2>
-                <a class="btn btn-primary" asp-controller="Search" asp-action="Index">Click Here!</a>
+                <a id="redirectToSearch" class="btn btn-primary" asp-controller="Search" asp-action="Index">Click Here!</a>
             </div>
         }
     

@@ -96,7 +96,7 @@ namespace SpoilBlock.Controllers
 
                 _woopUserMediumRepository.DeleteById(selectedUserMediaId);
 
-                return Json(new { success = true, message = "OK" });
+                return Json(new { success = true, message = "OK", id = selectedUserMediaId});
             }
             catch(Exception ex)
             {
