@@ -27,6 +27,7 @@ builder.Services.AddSingleton<IAPIKeyAccessor>(k => new APIKeyAccessor(builder.C
 //      .AddEntityFrameworkStores<IdentityDbContext>();
 
 //Local connection string
+
 var connectionString = builder.Configuration.GetConnectionString("WOOPConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
     options.UseSqlServer(connectionString));
 
