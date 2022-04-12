@@ -19,7 +19,6 @@ namespace SpoilBlock.DAL.Concrete
         }
 
         public  IEnumerable<Medium> GetListOfShowsForUser(int? id)
-
         {
             
             var accounts = GetAll().Select(a => a.UserId).ToList();
