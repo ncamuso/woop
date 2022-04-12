@@ -40,8 +40,7 @@ namespace SpoilBlock.Controllers
                 HasWoopUser = wum != null,
                 Username = wum.Username ?? String.Empty,
                 AllShows = _woopusermediumRepository.GetListOfShowsForUser(wum.Id),
-                //AllShows = _woopuserRepository.GetListOfShows(_woopusermediumRepository.GetListOfShowsForUser(wum.Id), wum)
-
+                
             };
             
 

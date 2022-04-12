@@ -18,13 +18,13 @@
         {
             <div class="text-center" style="margin-top:60px;">
 
-                <table id="sortTable" class="table table-bordered" style="border-radius:5px; font-size:20px;">    
+                <table id="sortTable" class="table table-bordered" style="border-radius:5px; font-size:20px;">
                     <caption>Your Watchlist</caption>
                     <thead class="table-dark">
 
                         <tr>
                             <th data-type="number">#</th>
-                            <th data-type="string"><button class="table_header">Title</button></th>
+                            <th data-type="string" style="width:150px;"><button class="table_header">Title</button></th>
                             <th data-type="string"><button class="table_header">Description</button></th>
                             <th data-type="number"><button class="table_header">Block-Level</button></th>
 
@@ -38,9 +38,12 @@
                             @foreach (var item in @Model.AllShows)
                             {
                                 <tr>
-                                    <td>@(i++)</td>
-                                    <td style="max-width:100px;max-height:100px;">
-                                        <div class="imageandname"><img src= "@item.Image" class="img-fluid">@item.Title</div>
+                                    <td style="padding-top:85px;">@(i++)</td>
+                                    <td>
+                                        <div class="imageandname">
+                                            <img src="@item.Image" style="max-width:100px;">
+                                            @item.Title
+                                        </div>
                                     </td>
                                     <td style="padding-top:50px;">@item.Description</td>
                                     <td>@Model.Levels</td>
@@ -53,21 +56,21 @@
             </div>
         }
         else
-        { 
-            <div class = "text-center">
-    
+        {
+            <div class="text-center">
+
                 <h2> You dont have anything in your watchlist. Do you want add some shows?</h2>
                 <a id="redirectToSearch" class="btn btn-primary" asp-controller="Search" asp-action="Index">Click Here!</a>
             </div>
         }
-    
-    } 
+
+    }
     else
     {
         <div class="text-center">
-             <h2 class="display-4">Please login to view the watchlist</h2>
+            <h2 class="display-4">Please login to view the watchlist</h2>
         </div>
-    
+
     }
 
 </div>
@@ -75,5 +78,5 @@
 
 
 @section WatchlistScript{
-    <script type="text/javascript" src="~/js/watchlist.js"></script>
+<script type="text/javascript" src="~/js/watchlist.js"></script>
 }
