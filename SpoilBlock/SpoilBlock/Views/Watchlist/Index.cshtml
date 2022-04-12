@@ -39,7 +39,7 @@
                                 <tr>
                                     <td>@items.Title</td>
                                     <td>@items.Description</td>
-                                    
+                                    <td><button class="btn btn-danger" id=@items.Id>Delete</button></td>
                                 </tr>
                             }
                             
@@ -69,4 +69,7 @@
 </div>
 
 
+@section Scripts {
+    <script type="text/javascript" src="~/js/watchlist.js"></script>
+}
 
