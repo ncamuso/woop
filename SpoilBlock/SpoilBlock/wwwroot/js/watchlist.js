@@ -4,23 +4,28 @@
     const tableBody = table.querySelector('tbody');
     const rows = tableBody.querySelectorAll('tr');
 
-    
+
     const directions = Array.from(headers).map(function (header) {
         return '';
     });
 
-    
+
     const transform = function (index, content) {
-        
-        headers[index].getAttribute('data-type');
-        return content;
-        
+
+        const type = headers[index].getAttribute('data-type');
+        switch (type) {
+            case 'number':
+                return parseFloat(content);
+            case 'string':
+            default:
+                return content;
+        }
     };
-    const sortTitle = function (index) {
-        
+    const sortList = function (index) {
+
         const direction = directions[index] || 'asc';
 
-        
+
         const multiplier = direction === 'asc' ? 1 : -1;
 
         const newRows = Array.from(rows);
@@ -42,15 +47,15 @@
             }
         });
 
-        // Remove old rows
+
         [].forEach.call(rows, function (row) {
             tableBody.removeChild(row);
         });
 
-        // Reverse the direction
+
         directions[index] = direction === 'asc' ? 'desc' : 'asc';
 
-        // Append new row
+
         newRows.forEach(function (newRow) {
             tableBody.appendChild(newRow);
         });
@@ -58,8 +63,7 @@
 
     [].forEach.call(headers, function (header, index) {
         header.addEventListener('click', function () {
-            sortTitle(index);
+            sortList(index);
         });
     });
-
 });
