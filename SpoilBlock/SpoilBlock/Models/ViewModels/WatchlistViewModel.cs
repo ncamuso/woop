@@ -13,6 +13,7 @@ namespace SpoilBlock.Models.ViewModels
 
         public bool IsEmpty { get; set; }
 
+
         public  IEnumerable<Medium> AllShows { get; set; }
         public int Levels { get; set; } = 0;
 

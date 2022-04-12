@@ -4,7 +4,7 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-@*<link rel="stylesheet" href="~/css/~/css/watchlist.css" asp-append-version="true" />*@
+
 
 
 @{
@@ -13,10 +13,7 @@
 <div>
     @if (SignInManager.IsSignedIn(User) && Model.HasWoopUser)
     {
-            
-        @*<h2 class="display-4" style="float:left; margin-bottom:30px;">Your Watchlist</h2>*@
-        
-    
+
         @if (Model.IsEmpty == false)
         {
             <div class="text-center" stye="margin-top:60px;">
@@ -46,10 +43,8 @@
                                     <td>@Model.Levels</td>
                                     
                                 </tr>
-                            
-                        }
-                            
-                        
+                            }
+
                     </tbody>
                 </table>
             </div>
