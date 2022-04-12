@@ -82,5 +82,26 @@ namespace SpoilBlock.Controllers
                 return Json(new { success = false, message = ex.Message });
             }
         }
+
+        public async Task<JsonResult> DeleteShowFromWatchlist(string id)
+        {
+            try
+            {
+                var userIdentityId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                Woopuser user = await _woopUserRepository.GetWoopUserByIdentityIdAsync(userIdentityId);
+
+                int selectedUserMediaId = _woopUserMediumRepository.GetAll()
+                                                                   .Where(um => um.MediaId == int.Parse(id) && um.UserId == user.Id)
+                                                                   .FirstOrDefault().Id;
+
+                _woopUserMediumRepository.DeleteById(selectedUserMediaId);
+
+                return Json(new { success = true, message = "OK", id = selectedUserMediaId});
+            }
+            catch(Exception ex)
+            {
+                return Json(new { success = false, error = ex.Message });
+            }
+        }
     }
 }

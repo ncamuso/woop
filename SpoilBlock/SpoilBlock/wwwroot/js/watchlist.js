@@ -67,3 +67,22 @@
         });
     });
 });
+
+
+$(document).ready(function () {
+    $(document).on("click", "button[name$='deleteButton']", function () {
+        if (confirm(`Really delete ${$(event.target).parent().parent().find('.imageandname').text()} from your watchlist?`)) {
+            $.ajax({
+                url: '/Add/DeleteShowFromWatchlist',
+                data: { id: `${$(event.target).attr("id")}` },
+                method: "POST",
+                success: removeShowFromDisplay
+            });
+        }
+    });
+});
+
+
+function removeShowFromDisplay(data) {
+    window.location.replace('/Watchlist');
+}
