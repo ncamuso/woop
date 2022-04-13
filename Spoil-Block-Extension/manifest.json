@@ -21,7 +21,17 @@
         },
         "default_popup": "popup.html"
     },
-    "content_scripts": [],
+    "content_scripts": [
+        { 
+            "js": [ "jquery-3.6.0.min.js" ],
+             "matches": [ "http://*/*", "https://*/*"]
+         }
+    ],
+    "web_accessible_resources": [{
+        "resources": ["lib/jquery.min.3.5.1.js"],
+        "matches": [],
+        "extension_ids": []
+    }],
     "permissions": [
         "tabs",
         "activeTab",
