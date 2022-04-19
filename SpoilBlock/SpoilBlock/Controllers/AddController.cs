@@ -33,6 +33,8 @@ namespace SpoilBlock.Controllers
             try
             {
                 var currentUserID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (currentUserID == null)
+                    return Json(new { success = false, message = "No one has logged in" });
 
                 var currentUser = await _woopUserRepository.GetWoopUserByIdentityIdAsync(currentUserID);
 
