@@ -39,6 +39,12 @@ function checkSpoiler(title) {
 
 function getContents() {
     console.log('calling');
+
+    chrome.storage.local.get(['watchlist'], function(result) {
+        console.log("Retrieved watchlist from storage");
+        console.log(result);
+    })
+
     try {
         if (location.href === "https://www.youtube.com/") {
             console.log("on homepage");
