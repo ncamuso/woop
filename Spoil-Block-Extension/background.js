@@ -7,6 +7,7 @@ chrome.tabs.onUpdated.addListener(tab => {
         if (/^https:\/\/www\.youtube/.test(current_tab_info.url) && current_tab_info.status === "complete") {
             console.log(current_tab_info);
             hasSetYouTubeListener = true;
+            console.log("executing script");
             chrome.scripting.executeScript({
                 target: {tabId: current_tab_info.id},
                 files: ['youtube-block-improved.js']
