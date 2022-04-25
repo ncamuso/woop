@@ -3,16 +3,20 @@
 
 <head>
     
-    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    
     
     
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elegant Dashboard | Dashboard</title>
+  <title>SpoilBlock</title>
   <!-- Favicon -->
   <link rel="shortcut icon" href="/elegant/img/svg/SB-logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
   <!-- Custom styles -->
+  <link rel="stylesheet" href="~/css~/css/site.css">
   <link rel="stylesheet" href="/elegant/css/style.css">
 </head>
 
@@ -34,7 +38,7 @@
                 </div>*@
 
             </a>
-            <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
+            <button class="sidebar-toggle transparent-btn" title="Menu" type="button" id="sbartoggle">
                 <span class="sr-only">Toggle menu</span>
                 <span class="icon menu-toggle" aria-hidden="true"></span>
             </button>
@@ -251,8 +255,8 @@
 <!-- Custom scripts -->
 <script src="~/elegant/js/script.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-@*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
-<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+@*<script src="~/js/site.js" asp-append-version="true"></script>*@
 @await RenderSectionAsync("WatchlistScript", required: false)
 @await RenderSectionAsync("NewShowsScript", required: false)
 @await RenderSectionAsync("Scripts", required: false)
