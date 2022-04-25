@@ -1,5 +1,7 @@
 var videoTitles = [];
 var spoilersOnPage = 0;
+var watchList = [];
+getWatchlist();
 
 function blurTitle (element) {
     element.style.color = 'transparent';
@@ -15,7 +17,15 @@ function checkThumbnail(title) {
     return thumbnail;
 }
 
-function checkSpoiler(title) {
+function checkSpoiler() {
+    var isSpoiler = false;
+
+    if (titleText.includes('spoiler') && !titleText.includes('no spoiler')) { isSpoiler = true; }
+    if (titleText.includes('spoiler-free') || titleText.includes('spoiler free') || titleText.includes('non-spoiler')) {isSpoiler = false; }
+    return isSpoiler;
+}
+
+function checkVideosAgainstWatchlist(title) {
     var thumbnail;
 
     try {
@@ -24,10 +34,25 @@ function checkSpoiler(title) {
         console.log(error);
     }
     let titleText = title.innerHTML.toString().toLowerCase();
-    let isSpoiler = false;
+    var isSpoiler = false;
+    console.log(watchList);
+    Object.values(watchList)[0].forEach( element => {
+        //console.log("current element is: "+ element.toString().toLowerCase() + " current title is: " + titleText);
+        if (titleText.includes(element.toString().toLowerCase())) {
+            isSpoiler = true;
+        }
+    })
+    // for (let i = 0; i < Object.values(watchList).length; i++) {
+    //     const element = Object.values(watchList)[i];
+    //     console.log(element[i]);
+    // }
 
-    if (titleText.includes('spoiler') && !titleText.includes('no spoiler')) { isSpoiler = true; }
-    if (titleText.includes('spoiler-free') || titleText.includes('spoiler free') || titleText.includes('non-spoiler')) {isSpoiler = false; }
+    // Object.values(watchList).forEach(element => {
+    //     console.log("current element is: "+ element.toString().toLowerCase() + "current title is: " + titleText);
+    //     if (titleText.includes(element.toString().toLowerCase())) {
+    //         isSpoiler = true;
+    //     }
+    // });
 
     if(isSpoiler) {
         blurTitle(title);
@@ -37,8 +62,19 @@ function checkSpoiler(title) {
     
 }
 
+async function getWatchlist() {
+    chrome.storage.local.get(['watchlist'], function(result) {
+        //watchList = result;
+        console.log("getting watchlist");
+        watchList = result;
+        getContents();
+    });
+    console.log("poo");
+}
+
 function getContents() {
     console.log('calling');
+
     try {
         if (location.href === "https://www.youtube.com/") {
             console.log("on homepage");
@@ -70,7 +106,7 @@ function addListenerToDom(div) {
             console.log(titles);
             titles.forEach(element => {
                 if (videoTitles.indexOf(element) === -1) {
-                    if (checkSpoiler(element)) {
+                    if (checkVideosAgainstWatchlist(element)) {
                         spoilersOnPage++;
                     }
                     videoTitles.push(element);
@@ -87,7 +123,7 @@ function addListenerToDom(div) {
                     var newItem = node.path[1];
                     if (videoTitles.indexOf(newItem) === -1) {
                         videoTitles.push(newItem);
-                        if (checkSpoiler(newItem)) {
+                        if (checkVideosAgainstWatchlist(newItem)) {
                             spoilersOnPage++;
                         }
                     }
@@ -111,5 +147,7 @@ new MutationObserver(() => {
 function onUrlChange() {
     location.reload();
 }
+//setWatchlist();
 
-$( "document" ).ready( getContents() );
+//$( "document" ).ready( getContents() );
+//getContents();
