@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@model SpoilBlock.Models.ViewModels.NewShowsViewModel
+@using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
@@ -8,29 +9,72 @@
 }
 
 @if (SignInManager.IsSignedIn(User))
-{ 
-    <div class="text-center" style= "margin-top: 100px; margin-bottom: 100px;">
+{
+    <div class="text-center" style="margin-top: 100px; margin-bottom: 100px;">
         <h1>
             Welcome To SpoilBlock @UserManager.GetUserName(User)!!!
         </h1>
         <h2>Ready to block some shows </h2>
     </div>
+    <div class="row">
 
+        <div style="max-height: 550px; overflow-x: hidden; overflow-y: scroll; margin:0 auto;" class="col-7">
+
+            <table id="newshowstable" class="table table-dark table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Upcoming Shows</th>
+                        <th></th>
+                        <th>Release</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var entry in Model.resultsList)
+                    {
+                        <tr>
+                            <td><div class="img-max"><img src="@entry.image" class="img-fluid"></div></td>
+                            <td>@entry.fullTitle</td>
+                            <td>@entry.releaseState</td>
+                            <td>
+                                <input class="mediatitle" type="hidden" value="@(entry.title)">
+                                <input class="mediadescription" type="hidden" value="@(entry.plot)">
+                                <input type="submit" value="Add" id=@entry.id class="btn btn-primary" />
+                            </td>
+                            
+                        </tr>
+
+                    }
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+    </div>
 
 
 }
 else
 {
 
-    <div class="text-center" style= "margin-top: 100px; margin-bottom 100px;">
-        <h1 class="display-4" >Welcome to Spoil Block</h1>
-        <p style= "font-size: 1.2em; margin:20px 20px 10px 10px;">
+    <div class="text-center" style="margin-top: 100px; margin-bottom 100px;">
+        <h1 class="display-4">Welcome to Spoil Block</h1>
+        <p style="font-size: 1.2em; margin:20px 20px 10px 10px;">
             The internet has become a bubble of spoiler and it is hard not to see anything spoiled from our favourite shows. Our main purpose is to deliver spoiler free youtube content as per the user's choices.
         </p>
         <br />
-        <p style= "font-size: 1.2em;">
+        <p style="font-size: 1.2em;">
             Please login to proceed
-            <a class="btn btn-primary" id="login" asp-area ="Identity" asp-page="/Account/Login">Login</a>
+            <a class="btn btn-primary" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </p>
     </div>
+}
+
+@section NewShowsScript
+{
+<script type="text/javascript" src="~/js/addNewShows.js"></script>
 }

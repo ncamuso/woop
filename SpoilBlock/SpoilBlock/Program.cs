@@ -14,7 +14,7 @@ builder.Services.AddScoped<IWoopUserMediumRepository, WoopUserMediumRepository>(
 builder.Services.AddScoped<IWoopuserRepository, WoopuserRepository>();
 
 
-
+builder.Services.AddSingleton<IAPIKeyAccessor>(k => new APIKeyAccessor(builder.Configuration["IMDbServiceApiKey"]));
 
 
 //var connectionString = builder.Configuration.GetConnectionString("WOOPServerConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
@@ -23,14 +23,15 @@ builder.Services.AddScoped<IWoopuserRepository, WoopuserRepository>();
 //var identityConnectionString = builder.Configuration.GetConnectionString("WOOPIdServerConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
 //     options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
 //      .AddEntityFrameworkStores<IdentityDbContext>();
-//Local connection string
- var connectionString = builder.Configuration.GetConnectionString("WOOPConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
+
+//server connection string
+var connectionString = builder.Configuration.GetConnectionString("WOOPConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
     options.UseSqlServer(connectionString));
 
+var identityConnectionString = builder.Configuration.GetConnectionString("IdentityDbContextConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
+    options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+     .AddEntityFrameworkStores<IdentityDbContext>();
 //Local connection string
- var identityConnectionString = builder.Configuration.GetConnectionString("IdentityDbContextConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
-     options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-      .AddEntityFrameworkStores<IdentityDbContext>();
 
 builder.Services.AddScoped<IAddMediaService, AddMediaService>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -40,8 +41,8 @@ builder.Services.AddScoped<IMediumRepository, MediumRepository>();
 builder.Services.AddScoped<DbContext, WOOPDbContext>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient();
-builder.Services.AddSingleton<IAPIKeyAccessor>(k => new APIKeyAccessor(builder.Configuration["IMDbToken:IMDbNewShowsApiKey"]));
 builder.Services.AddScoped<IIMDbSearchService, IMDbSearchService>();
+builder.Services.AddScoped<IIMDbNewShowsService, IMDbNewShowsService>();
 
 
 var app = builder.Build();
@@ -72,8 +73,6 @@ app.UseEndpoints(endpoints =>
                 });
 
 
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();

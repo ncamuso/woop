@@ -25,6 +25,7 @@ namespace SpoilBlock_Tests
             new Medium{Id = 2, Imdbid= "tgf010912", Title= "Deadpool"},
             new Medium{Id = 3, Imdbid= "teh110912", Title= "Deadpool-2"},
             new Medium{Id = 4, Imdbid= "ww0160934", Title= "Batman Begins"}
+
         };
 
         public static readonly List<WoopuserMedium> UserMediumList = new List<WoopuserMedium>

@@ -13,11 +13,12 @@ namespace SpoilBlock.DAL.Concrete
         public WoopUserMediumRepository(WOOPDbContext ctx) : base(ctx) 
         { }
 
-        public int GetBlockageLevel(int id)
+        public IEnumerable<int> GetBlockageLevel(int id)
         {
-            return GetAll().Where(x => x.Id == id).Select(x => x.BlockageLevel).Single();   
+            return GetAll().Where(x => x.UserId == id).Select(x => x.BlockageLevel).ToList();   
         }
-         IEnumerable<Medium> IWoopUserMediumRepository.GetListOfShowsForUser(int id)
+
+        public  IEnumerable<Medium> GetListOfShowsForUser(int? id)
         {
             
             var accounts = GetAll().Select(a => a.UserId).ToList();
@@ -25,37 +26,28 @@ namespace SpoilBlock.DAL.Concrete
             {
                 if (id != null)
                 {
-                    if (accounts.Contains(id))
+                    if (accounts.Contains((int)id))
                     {
                         var mediaList = new List<Medium>();
                         mediaList = GetAll().Include(a => a.Media).Where(a => a.UserId == id).Select(a => a.Media).ToList();
+                        
                         if (mediaList != null)
                         {
-                            return mediaList.OrderBy(u => u.Title);
+                            return mediaList.OrderBy(u => u.Imdbid);
                         }
                         throw new Exception();
                     }
-                    throw new InvalidDataException();
+                    return Enumerable.Empty<Medium>();
                 }
-                throw new NullReferenceException();
-
-            }
-
-            catch (NullReferenceException err)
-            {
                 throw new ArgumentNullException();
+
             }
-            catch (InvalidDataException err)
-            {
-                //throw new ArgumentException();
-                return Enumerable.Empty<Medium>();
-            }
+
             catch (Exception err)
             {
                 return Enumerable.Empty<Medium>();
             }
-            
-            //return GetAll().Where(u => u.UserId == id).Select(u => u.Media).ToList();
+
         }
     }
 }

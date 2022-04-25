@@ -76,6 +76,35 @@ namespace SpoilBlock_Tests
                };
         }
 
+        [Test]
+        public void UserMediumRepository_GetListOfShowsForUserForNonExisting_Should_ReturnEmptyList()
+        {
+            // Arrange
+            IWoopUserMediumRepository umRepo = new WoopUserMediumRepository(_mockContext.Object);
+            int userId = 22;
+            
+
+            //Act
+            IEnumerable<Medium> actualList = umRepo.GetListOfShowsForUser(userId);
+
+
+            //Assert
+            Assert.That(actualList.Count(), Is.EqualTo(0));
+           
+        }
+
+        [Test]
+        public void UserMediumRepository_GetListOfShowsForUserForNullId_Should_ThrowException()
+        {
+            // Arrange
+            IWoopUserMediumRepository umRepo = new WoopUserMediumRepository(_mockContext.Object);
+            int? userId = null;
+
+
+            //Assert
+            Assert.Throws<ArgumentNullException>(() => umRepo.GetListOfShowsForUser(userId));
+
+        }
 
     }
 }
