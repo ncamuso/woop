@@ -136,7 +136,6 @@ namespace SpoilBlock.Controllers
         {
             try
             {
-                Console.WriteLine(MediaId);
                 var userIdentityId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 Woopuser user = await _woopUserRepository.GetWoopUserByIdentityIdAsync(userIdentityId);
 
