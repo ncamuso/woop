@@ -26,7 +26,7 @@
                             <th data-type="number">#</th>
                             <th data-type="string" style="width:150px;"><button class="table_header">Title</button></th>
                             <th data-type="string"><button class="table_header">Description</button></th>
-                            <th data-type="number"><button class="table_header">Block-Level</button></th>
+                            <th data-type="number"><button class="table_header">Watch Status</button></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -46,8 +46,17 @@
                                         </div>
                                     </td>
                                     <td style="padding-top:50px;">@item.Description</td>
-                                    <td>@Model.Levels</td>
-                                    <td style="padding-top:85px;"><button name="deleteButton" class="btn btn-danger" id="@item.Id">Delete</button></td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-dark dropdown-toggle" type="button" name="ddButton" data-status="0" data-mediaid="@item.Id" data-bs-toggle="dropdown" id="dd @item.Id" aria-haspopup="true" aria-expanded="false">Haven't Started</button>
+                                            <div class="dropdown-menu" aria-labelledby="dd @item.Id">
+                                                <a class="dropdown-item" href="#" name="ddItem" data-status="0" data-mediaid="@item.Id">Haven't Started</a>
+                                                <a class="dropdown-item" href="#" name="ddItem" data-status="1" data-mediaid="@item.Id">Currently Watching</a>
+                                                <a class="dropdown-item" href="#" name="ddItem" data-status="2" data-mediaid="@item.Id">Completed</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="padding-top:85px;"><button name="deleteButton" class="btn btn-danger" data-showid="@item.Id">Delete</button></td>
                                 </tr>
                             }
 
