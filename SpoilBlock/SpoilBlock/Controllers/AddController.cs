@@ -105,5 +105,53 @@ namespace SpoilBlock.Controllers
                 return Json(new { success = false, error = ex.Message });
             }
         }
+
+        public async Task<JsonResult> GetMediaStatuses()
+        {
+            try
+            {
+                var userIdentityId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                Woopuser user = await _woopUserRepository.GetWoopUserByIdentityIdAsync(userIdentityId);
+
+                var allShowLevels = _woopUserMediumRepository.GetAll().Where(um => um.UserId == user.Id);
+
+                List<object> shows = new List<object>();
+
+                foreach(var level in allShowLevels)
+                {
+                    shows.Add(new {MediaId = level.MediaId, BlockageLevel = level.BlockageLevel});
+                }
+
+                string resultsListJSON = JsonConvert.SerializeObject(shows);
+
+                return Json(new {success=true, message = "OK", list=resultsListJSON});
+            }
+            catch(Exception ex)
+            {
+                return Json(new { success = false, error = ex.Message });
+            }
+        }
+
+        public async Task<JsonResult> UpdateMediaStatus(string MediaId, string BlockageLevel)
+        {
+            try
+            {
+                var userIdentityId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                Woopuser user = await _woopUserRepository.GetWoopUserByIdentityIdAsync(userIdentityId);
+
+                var selectedUserMedia = _woopUserMediumRepository.GetAll().Where(um => um.UserId == user.Id && um.MediaId == int.Parse(MediaId)).FirstOrDefault();
+
+                selectedUserMedia.BlockageLevel = int.Parse(BlockageLevel);
+
+                _woopUserMediumRepository.AddOrUpdate(selectedUserMedia);
+
+                return Json(new { success = true, message = "OK" });
+            }
+            catch(Exception ex)
+            {
+                return Json(new {success = false, error = ex.Message});
+            }
+        }
+
     }
 }

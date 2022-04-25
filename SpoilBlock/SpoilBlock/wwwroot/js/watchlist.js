@@ -74,7 +74,7 @@ $(document).ready(function () {
         if (confirm(`Really delete ${$(event.target).parent().parent().find('.imageandname').text().trim()} from your watchlist?`)) {
             $.ajax({
                 url: '/Add/DeleteShowFromWatchlist',
-                data: { id: `${$(event.target).attr("id")}` },
+                data: { id: `${$(event.target).attr("data-showid")}` },
                 method: "POST",
                 success: removeShowFromDisplay
             });
@@ -82,6 +82,47 @@ $(document).ready(function () {
     });
 });
 
+
+$(document).ready(function () {
+    refreshWatchlistStatus();
+
+    $(document).on("click", "a[name$='ddItem']", function ($e) {
+        $e.preventDefault();
+        $.ajax({
+            url: '/Add/UpdateMediaStatus',
+            data: {
+                MediaId: `${$(event.target).data("mediaid")}`,
+                BlockageLevel: `${$(event.target).data("status")}`
+            },
+            method: "POST",
+            success: refreshWatchlistStatus
+
+        });
+    });
+});
+
+
+function refreshWatchlistStatus() {
+    $.ajax({
+        url: '/Add/GetMediaStatuses',
+        success: refreshButtonNames
+    });
+}
+
+function refreshButtonNames(data) {
+    var results = JSON.parse(data.list);
+    $("button[name$='ddButton']").each(function (i) {
+
+        $(this).attr("data-status", results.find(e => e.MediaId == $(this).attr("data-mediaid")).BlockageLevel);
+
+        if ($(this).attr("data-status") == 0)
+            $(this).html("Haven't Started");
+        else if ($(this).attr("data-status") == 1)
+            $(this).html("Currently Watching");
+        else
+            $(this).html("Completed");
+    });
+}
 
 function removeShowFromDisplay(data) {
     window.location.replace('/Watchlist');
