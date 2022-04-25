@@ -56,12 +56,12 @@ function buildSearchResults(data) {
 
     let searchTable = $('<table class="table" id="resultsTable"><tbody>');
     $.each(results, function (i) {
-        let tr = $(`<tr><td><div class="img-max"><img src=${results[i].image} class="img-fluid"></div></td><td class="mediatitle">${results[i].title}</td><td class="mediadescription">${results[i].description}</td><td><input type="submit" value="Add" id="${results[i].id}" class="btn btn-primary"</td></tr>`).appendTo(searchTable);
+        let tr = $(`<tr><td><div class="img-max"><img src=${results[i].image} class="img-fluid"></div></td><td class="mediatitle">${results[i].title}</td><td class="mediadescription">${results[i].description}</td><td><input type="submit" value="Add" id="${results[i].id}" class="btn btn-primary"/></td></tr>`).appendTo(searchTable);
     });
     $('#resultsTableDiv')
         .empty()
         .append(searchTable);
-
+    
     $.ajax({
         url: '/Add/GetCurrentWatchListIDs',
         success: DisableButtonsForShowsAlreadyOnWatchlist
