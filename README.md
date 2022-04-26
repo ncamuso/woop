@@ -21,7 +21,7 @@
 Coming Soon!
 
 ## **Using the Spoil Block Extension**
-To make use of the Spoil Block Google Chrome browser extension, first download the [Spoil-Block-Extension](https://github.com/eborello/woop/blob/dev/Spoil-Block-Extension/Spoil-Block-Extension.crx) zip file.
+To make use of the Spoil Block Google Chrome browser extension, first download the [Spoil-Block-Extension](https://github.com/eborello/woop/blob/dev/Spoil-Block-Extension.zip) zip file.
 Once you've downloaded the zip file, go ahead and extract it. Once you've done that, open up your Google Chrome browser.
 Navigate to chrome://extensions/ and toggle "Developer Mode" on the top right of the tab. You'll then see 3 buttons appear on the top left of the tab.
 Click the "Load Unpacked" button and then select the folder containing the extracted Spoil Block extension. The extension will now be up and running
