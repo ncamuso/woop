@@ -69,7 +69,6 @@ async function getWatchlist() {
         watchList = result;
         getContents();
     });
-    console.log("poo");
 }
 
 function getContents() {
@@ -105,6 +104,8 @@ function addListenerToDom(div) {
             var titles = document.querySelectorAll('#video-title');
             console.log(titles);
             titles.forEach(element => {
+                //element.style.color = 'red';
+
                 if (videoTitles.indexOf(element) === -1) {
                     if (checkVideosAgainstWatchlist(element)) {
                         spoilersOnPage++;
@@ -118,9 +119,11 @@ function addListenerToDom(div) {
 
         div.addEventListener("DOMNodeInserted", function (node) {
             if (node.path.some(e => e.id === 'video-title')) {
+
                 if (node.path[0].nodeName === '#text') {
                     //console.log(node.path);
                     var newItem = node.path[1];
+                    //newItem.style.color = 'red';
                     if (videoTitles.indexOf(newItem) === -1) {
                         videoTitles.push(newItem);
                         if (checkVideosAgainstWatchlist(newItem)) {
