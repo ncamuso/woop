@@ -4,7 +4,7 @@ let hasSetYouTubeListener = false;
 
 chrome.tabs.onUpdated.addListener(tab => {
     chrome.tabs.get(tab, current_tab_info => {
-        if (/^https:\/\/www\.youtube/.test(current_tab_info.url) && current_tab_info.status === "complete") {
+        if (/^https:\/\/www\.youtube/.test(current_tab_info.url) && current_tab_info.status === "complete" && hasSetYouTubeListener === false) {
             console.log(current_tab_info);
             hasSetYouTubeListener = true;
             console.log("executing script");
