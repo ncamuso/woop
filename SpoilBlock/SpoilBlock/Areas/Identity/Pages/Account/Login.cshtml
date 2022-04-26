@@ -5,7 +5,7 @@
     ViewData["Title"] = "Log in";
 }
 
-<div class="text-center" style= "border-style:groove; border-radius: 5px; margin: auto; width:40%">
+@*<div class="text-center" style= "border-style:groove; border-radius: 5px; margin: auto; width:40%">
     <section>
         <form id="account" method="post">
             <h2>Please enter your username and password</h2>
@@ -39,13 +39,60 @@
                 
                 @*<a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend confirmation</a>*@
                 
-            </div>
+           @* </div>
         </form>
     </section>
-</div>
+</div>*@
     
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpoilBlock| Sign In</title>
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="~/elegant/img/svg/SB-logo.png" type="image/x-icon">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="./css/style.min.css">
+</head>
 
+<body>
+  <div class="layer"></div>
+<main class="page-center-1">
+  <article class="sign-up">
+    <h1 class="sign-up__title">Welcome back!</h1>
+    <p class="sign-up__subtitle">Sign in to your account to continue</p>
+    <form class="sign-up-form form" id="account" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <label class="form-label-wrapper">
+        <p class="form-label">Username</p>
+        <input asp-for="Input.Username" class="form-input" autocomplete="username"  placeholder="Enter your username" aria-required="true" />
+      </label>
+      <label class="form-label-wrapper">
+        <p class="form-label">Password</p>
+        <input asp-for="Input.Password" class="form-input" autocomplete="current-password" placeholder="Your password" aria-required="true" />
+                
+                <span asp-validation-for="Input.Password" class="text-danger" ></span>
+      </label>
+     
+      <a class="link-info forget-link" id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+      
+        <label asp-for="Input.RememberMe" class="form-checkbox-wrapper">
+                   <input class="form-check-input" asp-for="Input.RememberMe" type="checkbox" />
+                   @Html.DisplayNameFor(m => m.Input.RememberMe)
+        </label>
+      
+      <button class="form-btn primary-default-btn transparent-btn" id="login-submit" type="submit">Sign in</button>
+    </form>
+  </article>
+</main>
+</body>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <!-- Chart library -->
+<script src="~/elegant/plugins/chart.min.js"></script>
+<!-- Icons library -->
+<script src="~/elegant/plugins/feather.min.js"></script>
+<!-- Custom scripts -->
+<script src="~/elegant/js/script.js"></script>
 }
