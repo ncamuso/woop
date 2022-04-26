@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $(document).on("click", ".btn", function () {
+    $(document).on("click", ".btn-primary", function () {
         $.ajax({
             url: '/Add/AddMediaToWatchlist',
             data: {

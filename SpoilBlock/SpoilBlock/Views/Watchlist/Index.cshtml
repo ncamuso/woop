@@ -26,7 +26,7 @@
                             <th data-type="number">#</th>
                             <th data-type="string" style="width:150px;"><button class="table_header">Title</button></th>
                             <th data-type="string"><button class="table_header">Description</button></th>
-                            <th data-type="number"><button class="table_header">Watch Status</button></th>
+                            <th data-type="string"><button class="table_header">Watch Status</button></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -38,14 +38,14 @@
                             @foreach (var item in @Model.AllShows)
                             {
                                 <tr>
-                                    <td style="padding-top:85px;">@(i++)</td>
+                                    <td>@(i++)</td>
                                     <td>
                                         <div class="imageandname">
                                             <img src="@item.Image" style="max-width:100px;">
                                             @item.Title
                                         </div>
                                     </td>
-                                    <td style="padding-top:50px;">@item.Description</td>
+                                    <td>@item.Description</td>
                                     <td>
                                         
                                             <button class="btn btn-secondary dropdown-toggle" type="button" name="ddButton" data-status="0" data-mediaid="@item.Id" data-bs-toggle="dropdown" id="dd @item.Id" aria-haspopup="true" aria-expanded="false">Haven't Started</button>
@@ -56,7 +56,7 @@
                                             </div>
                                         
                                     </td>
-                                    <td style="padding-top:85px;"><button name="deleteButton" class="btn btn-danger" data-showid="@item.Id">Delete</button></td>
+                                    <td><button name="deleteButton" class="btn btn-danger" data-showid="@item.Id">Delete</button></td>
                                 </tr>
                             }
 
@@ -76,9 +76,12 @@
     }
     else
     {
-        <div class="text-center">
+         Context.Response.Redirect("Identity/Account/Login");
+        
+
+        @*<div class="text-center">
             <h2 class="display-4">Please login to view the watchlist</h2>
-        </div>
+        </div>*@
 
     }
 
