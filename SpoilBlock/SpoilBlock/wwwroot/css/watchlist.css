@@ -1,6 +1,7 @@
-﻿.table_header {
+﻿button .table_header {
     background-color: transparent;
     border: none;
+    outline:none;
     cursor: pointer;
 }
 
