@@ -25,4 +25,4 @@ To make use of the Spoil Block Google Chrome browser extension, first download t
 Once you've downloaded the zip file, go ahead and extract it. Once you've done that, open up your Google Chrome browser.
 Navigate to chrome://extensions/ and toggle "Developer Mode" on the top right of the tab. You'll then see 3 buttons appear on the top left of the tab.
 Click the "Load Unpacked" button and then select the folder containing the extracted Spoil Block extension. The extension will now be up and running
-on your machine. The only thing left to do now is navigate over to https://spoilblock.azurewebsites.net/ and create an account. Happy spoiler-free browsing!
+on your machine. The only thing left to do now is navigate over to https://spoilblock.azurewebsites.net/ and create an account and add some shows to your watchlist. Be sure to navigate back to the watchlist page after making any changes so the extension can update the watchlist. Happy spoiler-free browsing!

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Register";
 }
 
-
+@*
 <div class="text-center" style= "border-style:groove; border-radius: 5px; margin: auto; width:40%">
 
     <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
@@ -32,11 +32,65 @@
             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
         </div>
         <button id="registerSubmit" type="submit" class="btn btn-lg btn-primary" style="width:80%;margin:5px 5px 5px 5px">Register</button>
-    </form>
-    
-    
-</div>
+    </form>   
+</div>*@
 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpoilBlock| Register</title>
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="./img/svg/SB_logo.png"" type="image/x-icon">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="./css/style.min.css">
+</head>
+
+<body>
+  <div class="layer"></div>
+<main class="page-center-1">
+  <article class="sign-up">
+    <h1 class="sign-up__title">Get started</h1>
+    <p class="sign-up__subtitle">Start blocking spoilers for your favorite shows</p>
+    <form class="sign-up-form form" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <label class="form-label-wrapper">
+        <p class="form-label">Username</p>
+        @*<input class="form-input" type="text" placeholder="Enter your username" required>*@
+        <input asp-for="Input.Username" class="form-input" autocomplete="username" placeholder="Enter your username" aria-required="true" required/>
+        <span asp-validation-for="Input.Username" class="text-danger"></span>
+      </label>
+     
+      <label class="form-label-wrapper">
+        <p class="form-label">Email</p>
+        @*<input class="form-input" type="email" placeholder="Enter your email" required>*@
+         <input asp-for="Input.Email" class="form-input" autocomplete="username" aria-required="true"  placeholder="Enter your email" required/>
+         <span asp-validation-for="Input.Email" class="text-danger"></span>
+      </label>
+      <label class="form-label-wrapper">
+        <p class="form-label">Password</p>
+        @*<input class="form-input" type="password" placeholder="Enter your password" required>*@
+        <input asp-for="Input.Password" class="form-input" autocomplete="new-password" aria-required="true" type="password" placeholder="Your password" required />
+        <span asp-validation-for="Input.Password" class="text-danger"></span>
+      </label>
+      <label class="form-label-wrapper">
+        <p class="form-label">Confirm Password</p>
+        @*<input class="form-input" type="password" placeholder="Enter your password" required>*@
+        <input asp-for="Input.ConfirmPassword" class="form-input" autocomplete="new-password" aria-required="true" type="password" placeholder="Re-enter your password" required />
+        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+      </label>
+      
+      <button class="form-btn primary-default-btn transparent-btn" id="registerSubmit" type="submit">Sign in</button>
+    </form>
+  </article>
+</main>
+</body>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <!-- Chart library -->
+<script src="./plugins/chart.min.js"></script>
+<!-- Icons library -->
+<script src="plugins/feather.min.js"></script>
+<!-- Custom scripts -->
+<script src="js/script.js"></script>
 }
