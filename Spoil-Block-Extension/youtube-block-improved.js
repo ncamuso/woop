@@ -62,6 +62,12 @@ function checkVideosAgainstWatchlist(title) {
     
 }
 
+function sleep(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+}
+
 async function getWatchlist() {
     chrome.storage.local.get(['watchlist'], function(result) {
         //watchList = result;
@@ -71,7 +77,7 @@ async function getWatchlist() {
     });
 }
 
-function getContents() {
+async function getContents() {
     console.log('calling');
 
     try {
@@ -79,6 +85,7 @@ function getContents() {
             console.log("on homepage");
             var div = document.querySelector('#contents');
         } else {
+            console.log("not on homepage")
             var div = document.querySelector('#video-title').closest('#contents');
         }
     } catch (error) {
@@ -90,6 +97,9 @@ function getContents() {
     
     if (div != null) {
         addListenerToDom(div);
+    } else {
+        await sleep(1000);
+        getContents();
     }
 }
 
@@ -104,7 +114,7 @@ function addListenerToDom(div) {
             var titles = document.querySelectorAll('#video-title');
             console.log(titles);
             titles.forEach(element => {
-                //element.style.color = 'red';
+                element.style.color = 'red';
 
                 if (videoTitles.indexOf(element) === -1) {
                     if (checkVideosAgainstWatchlist(element)) {
@@ -123,7 +133,7 @@ function addListenerToDom(div) {
                 if (node.path[0].nodeName === '#text') {
                     //console.log(node.path);
                     var newItem = node.path[1];
-                    //newItem.style.color = 'red';
+                    newItem.style.color = 'red';
                     if (videoTitles.indexOf(newItem) === -1) {
                         videoTitles.push(newItem);
                         if (checkVideosAgainstWatchlist(newItem)) {
