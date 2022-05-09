@@ -70,7 +70,6 @@ function sleep(ms) {
 
 async function getWatchlist() {
     chrome.storage.local.get(['watchlist'], function(result) {
-        //watchList = result;
         console.log("getting watchlist");
         watchList = result;
         getContents();
@@ -78,15 +77,21 @@ async function getWatchlist() {
 }
 
 async function getContents() {
-    console.log('calling');
 
+    console.log('calling');
+    var div;
+    var onWatchPage = false;
     try {
         if (location.href === "https://www.youtube.com/") {
             console.log("on homepage");
-            var div = document.querySelector('#contents');
+            div = document.querySelector('#contents');
+        } else if (location.href.includes("https://www.youtube.com/results")) {
+            console.log("on results page");
+            div = document.querySelector('#video-title').closest('#contents');
         } else {
-            console.log("not on homepage")
-            var div = document.querySelector('#video-title').closest('#contents');
+            console.log("on watch page");
+            div = document.querySelector('#video-title').closest('#items');
+            onWatchPage = true;
         }
     } catch (error) {
         console.log('div was empty');
@@ -104,6 +109,7 @@ async function getContents() {
 }
 
 function addListenerToDom(div) {
+
     console.log('adding listner');
 
     if (div === null)
@@ -113,9 +119,9 @@ function addListenerToDom(div) {
         try {
             var titles = document.querySelectorAll('#video-title');
             console.log(titles);
-            titles.forEach(element => {
-                element.style.color = 'red';
-
+            titles.forEach(element => {                
+                //element.style.color = 'red';
+                
                 if (videoTitles.indexOf(element) === -1) {
                     if (checkVideosAgainstWatchlist(element)) {
                         spoilersOnPage++;
@@ -124,16 +130,16 @@ function addListenerToDom(div) {
                 }
             });
         } catch (error) {
-            console.log(error)
+            console.log('Error reading title from inital load. ' + error)
         }
 
         div.addEventListener("DOMNodeInserted", function (node) {
             if (node.path.some(e => e.id === 'video-title')) {
-
+                console.log(node);
                 if (node.path[0].nodeName === '#text') {
                     //console.log(node.path);
                     var newItem = node.path[1];
-                    newItem.style.color = 'red';
+                    //newItem.style.color = 'red';
                     if (videoTitles.indexOf(newItem) === -1) {
                         videoTitles.push(newItem);
                         if (checkVideosAgainstWatchlist(newItem)) {
@@ -159,6 +165,10 @@ new MutationObserver(() => {
 
 function onUrlChange() {
     location.reload();
+    videoTitles = [];
+    spoilersOnPage = 0;
+    watchList = [];
+    getContents();
 }
 //setWatchlist();
 
