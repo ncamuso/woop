@@ -1,10 +1,11 @@
 console.log("hi from background");
 
 let hasSetYouTubeListener = false;
+let hasSetSpoilBlockListner = false;
 
 chrome.tabs.onUpdated.addListener(tab => {
     chrome.tabs.get(tab, current_tab_info => {
-        if (/^https:\/\/www\.youtube/.test(current_tab_info.url) && current_tab_info.status === "complete" && hasSetYouTubeListener === false) {
+        if (/^https:\/\/www\.youtube/.test(current_tab_info.url) && current_tab_info.status === "complete") {
             console.log(current_tab_info);
             hasSetYouTubeListener = true;
             console.log("executing script");
@@ -13,9 +14,10 @@ chrome.tabs.onUpdated.addListener(tab => {
                 files: ['youtube-block-improved.js']
             });
         }
-        else if (current_tab_info.url.includes('spoilblock.azurewebsites.net/Watchlist'))
+        else if (current_tab_info.url.includes('spoilblock.azurewebsites.net/Watchlist') && hasSetSpoilBlockListner === false)
         {
             console.log('hello watchlist');
+            hasSetSpoilBlockListner = true;
             chrome.scripting.executeScript({
                 target: {tabId: current_tab_info.id},
                 files: ['watchlist-update.js']
