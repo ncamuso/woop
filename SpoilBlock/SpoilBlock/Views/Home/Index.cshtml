@@ -18,39 +18,38 @@
     
         <div class="row" style="margin-top:30px">
 
-            <div style="max-width: 700px;max-height: 600px; overflow-x: hidden; overflow-y: scroll;" class="col-7">
-
-                <table id="newshowstable" class="table table-dark table-hover">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Upcoming Shows</th>
-                            <th></th>
-                            <th>Release</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @foreach (var entry in Model.resultsList)
-                        {
+            <div class="col-7">
+                <div class="white-block" style="max-height: 600px; overflow:auto">  
+                    <table id="newshowstable" class="table table-dark table-hover">
+                        <thead class="table-dark">
                             <tr>
-                                <td><div class="img-max"><img src="@entry.image" class="img-fluid"></div></td>
-                                <td>@entry.fullTitle</td>
-                                <td>@entry.releaseState</td>
-                                <td>
-                                    <input class="mediatitle" type="hidden" value="@(entry.title)">
-                                    <input class="mediadescription" type="hidden" value="@(entry.plot)">
-                                    <input type="submit" value="Add" id=@entry.id class="btn btn-primary" />
-                                </td>
-                                
+                                <th>Upcoming Shows</th>
+                                <th></th>
+                                <th>Release</th>
+                                <th></th>
+                                <th></th>
                             </tr>
+                        </thead>
 
-                        }
-                    </tbody>
+                        <tbody>
+                            @foreach (var entry in Model.resultsList)
+                            {
+                                <tr>
+                                    <td><div class="img-max"><img src="@entry.image" class="img-fluid" style="max-width:100px;"></div></td>
+                                    <td>@entry.fullTitle</td>
+                                    <td>@entry.releaseState</td>
+                                    <td>
+                                        <input class="mediatitle" type="hidden" value="@(entry.title)">
+                                        <input class="mediadescription" type="hidden" value="@(entry.plot)">
+                                        <input type="submit" value="Add" id=@entry.id class="btn btn-primary" />
+                                    </td>
+                                    
+                                </tr>
 
-
-                </table>
+                            }
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
 
