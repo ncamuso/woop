@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpoilBlock_BDDTests.PageObjects
+namespace SpoilBlock_SpecflowTests.PageObjects
 {
     // Sitewide definitions and useful methods
     public class Common

@@ -65,11 +65,11 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
       <label class="form-label-wrapper">
         <p class="form-label">Username</p>
-        <input asp-for="Input.Username" class="form-input" autocomplete="username"  placeholder="Enter your username" aria-required="true" />
+        <input id="Input_Username" asp-for="Input.Username" class="form-input" autocomplete="username"  placeholder="Enter your username" aria-required="true" />
       </label>
       <label class="form-label-wrapper">
         <p class="form-label">Password</p>
-        <input asp-for="Input.Password" class="form-input" autocomplete="current-password" placeholder="Your password" aria-required="true" />
+        <input id="Input_Password" asp-for="Input.Password" class="form-input" autocomplete="current-password" placeholder="Your password" aria-required="true" />
                 
                 <span asp-validation-for="Input.Password" class="text-danger" ></span>
       </label>

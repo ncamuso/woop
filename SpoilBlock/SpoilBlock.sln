@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpoilBlock", "SpoilBlock\Sp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpoilBlock_Tests", "SpoilBlock_Tests\SpoilBlock_Tests.csproj", "{C8D98904-2075-4161-BF1C-1C76B957897D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpoilBlock_BDDTests", "SpoilBlock_BDDTests\SpoilBlock_BDDTests.csproj", "{FC16A967-0DE6-4F9F-95FC-DFBC83F7B8F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpoilBlock_SpecflowTests", "SpoilBlock_BDDTests\SpoilBlock_SpecflowTests.csproj", "{FC16A967-0DE6-4F9F-95FC-DFBC83F7B8F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

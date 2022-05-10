@@ -1,12 +1,12 @@
 ﻿using OpenQA.Selenium;
 using SpecFlow.Actions.Selenium;
 
-namespace SpoilBlock_BDDTests.PageObjects
+namespace SpoilBlock_SpecflowTests.PageObjects
 {
     public class LoginPage : Page
     {
         // Select all the elements needed for tests
-        private IWebElement EmailInput => _browserInteractions.WaitAndReturnElement(By.Id("Input_Email"));
+        private IWebElement UsernameInput => _browserInteractions.WaitAndReturnElement(By.Id("Input_Username"));
         private IWebElement PasswordInput => _browserInteractions.WaitAndReturnElement(By.Id("Input_Password"));
         private IWebElement LoginButton => _browserInteractions.WaitAndReturnElement(By.Id("login-submit"));
         // Look for a div that has class validation-summary-errors.
@@ -25,7 +25,7 @@ namespace SpoilBlock_BDDTests.PageObjects
 
         public void EnterEmail(string email)
         {
-            EmailInput.SendKeysWithClear(email);
+            UsernameInput.SendKeysWithClear(email);
         }
 
         public void EnterPassword(string password)

@@ -1,13 +1,13 @@
 ﻿using OpenQA.Selenium;
 using SpecFlow.Actions.Selenium;
 
-namespace SpoilBlock_BDDTests.PageObjects
+namespace SpoilBlock_SpecflowTests.PageObjects
 
 {
     // Base class for all pages, provides common functionality
     public class Page
     {
-        protected readonly IBrowserInteractions _browserInteractions;
+        public readonly  IBrowserInteractions _browserInteractions;
 
         public Page(IBrowserInteractions browserInteractions)
         {

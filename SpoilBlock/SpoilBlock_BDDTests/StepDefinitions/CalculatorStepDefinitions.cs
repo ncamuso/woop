@@ -1,4 +1,4 @@
-namespace SpoilBlock_BDDTests.StepDefinitions
+namespace SpoilBlock_SpecflowTests.StepDefinitions
 {
     [Binding]
     public sealed class CalculatorStepDefinitions
