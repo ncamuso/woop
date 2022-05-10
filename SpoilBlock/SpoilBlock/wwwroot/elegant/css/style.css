@@ -765,17 +765,17 @@ img {
 }
 
 .white-block {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: #212529;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 .white-block__title {
@@ -3538,8 +3538,8 @@ label {
 }
 
 .darkmode .white-block {
-  background-color: #222235;
-  color: #D6D7E3;
+    background-color: #161624;
+    color: #D6D7E3;
 }
 
 .darkmode .white-block__title {
