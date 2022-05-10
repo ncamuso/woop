@@ -50,4 +50,3 @@ namespace SpoilBlock_SpecflowTests.PageObjects
 
     }
 }
-}

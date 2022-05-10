@@ -15,7 +15,7 @@ namespace SpoilBlock_SpecflowTests.PageObjects
     {
         private IWebElement SearchBox => _browserInteractions.WaitAndReturnElement(By.Id("searchQuery"));
         private IWebElement SearchButton => _browserInteractions.WaitAndReturnElement(By.Id("searchButton"));
-        private IWebElement AddButton => _browserInteractions.WaitAndReturnElement(By.Id("resultsTable"));
+        private IWebElement ResultsTable => _browserInteractions.WaitAndReturnElement(By.Id("resultsTable"));
 
         public SearchPage(IBrowserInteractions browserInteractions)
             : base(browserInteractions)
@@ -23,6 +23,12 @@ namespace SpoilBlock_SpecflowTests.PageObjects
             PageName = Common.SearchPageName;
         }
 
+        public bool SearchBarExists()
+        {
+            if (SearchBox != null)
+                return true;
+            return false;
+        }
         public void makeSearch(string searchQuery)
         {
             SearchBox.SendKeysWithClear(searchQuery);
@@ -30,6 +36,21 @@ namespace SpoilBlock_SpecflowTests.PageObjects
         }
 
         public List<string> getTitles()
+        {
+            var titleTds = ResultsTable.FindElements(By.ClassName("mediatitle"));
+            var returnList = new List<string>();
+            foreach (var titleTd in titleTds)
+            {
+                returnList.Add(titleTd.Text);
+            }
+
+            return returnList;
+        }
+
+        public void Add(string title)
+        {
+            ResultsTable.FindElements(By.ClassName("btn")).WhereElementsHavePropertyValue("data-title", title).FirstOrDefault().Click();
+        }
 
     }
 }

@@ -1,51 +1,68 @@
+using SpoilBlock_SpecflowTests.PageObjects;
 using System;
 using TechTalk.SpecFlow;
+using NUnit.Framework;
 
 namespace SpoilBlock_SpecflowTests.StepDefinitions
 {
     [Binding]
     public class SearchStepDefinitions
     {
+        private readonly ScenarioContext _scenarioContext;
+        private readonly LoginPage _loginPage;
+        private readonly SearchPage _searchPage;
+
+        public SearchStepDefinitions(ScenarioContext context, LoginPage loginPage, SearchPage searchPage)
+        {
+            _scenarioContext = context;
+            _loginPage = loginPage;
+            _searchPage = searchPage;
+        }
+
         [Given(@"I am logged in")]
         public void GivenIAmLoggedIn()
         {
-            throw new PendingStepException();
+            _loginPage.Goto();
+            _loginPage.EnterEmail("ncamuso");
+            _loginPage.EnterPassword("Hi!12345");
+            _loginPage.Login();
         }
 
         [When(@"I navigate to the Search page")]
         public void WhenINavigateToTheSearchPage()
         {
-            throw new PendingStepException();
+            _searchPage.Goto();
         }
 
         [Then(@"I will see the search bar")]
         public void ThenIWillSeeTheSearchBar()
         {
-            throw new PendingStepException();
+            Assert.That(_searchPage.SearchBarExists, Is.True);
         }
 
         [Given(@"I am on the search page")]
         public void GivenIAmOnTheSearchPage()
         {
-            throw new PendingStepException();
+            _searchPage.Goto();
         }
 
-        [When(@"I enter <name> into the search bar")]
-        public void WhenIEnterNameIntoTheSearchBar()
+        [When(@"I enter (.*) into the search bar")]
+        public void WhenIEnterNameIntoTheSearchBar(string name)
         {
-            throw new PendingStepException();
+            _searchPage.makeSearch(name);
         }
 
         [Then(@"I will see a table of shows")]
         public void ThenIWillSeeATableOfShows()
         {
-            throw new PendingStepException();
+            Assert.That(_searchPage.getTitles().Any(), Is.True);
         }
 
-        [Then(@"<name> will be in the results in that table")]
+        [Then(@"(.*) will be in the results in that table")]
         public void ThenNameWillBeInTheResultsInThatTable(Table table)
         {
-            throw new PendingStepException();
+            var titles = _searchPage.getTitles();
+            Assert.That(titles.Contains("name"));
         }
     }
 }
