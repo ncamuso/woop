@@ -16,45 +16,43 @@
         </h1>*@
         <h2>Ready to block some shows </h2>
     
-        <div class="row" style="margin-top:30px">
+        
 
-            <div style="max-width: 700px;max-height: 600px; overflow-x: hidden; overflow-y: scroll;" class="col-7">
-
-                <table id="newshowstable" class="table table-dark table-hover">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Upcoming Shows</th>
-                            <th></th>
-                            <th>Release</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @foreach (var entry in Model.resultsList)
-                        {
+            <div class="col-10" style="margin-right: auto;margin-left: auto;;margin-top:30px">
+                <div class="white-block" style="max-height: 600px; overflow:auto">  
+                    <table id="newshowstable" class="table table-dark table-hover">
+                        <thead class="table-dark">
                             <tr>
-                                <td><div class="img-max"><img src="@entry.image" class="img-fluid"></div></td>
-                                <td>@entry.fullTitle</td>
-                                <td>@entry.releaseState</td>
-                                <td>
-                                    <input class="mediatitle" type="hidden" value="@(entry.title)">
-                                    <input class="mediadescription" type="hidden" value="@(entry.plot)">
-                                    <input type="submit" value="Add" id=@entry.id class="btn btn-primary" />
-                                </td>
-                                
+                                <th>Upcoming Shows</th>
+                                <th></th>
+                                <th>Release</th>
+                                <th></th>
+                                <th></th>
                             </tr>
+                        </thead>
 
-                        }
-                    </tbody>
+                        <tbody>
+                            @foreach (var entry in Model.resultsList)
+                            {
+                                <tr>
+                                    <td><div class="img-max"><img src="@entry.image" class="img-fluid" style="max-width:100px;"></div></td>
+                                    <td>@entry.fullTitle</td>
+                                    <td>@entry.releaseState</td>
+                                    <td>
+                                        <input class="mediatitle" type="hidden" value="@(entry.title)">
+                                        <input class="mediadescription" type="hidden" value="@(entry.plot)">
+                                        <input type="submit" value="Add" id=@entry.id class="btn btn-primary" />
+                                    </td>
+                                    
+                                </tr>
 
-
-                </table>
+                            }
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
 
-        </div>
     </div>
 
 
@@ -65,7 +63,7 @@ else
     <div class="container-cus" style="margin-top: 50px;">
         <h1 class="display-4">Welcome to Spoil Block</h1>
         <p style="font-size: 1.2em;">
-            The internet has become a bubble of spoiler and it is hard not to see anything spoiled from our favourite shows. Our main purpose is to deliver spoiler free youtube content as per the user's choices. Click here to download the <a href="../wwwroot/Extension../wwwroot/Extension/Spoil-Block-Extension.zip" download="Spoil-Block-Extension.zip" style="color:blue">Extension.zip</a>
+            The internet has become a bubble of spoiler and it is hard not to see anything spoiled from our favourite shows. Our main purpose is to deliver spoiler free youtube content as per the user's choices.
         </p>
         
 
