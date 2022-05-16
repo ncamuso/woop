@@ -36,8 +36,10 @@
         "tabs",
         "activeTab",
         "storage",
+        "notifications",
         "identity",
-        "scripting"
+        "scripting",
+        "alarms"
     ],
     "host_permissions": [
         "https://www.youtube.com/*",
