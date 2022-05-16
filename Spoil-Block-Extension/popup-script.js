@@ -1,3 +1,5 @@
+chrome.action.onClicked.addListener(getWatchlist());
+
 
 document.querySelector('#goto-watchlist-btn').addEventListener('click', function () {
     chrome.tabs.create({
@@ -35,4 +37,4 @@ async function createWatchlistList(result) {
     }
 }
 
-getWatchlist();
+//getWatchlist();
