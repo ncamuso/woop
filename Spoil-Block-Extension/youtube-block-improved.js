@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM Content Loaded");
+});
+
 var videoTitles = [];
 var spoilersOnPage = 0;
 var watchList = [];
@@ -33,7 +37,8 @@ function checkVideosAgainstWatchlist(title) {
     } catch (error) {
         console.log(error);
     }
-    let titleText = title.innerHTML.toString().toLowerCase();
+
+    var titleText = title.innerText.toString().toLowerCase();
     var isSpoiler = false;
     console.log(watchList);
     Object.values(watchList)[0].forEach( element => {
@@ -134,22 +139,27 @@ function addListenerToDom(div) {
         }
 
         div.addEventListener("DOMNodeInserted", function (node) {
-            if (node.path.some(e => e.id === 'video-title')) {
-                console.log(node);
-                if (node.path[0].nodeName === '#text') {
-                    //console.log(node.path);
-                    var newItem = node.path[1];
-                    //newItem.style.color = 'red';
-                    if (videoTitles.indexOf(newItem) === -1) {
-                        videoTitles.push(newItem);
-                        if (checkVideosAgainstWatchlist(newItem)) {
-                            spoilersOnPage++;
+            try {
+                if (node.path.some(e => e.id === 'video-title')) {
+                    //console.log(node);
+                    if (node.path[0].nodeName === '#text') {
+                        //console.log(node.path);
+                        var newItem = node.path[1];
+                        //newItem.style.color = 'red';
+                        if (videoTitles.indexOf(newItem) === -1) {
+                            videoTitles.push(newItem);
+                            if (checkVideosAgainstWatchlist(newItem)) {
+                                spoilersOnPage++;
+                            }
                         }
+    
+                        console.log("Spoilers on page: " + spoilersOnPage);
                     }
-
-                    console.log("Spoilers on page: " + spoilersOnPage);
                 }
+            } catch (error) {
+                console.log(error);
             }
+            
         });
     }
 }

@@ -1,4 +1,5 @@
 var titles = [];
+let notified = false;
 
 document.querySelectorAll('[name=ddButton]').forEach( element => {
     //element.addEventListener("click", updateWatchlist);
@@ -44,8 +45,26 @@ async function updateWatchlist() {
         
     chrome.storage.local.set({"watchlist" : titles}, function() {
         console.log("Watchlist updated!");
+
+        if (!notified) {
+            notification();
+            notified = true;
+        }
         console.log(titles);
     });
 }
+
+function notification() {
+    
+    chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+        console.log(response.farewell);
+      });
+}
+
+const interval = setInterval(function() {
+    notified = false;
+  }, 500);
+ 
+ //clearInterval(interval);
 
 document.addEventListener('DOMContentLoaded', updateWatchlist());
