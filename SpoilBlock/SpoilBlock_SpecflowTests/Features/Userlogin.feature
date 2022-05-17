@@ -21,7 +21,7 @@ Scenario Outline: Existing user can login
 	Given I am a user with username '<Username>'
 	When I login
 	Then I am redirected to the '<Page>' page
-	  And I can see a message in the homepage
+	And I can see a message in the homepage
 	Examples:
 	| UserName		| Page |
 	| SampleUser1	| Home |
