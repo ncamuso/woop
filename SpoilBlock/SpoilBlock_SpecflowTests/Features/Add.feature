@@ -13,3 +13,10 @@ Scenario Outline: Add shows
 	| name         |
 	| Pulp Fiction |
 	| Inception    |
+
+@tag2
+Scenario Outline: Add upcoming shows from Homepage
+	Given I am logged in the account
+	And I am on the homepage page
+	When I click the Add next to shows <name>
+	Then <name> will be added to my watchlist
