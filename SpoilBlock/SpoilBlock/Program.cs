@@ -6,6 +6,8 @@ using SpoilBlock.Data;
 using SpoilBlock.Models;
 using SpoilBlock.DAL.Abstract;
 using SpoilBlock.DAL.Concrete;
+using SpoilBlock.Areas.Identity.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,6 +17,7 @@ builder.Services.AddScoped<IWoopuserRepository, WoopuserRepository>();
 
 
 builder.Services.AddSingleton<IAPIKeyAccessor>(k => new APIKeyAccessor(builder.Configuration["IMDbServiceApiKey"]));
+builder.Services.Configure<CaptchaConfig>(builder.Configuration.GetSection("GoogelReCaptcha"));
 
 
 var connectionString = builder.Configuration.GetConnectionString("WOOPServerConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
