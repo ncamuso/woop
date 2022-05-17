@@ -23,7 +23,7 @@ namespace SpoilBlock_SpecflowTests.StepDefinitions
         public void GivenIAmLoggedIn()
         {
             _loginPage.Goto();
-            _loginPage.EnterEmail("ncamuso");
+            _loginPage.EnterUsername("ncamuso");
             _loginPage.EnterPassword("Hi!12345");
             _loginPage.Login();
         }
