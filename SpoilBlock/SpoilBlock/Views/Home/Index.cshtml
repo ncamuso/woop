@@ -14,11 +14,15 @@
         @*<h1>
             Welcome To SpoilBlock @UserManager.GetUserName(User)!!!
         </h1>*@
-        <h2>Ready to block some shows </h2>
-    
+        <h2>Thanks for logging in, @UserManager.GetUserName(User).</h2>
+        <ul style="margin-top: 15px;">
+            <a href='~/Search'>Vist our Search page to add shows to your watchlist,</a>
+            <a href='~/Watchlist'>or visit your Watchlist to see what we're keeping track of for you.</a>
+        </ul>
+
         
 
-            <div class="col-10" style="margin-right: auto;margin-left: auto;;margin-top:30px">
+            <div class="col-10" style="margin-right: auto;margin-left: auto;margin-top:30px;">
                 <div class="white-block" style="max-height: 600px; overflow:auto">  
                     <table id="newshowstable" class="table table-dark table-hover">
                         <thead class="table-dark">
@@ -61,17 +65,21 @@ else
 {
 
     <div class="container-cus" style="margin-top: 50px;">
-        <h1 class="display-4">Welcome to Spoil Block</h1>
-        <p style="font-size: 1.2em;">
-            The internet has become a bubble of spoiler and it is hard not to see anything spoiled from our favourite shows. Our main purpose is to deliver spoiler free youtube content as per the user's choices.
+        <h1 class="display-4" style="font-weight: bold;">Welcome to Spoil Block!</h1>
+        <p style="font-size: 1.2em; margin-top: 80px; font-weight: bold;">
+            You tell us which content we should keep track of, and then our Google Chrome browser extension blocks spoilers when you're browsing YouTube.
         </p>
         
 
         <br />
         <p style="font-size: 1.2em;">
-            Please login to proceed
-            <a class="btn btn-secondary" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            Please log in or make an account to start using SpoilBlock.
+            <a class="btn btn-secondary" style="margin-left: 20px; font-weight:600;" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </p>
+    </div>
+
+    <div class="container-cus" style="margin-top: 25px;">
+        <img class="img-fluid" src="~/images/SpoilBlockInfographic.png" alt="Diagram of how to use SpoilBlock">
     </div>
 }
 
