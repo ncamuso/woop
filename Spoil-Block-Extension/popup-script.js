@@ -33,7 +33,7 @@ async function createWatchlistList(result) {
         li.setAttribute('class', "list-group-item");
 
         ul.appendChild(li);
-        li.innerHTML = li.innerHTML + element;
+        li.textContent = li.textContent + element;
     }
 }
 
