@@ -13,9 +13,9 @@ namespace SpoilBlock.Areas.Identity.Data
         }
         public async Task<bool> VerifyToken()
         {
-            var url = $"https://www.google.com/recaptcha/api/siteverify?secret={}";
+            //var url = $"https://www.google.com/recaptcha/api/siteverify?secret={}";
 
-            
+            return false;
         }
     }
 }

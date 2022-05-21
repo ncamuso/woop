@@ -27,6 +27,7 @@
     <p class="sign-up__subtitle">Start blocking spoilers for your favorite shows</p>
     <form class="sign-up-form form" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden"/>
       <label class="form-label-wrapper">
         <p class="form-label">Username</p>
         @*<input class="form-input" type="text" placeholder="Enter your username" required>*@
@@ -58,18 +59,24 @@
   </article>
 </main>
 </body>
+
+
+<script>
+        $(function() {
+            grecaptcha.ready(function() {
+              grecaptcha.execute('@CaptchaConfig.Value.SiteKey', {action: 'submit'}).then(function(token) {
+                  // Add your logic to submit to your backend server here.
+                  console.log(token);
+              });
+            });
+        });
+      
+    </script>
 @section Scripts {
     <!-- Google Recaptcha library -->
-    <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=@CaptchaConfig.Value.SiteKey"></script>
 
-    <script>
-        grecaptcha.ready(function() {
-          grecaptcha.execute('@CaptchaConfig.Value.SiteKey', {action: 'submit'}).then(function(token) {
-              // Add your logic to submit to your backend server here.
-          });
-        });
-      }
-    </script>
+    
 
     <partial name="_ValidationScriptsPartial" />
     <!-- Chart library -->
