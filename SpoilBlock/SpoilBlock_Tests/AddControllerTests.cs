@@ -105,5 +105,6 @@ namespace SpoilBlock_Tests
 
             Assert.That(JsonConvert.SerializeObject(result.Value).Equals(JsonConvert.SerializeObject(expected.Value)));
         }
+
     }
 }
