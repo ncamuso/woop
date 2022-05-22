@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 using SpoilBlock.Areas.Identity.Data;
 using System.Net;
-using Newtonsoft.Json
+using Newtonsoft.Json;
 
 namespace SpoilBlock.Areas.Identity.Data
 {
@@ -37,6 +37,7 @@ namespace SpoilBlock.Areas.Identity.Data
 
             catch (Exception e)
             { 
+                
                 return false;
             }
             

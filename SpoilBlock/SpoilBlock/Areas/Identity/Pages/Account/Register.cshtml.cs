@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using SpoilBlock.Areas.Identity.Data;
 using SpoilBlock.DAL.Abstract;
 using SpoilBlock.Models;
 
@@ -32,6 +33,7 @@ namespace SpoilBlock.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly IWoopuserRepository _woopuserRepository;
+        private readonly CaptchaService _captchaService;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -39,7 +41,8 @@ namespace SpoilBlock.Areas.Identity.Pages.Account
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            IWoopuserRepository woopuserRepository)
+            IWoopuserRepository woopuserRepository,
+            CaptchaService captchaService)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -48,6 +51,7 @@ namespace SpoilBlock.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
             _woopuserRepository = woopuserRepository;
+            _captchaService = captchaService;
         }
 
         /// <summary>
@@ -111,7 +115,8 @@ namespace SpoilBlock.Areas.Identity.Pages.Account
             [DataType(DataType.Text)]
             [Display(Name = "Username")]
             public string Username { get; set; }
-
+            [Required]
+            [DataType(DataType.Text)]
             public string Token { get; set; }
         }
 
@@ -126,7 +131,12 @@ namespace SpoilBlock.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
+
+            var captcha = await _captchaService.VerifyToken(Input.Token);
+            if (!captcha)
+            { return Page(); }
+
+                if (ModelState.IsValid)
             {
                 var user = CreateUser();
 
