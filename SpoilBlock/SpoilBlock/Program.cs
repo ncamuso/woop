@@ -17,7 +17,7 @@ builder.Services.AddScoped<IWoopuserRepository, WoopuserRepository>();
 
 
 builder.Services.AddSingleton<IAPIKeyAccessor>(k => new APIKeyAccessor(builder.Configuration["IMDbServiceApiKey"]));
-builder.Services.Configure<CaptchaConfig>(builder.Configuration.GetSection("GoogelReCaptcha"));
+builder.Services.Configure<CaptchaConfig>(builder.Configuration.GetSection("GoogleReCaptcha"));
 
 
 //var connectionString = builder.Configuration.GetConnectionString("WOOPServerConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>

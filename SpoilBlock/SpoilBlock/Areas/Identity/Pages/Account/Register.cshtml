@@ -27,29 +27,29 @@
     <p class="sign-up__subtitle">Start blocking spoilers for your favorite shows</p>
     <form class="sign-up-form form" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden"/>
+        <input type="hidden" asp-for="Input.Token" id="RegisterToken"/>
       <label class="form-label-wrapper">
         <p class="form-label">Username</p>
-        @*<input class="form-input" type="text" placeholder="Enter your username" required>*@
+        
         <input asp-for="Input.Username" class="form-input" autocomplete="username" placeholder="Enter your username" aria-required="true" required/>
         <span asp-validation-for="Input.Username" class="text-danger"></span>
       </label>
      
       <label class="form-label-wrapper">
         <p class="form-label">Email</p>
-        @*<input class="form-input" type="email" placeholder="Enter your email" required>*@
+        
          <input asp-for="Input.Email" class="form-input" autocomplete="username" aria-required="true"  placeholder="Enter your email" required/>
          <span asp-validation-for="Input.Email" class="text-danger"></span>
       </label>
       <label class="form-label-wrapper">
         <p class="form-label">Password</p>
-        @*<input class="form-input" type="password" placeholder="Enter your password" required>*@
+        
         <input asp-for="Input.Password" class="form-input" autocomplete="new-password" aria-required="true" type="password" placeholder="Your password" required />
         <span asp-validation-for="Input.Password" class="text-danger"></span>
       </label>
       <label class="form-label-wrapper">
         <p class="form-label">Confirm Password</p>
-        @*<input class="form-input" type="password" placeholder="Enter your password" required>*@
+        
         <input asp-for="Input.ConfirmPassword" class="form-input" autocomplete="new-password" aria-required="true" type="password" placeholder="Re-enter your password" required />
         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
       </label>
@@ -61,28 +61,32 @@
 </body>
 
 
-<script>
-        $(function() {
-            grecaptcha.ready(function() {
-              grecaptcha.execute('@CaptchaConfig.Value.SiteKey', {action: 'submit'}).then(function(token) {
-                  // Add your logic to submit to your backend server here.
-                  console.log(token);
-              });
-            });
-        });
-      
-    </script>
-@section Scripts {
-    <!-- Google Recaptcha library -->
-    <script src="https://www.google.com/recaptcha/api.js?render=@CaptchaConfig.Value.SiteKey"></script>
 
-    
+@section Scripts {
+
 
     <partial name="_ValidationScriptsPartial" />
-    <!-- Chart library -->
-<script src="./plugins/chart.min.js"></script>
-<!-- Icons library -->
-<script src="plugins/feather.min.js"></script>
-<!-- Custom scripts -->
-<script src="js/script.js"></script>
+        <!-- Chart library -->
+    <script src="./plugins/chart.min.js"></script>
+    <!-- Icons library -->
+    <script src="plugins/feather.min.js"></script>
+    <!-- Custom scripts -->
+    <script src="js/script.js"></script>
+
+    <!-- Google Recaptcha library -->
+    
+    <script src="https://www.google.com/recaptcha/api.js?render=@CaptchaConfig.Value.SiteKey"></script>
+
+    <script>
+            
+        grecaptcha.ready(function() {
+          grecaptcha.execute('@CaptchaConfig.Value.SiteKey', {action: 'submit'}).then(function(token) {
+              // Add your logic to submit to your backend server here.
+              console.log(token);
+              document.getElementById("RegisterToken").value = token;
+          });
+        });
+            
+    </script>
+    
 }

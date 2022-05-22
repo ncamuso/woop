@@ -1,6 +1,8 @@
 ﻿
 using Microsoft.Extensions.Options;
 using SpoilBlock.Areas.Identity.Data;
+using System.Net;
+using Newtonsoft.Json
 
 namespace SpoilBlock.Areas.Identity.Data
 {
@@ -11,11 +13,35 @@ namespace SpoilBlock.Areas.Identity.Data
 
             _config = config;
         }
-        public async Task<bool> VerifyToken()
+        public async Task<bool> VerifyToken(string token)
         {
-            //var url = $"https://www.google.com/recaptcha/api/siteverify?secret={}";
+            try 
+            {
+                var url = $"https://www.google.com/recaptcha/api/siteverify?secret={_config.CurrentValue.SecretKey}&response={token}";
+                using (var client = new HttpClient())
+                {
+                    var httpResult = await client.GetAsync(url);
+                    if (httpResult.StatusCode != HttpStatusCode.OK)
+                    {
+                        return false;
+                    }
+                    var responseString = await httpResult.Content.ReadAsStringAsync();
+                    var googleResult = JsonConvert.DeserializeObject<CaptchaResponse>(responseString);
 
-            return false;
+
+                    return (googleResult.success && googleResult.score >= 0.5);
+
+                }
+
+            }
+
+            catch (Exception e)
+            { 
+                return false;
+            }
+            
+
+            
         }
     }
 }
