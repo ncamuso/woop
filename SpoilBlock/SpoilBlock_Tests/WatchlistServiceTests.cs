@@ -46,12 +46,7 @@ namespace SpoilBlock_Tests
 
         }
 
-        [Test]
-        public void SanityTest()
-        {
-            Assert.Pass();
-        }
-
+        
         [Test]
         public void UserMediumRepository_GetListOfShowsForUser_Should_ReturnUserAndTheirListOfMedias()
         {
@@ -86,6 +81,7 @@ namespace SpoilBlock_Tests
 
             //Act
             IEnumerable<Medium> actualList = umRepo.GetListOfShowsForUser(userId);
+           
 
 
             //Assert
