@@ -2,10 +2,9 @@ var titles = [];
 let notified = false;
 
 document.querySelectorAll('[name=ddButton]').forEach( element => {
-    //element.addEventListener("click", updateWatchlist);
     var observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
-          if (mutation.type === "attributes") {
+          if (mutation.attributeName === "data-status") {
             updateWatchlist();
           }
         });
@@ -30,14 +29,6 @@ async function updateWatchlist() {
             if (watchStatus != 'Completed') {
                 titles.push(title);
             }
-
-            //titles.push(element.textContent.trim());
-            //console.log(element);
-            //console.log(element.querySelector('[name=ddButton]').textContent);
-            //if (element)
-            //console.log(element.querySelector('.imageandname').textContent.trim());
-            //element.querySelector()
-            
         });
     } catch (error) {
         console.log(error);
@@ -45,11 +36,8 @@ async function updateWatchlist() {
         
     chrome.storage.local.set({"watchlist" : titles}, function() {
         console.log("Watchlist updated!");
+        notification();
 
-        if (!notified) {
-            notification();
-            notified = true;
-        }
         console.log(titles);
     });
 }
@@ -60,11 +48,5 @@ function notification() {
         console.log(response.farewell);
       });
 }
-
-const interval = setInterval(function() {
-    notified = false;
-  }, 500);
- 
- //clearInterval(interval);
 
 document.addEventListener('DOMContentLoaded', updateWatchlist());
