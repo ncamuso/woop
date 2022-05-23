@@ -4,36 +4,9 @@
     ViewData["Title"] = "Register";
 }
 
-@*
-<div class="text-center" style= "border-style:groove; border-radius: 5px; margin: auto; width:40%">
-
-    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-        <h2>Create a new account.</h2>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-floating" style="margin:5px 5px 5px 5px">
-            <input asp-for="Input.Username" class="form-control" autocomplete="username" aria-required="true" />
-            <label asp-for="Input.Username"></label>
-            <span asp-validation-for="Input.Username" class="text-danger"></span>
-        </div>
-        <div class="form-floating" style="margin:5px 5px 5px 5px">
-            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-            <label asp-for="Input.Email"></label>
-            <span asp-validation-for="Input.Email" class="text-danger"></span>
-        </div>
-        <div class="form-floating" style="margin:5px 5px 5px 5px">
-            <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-            <label asp-for="Input.Password"></label>
-            <span asp-validation-for="Input.Password" class="text-danger"></span>
-        </div>
-        <div class="form-floating" style="margin:5px 5px 5px 5px">
-            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-            <label asp-for="Input.ConfirmPassword"></label>
-            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-        </div>
-        <button id="registerSubmit" type="submit" class="btn btn-lg btn-primary" style="width:80%;margin:5px 5px 5px 5px">Register</button>
-    </form>   
-</div>*@
+@using Microsoft.Extensions.Options
+@using SpoilBlock.Areas.Identity.Data
+@inject IOptions<CaptchaConfig> CaptchaConfig
 
 <head>
   <meta charset="UTF-8">
@@ -54,28 +27,29 @@
     <p class="sign-up__subtitle">Start blocking spoilers for your favorite shows</p>
     <form class="sign-up-form form" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Input.Token" id="RegisterToken"/>
       <label class="form-label-wrapper">
         <p class="form-label">Username</p>
-        @*<input class="form-input" type="text" placeholder="Enter your username" required>*@
+        
         <input asp-for="Input.Username" class="form-input" autocomplete="username" placeholder="Enter your username" aria-required="true" required/>
         <span asp-validation-for="Input.Username" class="text-danger"></span>
       </label>
      
       <label class="form-label-wrapper">
         <p class="form-label">Email</p>
-        @*<input class="form-input" type="email" placeholder="Enter your email" required>*@
+        
          <input asp-for="Input.Email" class="form-input" autocomplete="username" aria-required="true"  placeholder="Enter your email" required/>
          <span asp-validation-for="Input.Email" class="text-danger"></span>
       </label>
       <label class="form-label-wrapper">
         <p class="form-label">Password</p>
-        @*<input class="form-input" type="password" placeholder="Enter your password" required>*@
+        
         <input asp-for="Input.Password" class="form-input" autocomplete="new-password" aria-required="true" type="password" placeholder="Your password" required />
         <span asp-validation-for="Input.Password" class="text-danger"></span>
       </label>
       <label class="form-label-wrapper">
         <p class="form-label">Confirm Password</p>
-        @*<input class="form-input" type="password" placeholder="Enter your password" required>*@
+        
         <input asp-for="Input.ConfirmPassword" class="form-input" autocomplete="new-password" aria-required="true" type="password" placeholder="Re-enter your password" required />
         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
       </label>
@@ -85,12 +59,39 @@
   </article>
 </main>
 </body>
+
+
+
 @section Scripts {
+
+
     <partial name="_ValidationScriptsPartial" />
-    <!-- Chart library -->
-<script src="./plugins/chart.min.js"></script>
-<!-- Icons library -->
-<script src="plugins/feather.min.js"></script>
-<!-- Custom scripts -->
-<script src="js/script.js"></script>
+        <!-- Chart library -->
+    <script src="./plugins/chart.min.js"></script>
+    <!-- Icons library -->
+    <script src="plugins/feather.min.js"></script>
+    <!-- Custom scripts -->
+    <script src="js/script.js"></script>
+
+    <!-- Google Recaptcha library -->
+    
+    <script src="https://www.google.com/recaptcha/api.js?render=@CaptchaConfig.Value.SiteKey"></script>
+
+    <script>
+       function getToken(){    
+            grecaptcha.ready(function() {
+              grecaptcha.execute('@CaptchaConfig.Value.SiteKey', {action: 'submit'}).then(function(token) {
+                  // Add your logic to submit to your backend server here.
+                  console.log(token);
+                  document.getElementById("RegisterToken").value = token;
+              });
+            });
+       }
+       setInterval(getToken,115000);
+       $( function(){
+            getToken();
+       });
+            
+    </script>
+    
 }

@@ -418,6 +418,8 @@ html {
   box-sizing: inherit;
 }
 
+
+
 .container {
   width: 100%;
   padding-right: 15px;
@@ -1485,6 +1487,9 @@ button.disabled:focus {
   background-color: rgba(47, 73, 209, 0.1);
 }
 
+.btn-secondary:hover {
+    background-color: rgba(47, 73, 209, 0.1);
+}
 .flat-btn {
   display: -webkit-box;
   display: -ms-flexbox;
