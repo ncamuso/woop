@@ -10,6 +10,8 @@
 
 @import url(../fonts/stylesheet.css);
 
+/* Custom container for credit page*/
+
 html {
   line-height: 1.15;
   /* 1 */
@@ -417,6 +419,8 @@ html {
   -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
+
+
 
 .container {
   width: 100%;
@@ -1485,6 +1489,9 @@ button.disabled:focus {
   background-color: rgba(47, 73, 209, 0.1);
 }
 
+.btn-secondary:hover {
+    background-color: rgba(47, 73, 209, 0.1);
+}
 .flat-btn {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4411,4 +4418,11 @@ label {
     -ms-flex-direction: column;
     flex-direction: column;
   }
+}
+
+.custom-section {
+    float: left;
+    width: 33%;
+    padding-left: 2em;
+    padding-right: 2em;
 }

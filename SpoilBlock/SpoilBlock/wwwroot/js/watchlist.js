@@ -71,14 +71,13 @@
 
 $(document).ready(function () {
     $(document).on("click", "button[name$='deleteButton']", function () {
-        if (confirm(`Really delete ${$(event.target).parent().parent().find('.imageandname').text().trim()} from your watchlist?`)) {
-            $.ajax({
-                url: '/Add/DeleteShowFromWatchlist',
-                data: { id: `${$(event.target).attr("data-showid")}` },
-                method: "POST",
-                success: removeShowFromDisplay
-            });
-        }
+        $(event.target).parents('tr').remove();
+        $.ajax({
+            url: '/Add/DeleteShowFromWatchlist',
+            data: { id: `${$(event.target).attr("data-showid")}` },
+            method: "POST",
+            success: removeShowFromDisplay
+        });
     });
 });
 
@@ -125,5 +124,10 @@ function refreshButtonNames(data) {
 }
 
 function removeShowFromDisplay(data) {
-    window.location.replace('/Watchlist');
+    //window.location.replace('/Watchlist');
+
+    location.reload();
+    //if ($('#sortTable tr').length == 1) {  //this code works but breaks the sorting
+    //    location.reload();
+    //}
 }
