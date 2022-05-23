@@ -22,6 +22,12 @@ $(document).ready(function (){
 
     });
 
+    $('#searchQuery').keyup(function (event) {
+        if (event.keyCode == 13) {
+            $('#searchButton').click();
+        }
+    });
+
     $(document).on("click", ".btn", function () {
         $.ajax({
             url: '/Add/AddMediaToWatchlist',
