@@ -10,55 +10,69 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+
     <div class="container" style="display:inline-block">
-        @*<h1>
-            Welcome To SpoilBlock @UserManager.GetUserName(User)!!!
-        </h1>*@
-        <h2>Thanks for logging in, @UserManager.GetUserName(User).</h2>
-        <ul style="margin-top: 15px;">
-            <a href='~/Search'>Vist our Search page to add shows to your watchlist,</a>
-            <a href='~/Watchlist'>or visit your Watchlist to see what we're keeping track of for you.</a>
-        </ul>
-
         
+        <div style="width: 60%; float:left;">
+            <h2>Thanks for logging in, @UserManager.GetUserName(User).</h2>
+            <ul style="margin-top: 15px;">
+                <li>
+                    <a href='~/Search'>Vist our Search page to add shows to your watchlist,</a>
+                    <a href='~/Watchlist'>&#10148;or visit your Watchlist to see what we're keeping track of for you.</a>
+                </li>
+                <br>
+                <li>
+                    <a href="https://github.com/eborello/woop/blob/6e214f00ba1e7883d6287d9542a7e0401878ac87/Spoil-Block-Extension.zip">&#10148; Click here or on the image to download the extension!</a>
+                </li>
+               
+            </ul>
+        </div>
+        <div style="width: 40%; float:right" >
+            <a href="https://github.com/eborello/woop/blob/6e214f00ba1e7883d6287d9542a7e0401878ac87/Spoil-Block-Extension.zip">
+                <img class="img-fluid" src="~/images/SpoilBlockInfographic.png" alt="Diagram of how to use SpoilBlock">
+             </a>
+        
+        </div>
+        
+    </div>
+    <div class="container" style="display:inline-block">
+        
+        <div class="col-10" style="margin-right: auto;margin-left: auto;margin-top:30px;">
+            <div class="white-block" style="max-height: 600px; overflow:auto">
+                <table id="newshowstable" class="table table-dark table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Upcoming Shows</th>
+                            <th></th>
+                            <th>Release</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
 
-            <div class="col-10" style="margin-right: auto;margin-left: auto;margin-top:30px;">
-                <div class="white-block" style="max-height: 600px; overflow:auto">  
-                    <table id="newshowstable" class="table table-dark table-hover">
-                        <thead class="table-dark">
+                    <tbody>
+                        @foreach (var entry in Model.resultsList)
+                        {
                             <tr>
-                                <th>Upcoming Shows</th>
-                                <th></th>
-                                <th>Release</th>
-                                <th></th>
-                                <th></th>
+                                <td><div class="img-max"><img src="@entry.image" class="img-fluid" style="max-width:100px;"></div></td>
+                                <td>@entry.fullTitle</td>
+                                <td>@entry.releaseState</td>
+                                <td>
+                                    <input class="mediatitle" type="hidden" value="@(entry.title)">
+                                    <input class="mediadescription" type="hidden" value="@(entry.plot)">
+                                    <input type="submit" value="Add" id=@entry.id class="btn btn-primary" />
+                                </td>
+
                             </tr>
-                        </thead>
 
-                        <tbody>
-                            @foreach (var entry in Model.resultsList)
-                            {
-                                <tr>
-                                    <td><div class="img-max"><img src="@entry.image" class="img-fluid" style="max-width:100px;"></div></td>
-                                    <td>@entry.fullTitle</td>
-                                    <td>@entry.releaseState</td>
-                                    <td>
-                                        <input class="mediatitle" type="hidden" value="@(entry.title)">
-                                        <input class="mediadescription" type="hidden" value="@(entry.plot)">
-                                        <input type="submit" value="Add" id=@entry.id class="btn btn-primary" />
-                                    </td>
-                                    
-                                </tr>
-
-                            }
-                        </tbody>
-                    </table>
-                </div>
-
+                        }
+                    </tbody>
+                </table>
             </div>
 
-    </div>
+        </div>
 
+    </div>
 
 }
 else
@@ -69,7 +83,7 @@ else
         <p style="font-size: 1.2em; margin-top: 80px; font-weight: bold;">
             You tell us which content we should keep track of, and then our Google Chrome browser extension blocks spoilers when you're browsing YouTube.
         </p>
-        
+
 
         <br />
         <p style="font-size: 1.2em;">
@@ -78,7 +92,7 @@ else
         </p>
     </div>
 
-    <div class="container-cus" style="margin-top: 25px;">
+    <div class="container-cus" style="margin-top: 25px; text-align: center;">
         <img class="img-fluid" src="~/images/SpoilBlockInfographic.png" alt="Diagram of how to use SpoilBlock">
     </div>
 }
