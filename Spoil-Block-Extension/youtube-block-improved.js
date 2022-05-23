@@ -1,7 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOM Content Loaded");
-});
-
+//location.reload();
 var videoTitles = [];
 var spoilersOnPage = 0;
 var watchList = [];
@@ -13,11 +10,16 @@ function blurTitle (element) {
 }
 
 function blurThumbnail (element) {
-    element.style.filter = 'blur(10px)';
+    if (element) {
+        element.style.filter = 'blur(10px)';
+    }
 }
 
 function checkThumbnail(title) {
-    var thumbnail = title.closest("#dismissible").querySelector('#img');
+    var thumbnail = title.closest("#dismissible");
+    if (thumbnail) {
+        thumbnail = thumbnail.querySelector('#img');
+    }
     return thumbnail;
 }
 
@@ -59,7 +61,7 @@ function checkVideosAgainstWatchlist(title) {
     //     }
     // });
 
-    if(isSpoiler) {
+    if(isSpoiler && thumbnail != null) {
         blurTitle(title);
         blurThumbnail(thumbnail);
     }
@@ -172,6 +174,7 @@ new MutationObserver(() => {
     onUrlChange();
   }
 }).observe(document, {subtree: true, childList: true});
+
 
 function onUrlChange() {
     location.reload();
