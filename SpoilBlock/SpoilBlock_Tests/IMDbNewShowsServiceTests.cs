@@ -35,15 +35,6 @@ namespace SpoilBlock_Tests
             CollectionAssert.AreEqual(expected, result);
         }
 
-        [Test]
-        public void Test_NewShowsService_ShouldReturnEmptyList()
-        {
-            IMDbNewShowsService service = new IMDbNewShowsService(new Mock<IHttpClientFactory>().Object, new APIKeyAccessor(""));
-
-            var result = service.ParseIMDbUpComingJSON(_newShowsServiceData.validIMDbJSON).Item1.ToList();
-            List<IMDbUpComing> expected = new List<IMDbUpComing>();
-            Assert.Equals(result.Count, 0);
-        }
 
         [Test]
         public void Test_SearchService_Throws_ArgumentNullException_If_JSON_is_null()
