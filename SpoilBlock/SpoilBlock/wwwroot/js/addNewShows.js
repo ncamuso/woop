@@ -6,7 +6,8 @@
                 media: `{Imdbid: "${$(event.target).attr("id")}", image: "${$(event.target).parent().parent().find("img").attr('src')}", title: "${$(event.target).parent().parent().find(".mediatitle").attr('value')}", description: "${$(event.target).parent().parent().find(".mediadescription").attr('value')}"}`
             },
             method: 'POST',
-            success: DisableButtonsForShowsAlreadyOnWatchlist
+            success: DisableButtonsForShowsAlreadyOnWatchlist,
+            headers: { 'validate-ajax': "true" }
         });
     });
 });

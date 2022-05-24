@@ -21,20 +21,20 @@ builder.Services.Configure<CaptchaConfig>(builder.Configuration.GetSection("Goog
 builder.Services.AddTransient(typeof(CaptchaService));
 
 
-var connectionString = builder.Configuration.GetConnectionString("WOOPServerConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
-options.UseSqlServer(connectionString));
+//var connectionString = builder.Configuration.GetConnectionString("WOOPServerConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
+//options.UseSqlServer(connectionString));
 
-var identityConnectionString = builder.Configuration.GetConnectionString("WOOPIdServerConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
-     options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-      .AddEntityFrameworkStores<IdentityDbContext>();
+//var identityConnectionString = builder.Configuration.GetConnectionString("WOOPIdServerConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
+//     options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//      .AddEntityFrameworkStores<IdentityDbContext>();
 
 //server connection string
-//var connectionString = builder.Configuration.GetConnectionString("WOOPConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
-//    options.UseSqlServer(connectionString));
+var connectionString = builder.Configuration.GetConnectionString("WOOPConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
-//var identityConnectionString = builder.Configuration.GetConnectionString("IdentityDbContextConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
-//    options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-//     .AddEntityFrameworkStores<IdentityDbContext>();
+var identityConnectionString = builder.Configuration.GetConnectionString("IdentityDbContextConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
+    options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+     .AddEntityFrameworkStores<IdentityDbContext>();
 //Local connection string
 
 builder.Services.AddScoped<IAddMediaService, AddMediaService>();
@@ -50,6 +50,20 @@ builder.Services.AddScoped<IIMDbNewShowsService, IMDbNewShowsService>();
 
 
 var app = builder.Build();
+
+app.Use(async (ctx, next) =>
+{
+    await next();
+
+    if (ctx.Response.StatusCode == 404 && !ctx.Response.HasStarted)
+    {
+        //Re-execute the request so the user gets the error page
+        string originalPath = ctx.Request.Path.Value;
+        ctx.Items["originalPath"] = originalPath;
+        ctx.Request.Path = "/Home/Error";
+        await next();
+    }
+});
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

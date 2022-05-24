@@ -21,6 +21,7 @@
                 return content;
         }
     };
+
     const sortList = function (index) {
 
         const direction = directions[index] || 'asc';
@@ -68,7 +69,6 @@
     });
 });
 
-
 $(document).ready(function () {
     $(document).on("click", "button[name$='deleteButton']", function () {
         $(event.target).parents('tr').remove();
@@ -76,7 +76,8 @@ $(document).ready(function () {
             url: '/Add/DeleteShowFromWatchlist',
             data: { id: `${$(event.target).attr("data-showid")}` },
             method: "POST",
-            success: removeShowFromDisplay
+            success: removeShowFromDisplay,
+            headers: {'validate-ajax': "true"}
         });
     });
 });
@@ -94,8 +95,8 @@ $(document).ready(function () {
                 BlockageLevel: `${$(event.target).data("status")}`
             },
             method: "POST",
-            success: refreshWatchlistStatus
-
+            success: refreshWatchlistStatus,
+            headers: { 'validate-ajax': "true" }
         });
     });
 });

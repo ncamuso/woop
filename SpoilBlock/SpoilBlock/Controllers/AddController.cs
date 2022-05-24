@@ -8,6 +8,7 @@ using SpoilBlock.Models;
 using SpoilBlock.Models.ViewModels;
 using Newtonsoft.Json;
 using System.Security.Claims;
+using SpoilBlock.Attributes;
 
 namespace SpoilBlock.Controllers
 {
@@ -55,8 +56,10 @@ namespace SpoilBlock.Controllers
             }
         }
 
+        [AuthorizeAjax]
         public async Task<JsonResult> AddMediaToWatchlist(string media)
         {
+
             try
             {
                 var userIdentityId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -85,6 +88,7 @@ namespace SpoilBlock.Controllers
             }
         }
 
+        [AuthorizeAjax]
         public async Task<JsonResult> DeleteShowFromWatchlist(string id)
         {
             try
@@ -132,6 +136,7 @@ namespace SpoilBlock.Controllers
             }
         }
 
+        [AuthorizeAjax]
         public async Task<JsonResult> UpdateMediaStatus(string MediaId, string BlockageLevel)
         {
             try
