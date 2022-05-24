@@ -61,10 +61,10 @@ namespace SpoilBlock_SpecflowTests.StepDefinitions
         }
 
         [Then(@"(.*) will be in the results in that table")]
-        public void ThenNameWillBeInTheResultsInThatTable(Table table)
+        public void ThenNameWillBeInTheResultsInThatTable(string name)
         {
             var titles = _searchPage.getTitles();
-            Assert.That(titles.Contains("name"));
+            Assert.That(titles.Contains(name));
         }
     }
 }

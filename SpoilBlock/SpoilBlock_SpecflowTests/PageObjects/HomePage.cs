@@ -18,7 +18,9 @@ namespace SpoilBlock_SpecflowTests.PageObjects
         private IWebElement Title => _browserInteractions.WaitAndReturnElement(By.Id("title"));
         private IWebElement WelcomeText => _browserInteractions.WaitAndReturnElement(By.Id("loggedin-welcome"));
         private IWebElement NewShowsTable => _browserInteractions.WaitAndReturnElement(By.Id("newshowstable"));
-        
+        private IEnumerable<IWebElement> NewShowTitle => _browserInteractions.WaitAndReturnElements(By.Id("newShowTitle"));
+        private IEnumerable<IWebElement> AddButton => _browserInteractions.WaitAndReturnElements(By.ClassName("btn btn-primary"));
+
 
         public HomePage(IBrowserInteractions browserInteractions)
             : base(browserInteractions)
@@ -29,9 +31,17 @@ namespace SpoilBlock_SpecflowTests.PageObjects
         public string GetTitle => Title.Text;
         public string GetWelcomeText => WelcomeText.Text;
 
-        public void Add(string title)
+        public string GetAddButtonText(int index) => AddButton.ElementAt(index).Text;
+
+        //public string GetTableTexts((int index) => NewShowsTable.ElementAt(index).Text;
+
+        //public string GetShowsTitle((int index)) => NewShowsTable.ElementAt(index).Text;
+        public IEnumerable<string> GetAddButtonTexts() => AddButton.Select(x => x.Text);
+
+
+        public void ClickAddButton(int index)
         {
-            NewShowsTable.FindElements(By.ClassName("btn")).WhereElementsHavePropertyValue("data-title", title).FirstOrDefault().Click();
+            AddButton.ElementAt(index).Click();
         }
 
 

@@ -82,35 +82,35 @@ The steps we define here can be re-used when testing the *register* feature.", P
         {
 #line 9
 #line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "UserName",
-                        "Email",
-                        "Password"});
-            table1.AddRow(new string[] {
-                        "SampleUser1",
-                        "sampleruser1@gmail.com",
-                        "Password1!"});
-            table1.AddRow(new string[] {
-                        "SampleUser13",
-                        "sampleruser13@gmail.com",
-                        "Sampleuser13!#"});
-#line 10
- testRunner.Given("the following users exist", ((string)(null)), table1, "Given ");
-#line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "UserName",
                         "Email",
                         "Password"});
             table2.AddRow(new string[] {
+                        "SampleUser1",
+                        "sampleruser1@gmail.com",
+                        "Password1!"});
+            table2.AddRow(new string[] {
+                        "SampleUser13",
+                        "sampleruser13@gmail.com",
+                        "Sampleuser13!#"});
+#line 10
+ testRunner.Given("the following users exist", ((string)(null)), table2, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "UserName",
+                        "Email",
+                        "Password"});
+            table3.AddRow(new string[] {
                         "AndreC",
                         "colea@example.com",
                         "0a9dfi3.a"});
-            table2.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "JoannaV",
                         "valdezJ@example.com",
                         "d9u(*dsF4"});
 #line 15
- testRunner.And("the following users do not exist", ((string)(null)), table2, "And ");
+ testRunner.And("the following users do not exist", ((string)(null)), table3, "And ");
 #line hidden
         }
         
@@ -159,6 +159,52 @@ this.FeatureBackground();
 #line hidden
 #line 24
  testRunner.And("I can see a message in the homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Non-user cannot login")]
+        [NUnit.Framework.TestCaseAttribute("AndreC", null)]
+        [NUnit.Framework.TestCaseAttribute("JoannaV", null)]
+        public virtual void Non_UserCannotLogin(string userName, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("UserName", userName);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Non-user cannot login", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 30
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 9
+this.FeatureBackground();
+#line hidden
+#line 31
+ testRunner.Given(string.Format("I am a user with username \'{0}\'", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 32
+ testRunner.When("I login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 33
+ testRunner.Then("I can see a login error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

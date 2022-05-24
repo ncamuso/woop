@@ -1,6 +1,11 @@
 ﻿Feature: Add
 
 Add a show from the Search page and have it show up in the watchlist
+Background:
+	Given the following users exist
+	  | UserName	| Email						| Password		 |
+	  | SampleUser1	| sampleruser1@gmail.com	| Password1!	 |
+	  | SampleUser13| sampleruser13@gmail.com	| Sampleuser13!# |
 
 @tag1
 Scenario Outline: Add shows
@@ -16,7 +21,7 @@ Scenario Outline: Add shows
 
 @tag2
 Scenario Outline: Add upcoming shows from Homepage
-	Given I am logged in the account
+	Given I am logged in
 	And I am on the homepage page
 	When I click the Add next to shows <name>
 	Then <name> will be added to my watchlist

@@ -55,6 +55,7 @@ namespace SpoilBlock_SpecflowTests.StepDefinitions
         }
 
         [When(@"I login")]
+        [Given(@"I login")]
         public void WhenILogin()
         {
             // Go to the login page
@@ -79,6 +80,11 @@ namespace SpoilBlock_SpecflowTests.StepDefinitions
         {
             TestUser u = (TestUser)_scenarioContext["CurrentUser"];
             _homePage.GetWelcomeText.Should().ContainEquivalentOf(u.UserName, AtLeast.Once());
+        }
+        [Then(@"I can see a login error message")]
+        public void ThenICanSeeALoginErrorMessage()
+        {
+            _loginPage.HasLoginError().Should().BeTrue();
         }
 
     }
