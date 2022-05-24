@@ -11,101 +11,158 @@ namespace SpoilBlock_Tests
 {
     public class NewShowsServiceData
     {
-        public readonly string validIMDbJSON = "{\"items\":[{\"id\":\"tt5108870\"title\":\"Morbius\",\"fullTitle\":\"Morbius(2022)\",\"year\":\"2022\",\"releaseState\":\"April 1\",\"image\":\"https://imdb-api.com/images/original/MV5BNWExYzEwY2UtZTNhYi00MDRjLTg4YzYtN2QzN2E3MjIwY2Q5XkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_Ratio0.6699_AL_.jpg\",\"runtimeMins\":\"108\",\"runtimeStr\":\"1h 48mins\",\"plot\":\"Biochemist Michael Morbius tries to cure himself of a rare blood disease, but he inadvertently infects himself with a form of vampirism instead.\",\"contentRating\":\"PG-13\",\"imDbRating\":\"\",\"imDbRatingCount\":\"\",\"metacriticRating\":\"\",\"genres\":\"Action, Adventure, Drama, Horror, Sci-Fi, Thriller\",\"genreList\":[{\"key\":\"Action\",\"value\":\"Action\"},{\"key\":\"Adventure\",\"value\":\"Adventure\"},{\"key\":\"Drama\",\"value\":\"Drama\"},{\"key\":\"Horror\",\"value\":\"Horror\"},{\"key\":\"Sci-Fi\",\"value\":\"Sci-Fi\"},{\"key\":\"Thriller\",\"value\":\"Thriller\"}],\"directors\":\"Daniel Espinosa\",\"directorList\":[{\"id\":\"nm1174251\",\"name\":\"Daniel Espinosa\"}],\"stars\":\"Jared Leto, Michael Keaton, Adria Arjona, Jared Harris\",\"starList\":[{\"id\":\"nm0001467\",\"name\":\"Jared Leto\"},{\"id\":\"nm0000474\",\"name\":\"Michael Keaton\"},{\"id\":\"nm5245722\",\"name\":\"Adria Arjona\"},{\"id\":\"nm0364813\",\"name\":\"Jared Harris\"}]}]}";
-        
-       public readonly string validIMDbJSONNoResultsErrorMessage = "{\"items\":[],\"errorMessage\":\"Some Error\"}";
+        //public readonly string validIMDbJSON = "{\"items\":[{\"id\":\"tt5108870\"title\":\"Morbius\",\"fullTitle\":\"Morbius(2022)\",\"year\":\"2022\",\"releaseState\":\"April 1\",\"image\":\"https://imdb-api.com/images/original/MV5BNWExYzEwY2UtZTNhYi00MDRjLTg4YzYtN2QzN2E3MjIwY2Q5XkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_Ratio0.6699_AL_.jpg\",\"runtimeMins\":\"108\",\"runtimeStr\":\"1h 48mins\",\"plot\":\"Biochemist Michael Morbius tries to cure himself of a rare blood disease, but he inadvertently infects himself with a form of vampirism instead.\",\"contentRating\":\"PG-13\",\"imDbRating\":\"\",\"imDbRatingCount\":\"\",\"metacriticRating\":\"\",\"genres\":\"Action, Adventure, Drama, Horror, Sci-Fi, Thriller\",\"genreList\":[{\"key\":\"Action\",\"value\":\"Action\"},{\"key\":\"Adventure\",\"value\":\"Adventure\"},{\"key\":\"Drama\",\"value\":\"Drama\"},{\"key\":\"Horror\",\"value\":\"Horror\"},{\"key\":\"Sci-Fi\",\"value\":\"Sci-Fi\"},{\"key\":\"Thriller\",\"value\":\"Thriller\"}],\"directors\":\"Daniel Espinosa\",\"directorList\":[{\"id\":\"nm1174251\",\"name\":\"Daniel Espinosa\"}],\"stars\":\"Jared Leto, Michael Keaton, Adria Arjona, Jared Harris\",\"starList\":[{\"id\":\"nm0001467\",\"name\":\"Jared Leto\"},{\"id\":\"nm0000474\",\"name\":\"Michael Keaton\"},{\"id\":\"nm5245722\",\"name\":\"Adria Arjona\"},{\"id\":\"nm0364813\",\"name\":\"Jared Harris\"}]}],\"errorMessage\":\"\"}";
+        public readonly string validIMDbJSON = "{\"items\":[{\"id\":\"tt1745960\",\"title\":\"Top Gun: Maverick\",\"fullTitle\":\"Top Gun: Maverick (2022)\",\"year\":\"2022\",\"releaseState\":\"May 27\",\"image\":\"https://m.media-amazon.com/images/M/MV5BMmIwZDMyYWUtNTU0ZS00ODJhLTg2ZmEtMTk5ZmYzODcxODYxXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_UX128_CR0,4,128,176_AL_.jpg\",\"runtimeMins\":\"131\",\"runtimeStr\":\"2h 11mins\",\"plot\":\"After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground him.\",\"contentRating\":\"PG-13\",\"imDbRating\":\"\",\"imDbRatingCount\":\"\",\"metacriticRating\":\"80\",\"genres\":\"Action, Drama\",\"genreList\":[{\"key\":\"Action\",\"value\":\"Action\"},{\"key\":\"Drama\",\"value\":\"Drama\"}],\"directors\":\"Joseph Kosinski\",\"directorList\":[{\"id\":\"nm2676052\",\"name\":\"Joseph Kosinski\"}],\"stars\":\"Tom Cruise, Jennifer Connelly, Miles Teller, Monica Barbaro\",\"starList\":[{\"id\":\"nm0000129\",\"name\":\"Tom Cruise\"},{\"id\":\"nm0000124\",\"name\":\"Jennifer Connelly\"},{\"id\":\"nm1886602\",\"name\":\"Miles Teller\"},{\"id\":\"nm4834815\",\"name\":\"Monica Barbaro\"}]},{\"id\":\"tt7466442\",\"title\":\"The Bob's Burgers Movie\",\"fullTitle\":\"The Bob's Burgers Movie (2022)\",\"year\":\"2022\",\"releaseState\":\"May 27\",\"image\":\"https://m.media-amazon.com/images/M/MV5BYzFhNDNkY2UtYjc3ZS00NzVkLTlhNzEtYmZiZGMzYmRjMjVhXkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_UX128_CR0,4,128,176_AL_.jpg\",\"runtimeMins\":\"102\",\"runtimeStr\":\"1h 42mins\",\"plot\":\"The Belchers try to save the restaurant from closing as a sinkhole forms in front of it, while the kids try to solve a mystery that could save their family's restaurant.\",\"contentRating\":\"PG-13\",\"imDbRating\":\"\",\"imDbRatingCount\":\"\",\"metacriticRating\":\"\",\"genres\":\"Animation, Adventure, Comedy, Musical\",\"genreList\":[{\"key\":\"Animation\",\"value\":\"Animation\"},{\"key\":\"Adventure\",\"value\":\"Adventure\"},{\"key\":\"Comedy\",\"value\":\"Comedy\"},{\"key\":\"Musical\",\"value\":\"Musical\"}],\"directors\":\"Loren Bouchard, Bernard Derriman\",\"directorList\":[{\"id\":\"nm0098908\",\"name\":\"Loren Bouchard\"},{\"id\":\"nm0220615\",\"name\":\"Bernard Derriman\"}],\"stars\":\"H. Jon Benjamin, Kristen Schaal, Dan Mintz, Stephanie Beatriz\",\"starList\":[{\"id\":\"nm0071304\",\"name\":\"H. Jon Benjamin\"},{\"id\":\"nm1102891\",\"name\":\"Kristen Schaal\"},{\"id\":\"nm2089814\",\"name\":\"Dan Mintz\"},{\"id\":\"nm3715867\",\"name\":\"Stephanie Beatriz\"}]}],\"errorMessage\":\"\"}";
+
+        public readonly string validIMDbJSONNoResultsErrorMessage = "{\"items\":[],\"errorMessage\":\"SomeError\"}";
         public readonly IMDbNewShows expectedValidIMDbJSONResponse = new IMDbNewShows
         {
             
             items = new List<IMDbUpComing>
-            { new IMDbUpComing{
-                id = "tt5108870",
+            {
+                new IMDbUpComing
+                {
+                    id = "tt1745960",
+                    title = "Top Gun: Maverick",
+                    fullTitle = "Top Gun: Maverick (2022)",
+                    year = "2022",
+                    releaseState = "May 27",
+                    image = "https://m.media-amazon.com/images/M/MV5BMmIwZDMyYWUtNTU0ZS00ODJhLTg2ZmEtMTk5ZmYzODcxODYxXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_UX128_CR0,4,128,176_AL_.jpg",
+                    runtimeMins = "131",
+                    runtimeStr = "2h 11mins",
+                    plot = "After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground him.",
+                    contentRating = "PG-13",
+                    imDbRating = "",
+                    imDbRatingCount = "",
+                    metacriticRating = "80",
+                    genres  ="Action, Drama",
+                    genreList = new List<GenreList>{
+                     new GenreList
+                     {
+                      key = "Action",
+                      value = "Action"
+                     },
+                     new GenreList
+                     {
+                      key = "Drama",
+                      value = "Drama"
+                     }
+                    },
 
-
-                title   ="Morbius",
-                fullTitle  = "Morbius (2022)",
-                year    ="2022",
-                releaseState =   "April 1",
-                image   ="https://m.media-amazon.com/images/M/MV5BNWExYzEwY2UtZTNhYi00MDRjLTg4YzYtN2QzN2E3MjIwY2Q5XkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_UX128_CR0,4,128,176_AL_.jpg",
-                runtimeMins= "108",
-                runtimeStr=  "1h 48mins",
-                plot    ="Biochemist Michael Morbius tries to cure himself of a rare blood disease, but he inadvertently infects himself with a form of vampirism instead.",
-                contentRating  = "PG-13",
-                imDbRating  ="",
-                imDbRatingCount ="",
-                metacriticRating  =  "",
-                genres  ="Action, Adventure, Drama, Horror, Sci-Fi, Thriller",
-                genreList = new List<GenreList>{
-                 new GenreList
-                 {
-                  key = "Action",
-                  value   ="Action"
-                 },
-                 new GenreList
-                 {
-                  key ="Adventure",
-                  value   ="Adventure"
-                 },
-                 new GenreList
-                 {
-                  key = "Drama",
-                  value   ="Drama"
-                 },
-                 new GenreList
-                 {
-                  key = "Horror",
-                  value   ="Horror"
-                 },
-                 new GenreList
-                 {
-                  key = "Sci-Fi",
-                  value   ="Sci-Fi"
-                 },
-                 new GenreList
-                 {
-                  key = "Thriller",
-                  value   ="Thriller"
-                 }
-                },
-                
-                directors =  "Daniel Espinosa",
-                directorList = new List<DirectorList>
-                { 
-                    new DirectorList
+                    directors = "Joseph Kosinski",
+                    directorList = new List<DirectorList>
                     {
-                        id = "nm1174251",
-                        name    ="Daniel Espinosa",
+                        new DirectorList
+                        {
+                            id = "nm2676052",
+                            name = "Joseph Kosinski"
+                        }
+                    },
+                    stars = "Tom Cruise, Jennifer Con… Teller, Monica Barbaro",
+                    starList = new List<StarList>
+                    {
+                        new StarList
+                        {
+                            id = "nm0000129",
+                            name = "Tom Cruise"
+                        },
+                        new StarList
+                        {
+                            id = "nm0000124",
+                            name = "Jennifer Connelly"
+                        },
+                        new StarList
+                        {
+                            id = "nm1886602",
+                            name = "Miles Teller"
+                        },
+                        new StarList
+                        {
+                            id = "nm4834815",
+                            name = "Monica Barbaro"
+                        }
                     }
                 },
-                
-                
-                stars   ="Jared Leto, Michael Keaton, Adria Arjona, Jared Harris",
-                starList = new List<StarList>
+                new IMDbUpComing
                 {
-                    new StarList
-                    {
-                        id = "nm0001467",
-                        name    ="Jared Leto"
+                    id = "tt7466442",
+                    title = "The Bob's Burgers Movie",
+                    fullTitle = "The Bob's Burgers Movie (2022)",
+                    year = "2022",
+                    releaseState = "May 27",
+                    image = "https://m.media-amazon.c…28_CR0,4,128,176_AL_.jpg",
+                    runtimeMins = "102",
+                    runtimeStr = "1h 42mins",
+                    plot = "The Belchers try to save the restaurant from closing as a sinkhole forms in front of it, while the kids try to solve a mystery that could save their family's restaurant.",
+                    contentRating = "PG-13",
+                    imDbRating = "",
+                    imDbRatingCount = "",
+                    metacriticRating = "",
+                    genres  ="Animation, Adventure, Comedy, Musical",
+                    genreList = new List<GenreList>{
+                     new GenreList
+                     {
+                      key = "Animation",
+                      value = "Animation"
+                     },
+                     new GenreList
+                     {
+                      key = "Adventure",
+                      value = "Adventure"
+                     },
+                     new GenreList
+                     {
+                      key = "Comedy",
+                      value = "Comedy"
+                     },
+                     new GenreList
+                     {
+                      key = "Musical",
+                      value = "Musical"
+                     }
                     },
-                    new StarList
+
+                    directors = "Loren Bouchard, Bernard Derriman",
+                    directorList = new List<DirectorList>
                     {
-                        id =  "nm0000474",
-                        name    ="Michael Keaton",
+                        new DirectorList
+                        {
+                            id = "nm0098908",
+                            name = "Loren Bouchard"
+                        },
+                        new DirectorList
+                        {
+                            id = "nm0220615",
+                            name = "Bernard Derriman"
+                        }
                     },
-                    new StarList
+                    stars = "H. Jon Benjamin, Kristen Schaal, Dan Mintz, Stephanie Beatriz",
+                    starList = new List<StarList>
                     {
-                        id  ="nm5245722",
-                        name    ="Adria Arjona",
-                    },
-                    new StarList
-                    {
-                        id = "nm0364813",
-                        name    ="Jared Harris"
+                        new StarList
+                        {
+                            id = "nm0071304",
+                            name = "H. Jon Benjamin"
+                        },
+                        new StarList
+                        {
+                            id = "nm1102891",
+                            name = "Kristen Schaal"
+                        },
+                        new StarList
+                        {
+                            id = "nm2089814",
+                            name = "Dan Mintz"
+                        },
+                        new StarList
+                        {
+                            id = "nm3715867",
+                            name = "Stephanie Beatriz"
+                        }
                     }
                 }
-            }
-            }
-
+            },
+            errormessage = ""
         };
     }
 }
