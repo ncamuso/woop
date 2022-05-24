@@ -40,6 +40,7 @@ chrome.tabs.onUpdated.addListener(tab => {
             });
         }
     });
+
 });
 
 

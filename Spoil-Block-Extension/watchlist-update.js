@@ -1,5 +1,5 @@
 var titles = [];
-let notified = false;
+var notified;
 
 document.querySelectorAll('[name=ddButton]').forEach( element => {
     var observer = new MutationObserver(function(mutations) {
@@ -46,9 +46,14 @@ async function updateWatchlist() {
     });
 }
 
-const interval = setInterval(function() {
-    notified = false;
-  }, 500);
+try {
+    const interval = setInterval(function() {
+        notified = false;
+      }, 500);
+} catch (error) {
+    
+}
+
 
 function notification() {
     
