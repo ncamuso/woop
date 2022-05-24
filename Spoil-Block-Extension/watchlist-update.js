@@ -36,11 +36,19 @@ async function updateWatchlist() {
         
     chrome.storage.local.set({"watchlist" : titles}, function() {
         console.log("Watchlist updated!");
-        notification();
+
+        if (!notified) {
+            notification();
+            notified = true;
+        }
 
         console.log(titles);
     });
 }
+
+const interval = setInterval(function() {
+    notified = false;
+  }, 500);
 
 function notification() {
     
