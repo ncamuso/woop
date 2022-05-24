@@ -82,35 +82,35 @@ The steps we define here can be re-used when testing the *register* feature.", P
         {
 #line 9
 #line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "UserName",
                         "Email",
                         "Password"});
-            table3.AddRow(new string[] {
+            table1.AddRow(new string[] {
                         "SampleUser1",
                         "sampleruser1@gmail.com",
                         "Password1!"});
-            table3.AddRow(new string[] {
+            table1.AddRow(new string[] {
                         "SampleUser13",
                         "sampleruser13@gmail.com",
                         "Sampleuser13!#"});
 #line 10
- testRunner.Given("the following users exist", ((string)(null)), table3, "Given ");
+ testRunner.Given("the following users exist", ((string)(null)), table1, "Given ");
 #line hidden
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "UserName",
                         "Email",
                         "Password"});
-            table4.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "AndreC",
                         "colea@example.com",
                         "0a9dfi3.a"});
-            table4.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "JoannaV",
                         "valdezJ@example.com",
                         "d9u(*dsF4"});
 #line 15
- testRunner.And("the following users do not exist", ((string)(null)), table4, "And ");
+ testRunner.And("the following users do not exist", ((string)(null)), table2, "And ");
 #line hidden
         }
         
@@ -149,7 +149,7 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 21
- testRunner.Given("I am a user with username \'<Username>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I am a user with username \'{0}\'", userName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 22
  testRunner.When("I login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

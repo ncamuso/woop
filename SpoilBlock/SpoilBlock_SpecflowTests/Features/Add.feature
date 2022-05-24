@@ -9,10 +9,10 @@ Scenario Outline: Add shows
 	When I enter <name> into the search bar
 	And I click the Add button next to <name>
 	Then My watchlist will contain <name>
-
-	| name         |
-	| Pulp Fiction |
-	| Inception    |
+	Examples: 
+	| name				|
+	| Pulp Fiction		|
+	| The Gentlemen	    |
 
 @tag2
 Scenario Outline: Add upcoming shows from Homepage
@@ -20,3 +20,7 @@ Scenario Outline: Add upcoming shows from Homepage
 	And I am on the homepage page
 	When I click the Add next to shows <name>
 	Then <name> will be added to my watchlist
+	Examples:
+	| name								|
+	| Jurassic World Dominion (2022)	|
+	| Lightyear (2022)					|

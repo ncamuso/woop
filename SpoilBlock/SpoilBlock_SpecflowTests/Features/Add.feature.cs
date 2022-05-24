@@ -76,11 +76,19 @@ namespace SpoilBlock_SpecflowTests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add shows")]
         [NUnit.Framework.CategoryAttribute("tag1")]
-        public virtual void AddShows()
+        [NUnit.Framework.TestCaseAttribute("Pulp Fiction", null)]
+        [NUnit.Framework.TestCaseAttribute("The Gentlemen", null)]
+        public virtual void AddShows(string name, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "tag1"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("name", name);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add shows", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -109,19 +117,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I am on the search page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.When("I enter <name> into the search bar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I enter {0} into the search bar", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.And("I click the Add button next to <name>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I click the Add button next to {0}", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "name"});
-                table1.AddRow(new string[] {
-                            "Pulp Fiction"});
-                table1.AddRow(new string[] {
-                            "Inception"});
 #line 11
- testRunner.Then("My watchlist will contain <name>", ((string)(null)), table1, "Then ");
+ testRunner.Then(string.Format("My watchlist will contain {0}", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -130,11 +132,19 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add upcoming shows from Homepage")]
         [NUnit.Framework.CategoryAttribute("tag2")]
-        public virtual void AddUpcomingShowsFromHomepage()
+        [NUnit.Framework.TestCaseAttribute("Jurassic World Dominion (2022)", null)]
+        [NUnit.Framework.TestCaseAttribute("Lightyear (2022)", null)]
+        public virtual void AddUpcomingShowsFromHomepage(string name, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "tag2"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("name", name);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add upcoming shows from Homepage", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 18
 this.ScenarioInitialize(scenarioInfo);
@@ -163,10 +173,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I am on the homepage page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
- testRunner.When("I click the Add next to shows <name>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I click the Add next to shows {0}", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 22
- testRunner.Then("<name> will be added to my watchlist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("{0} will be added to my watchlist", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

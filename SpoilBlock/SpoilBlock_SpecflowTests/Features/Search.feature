@@ -14,7 +14,7 @@ Scenario Outline: Make a search
 	When I enter <name> into the search bar
 	Then I will see a table of shows
 	And <name> will be in the results in that table
-
+	Examples: 
 	| name          |
 	| Inception     |
 	| Pulp Fiction  |

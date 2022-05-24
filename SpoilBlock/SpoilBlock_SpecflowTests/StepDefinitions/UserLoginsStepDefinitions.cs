@@ -71,7 +71,7 @@ namespace SpoilBlock_SpecflowTests.StepDefinitions
         public void ThenIAmRedirectedToThePage(string home)
         {
             _homePage.Goto(home);
-            throw new PendingStepException();
+            
         }
 
         [Then(@"I can see a message in the homepage")]
