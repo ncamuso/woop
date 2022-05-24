@@ -94,7 +94,7 @@ async function getContents() {
             div = document.querySelector('#contents');
         } else if (location.href.includes("https://www.youtube.com/results")) {
             console.log("on results page");
-            div = document.querySelector('#video-title').closest('#contents');
+            div = document.querySelector('#video-title').closest('#contents').parentElement.closest('#contents');
         } else {
             console.log("on watch page");
             div = document.querySelector('#video-title').closest('#items');
@@ -118,7 +118,7 @@ async function getContents() {
 function addListenerToDom(div) {
 
     console.log('adding listner');
-
+    console.log(div.closest('.style-scope ytd-section-list-renderer'));
     if (div === null)
     {
         console.log("div was somehow still null lol");
