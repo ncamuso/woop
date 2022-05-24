@@ -23,4 +23,8 @@
     <Folder Include="Support\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SpoilBlock\SpoilBlock.csproj" />
+  </ItemGroup>
+
 </Project>

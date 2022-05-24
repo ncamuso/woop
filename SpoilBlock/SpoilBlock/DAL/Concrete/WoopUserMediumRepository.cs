@@ -22,8 +22,8 @@ namespace SpoilBlock.DAL.Concrete
         {
             
             var accounts = GetAll().Select(a => a.UserId).ToList();
-            try
-            {
+            //try
+            //{
                 if (id != null)
                 {
                     if (accounts.Contains((int)id))
@@ -35,18 +35,18 @@ namespace SpoilBlock.DAL.Concrete
                         {
                             return mediaList.OrderBy(u => u.Imdbid);
                         }
-                        throw new Exception();
+                        //throw new Exception();
                     }
                     return Enumerable.Empty<Medium>();
                 }
-                throw new ArgumentNullException();
+                throw new  ArgumentNullException();
 
-            }
+            //}
 
-            catch (Exception err)
-            {
-                return Enumerable.Empty<Medium>();
-            }
+            //catch (Exception err)
+            //{
+            //    return Enumerable.Empty<Medium>();
+            //}
 
         }
     }

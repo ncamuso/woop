@@ -39,7 +39,7 @@ namespace SpoilBlock.DAL.Concrete
             if (result == null)
                 throw new ArgumentException("rawJSON didn't parse correctly");
 
-            string? errorMessage = result.errorMessage;
+            string? errorMessage = result.errormessage;
 
             if (result.items == null) { throw new InvalidJSONException("The JSON parse didn't populate results"); }
 

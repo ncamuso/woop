@@ -3,7 +3,7 @@
     public class IMDbNewShows
     {
         public IEnumerable<IMDbUpComing>? items { get; set; }
-        public string? errorMessage { get; set; }
+        public string? errormessage { get; set; }
     }
 
 }
