@@ -33,7 +33,7 @@ var connectionString = builder.Configuration.GetConnectionString("WOOPConnection
     options.UseSqlServer(connectionString));
 
 var identityConnectionString = builder.Configuration.GetConnectionString("IdentityDbContextConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
-    options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
      .AddEntityFrameworkStores<IdentityDbContext>();
 //Local connection string
 
