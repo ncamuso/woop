@@ -21,20 +21,20 @@ builder.Services.Configure<CaptchaConfig>(builder.Configuration.GetSection("Goog
 builder.Services.AddTransient(typeof(CaptchaService));
 
 
-//var connectionString = builder.Configuration.GetConnectionString("WOOPServerConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
-//options.UseSqlServer(connectionString));
+var connectionString = builder.Configuration.GetConnectionString("WOOPServerConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
+options.UseSqlServer(connectionString));
 
-//var identityConnectionString = builder.Configuration.GetConnectionString("WOOPIdServerConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
-//     options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-//      .AddEntityFrameworkStores<IdentityDbContext>();
+var identityConnectionString = builder.Configuration.GetConnectionString("WOOPIdServerConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
+     options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+      .AddEntityFrameworkStores<IdentityDbContext>();
 
 //server connection string
-var connectionString = builder.Configuration.GetConnectionString("WOOPConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
-    options.UseSqlServer(connectionString));
+//var connectionString = builder.Configuration.GetConnectionString("WOOPConnection"); builder.Services.AddDbContext<WOOPDbContext>(options =>
+//    options.UseSqlServer(connectionString));
 
-var identityConnectionString = builder.Configuration.GetConnectionString("IdentityDbContextConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
-    options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-     .AddEntityFrameworkStores<IdentityDbContext>();
+//var identityConnectionString = builder.Configuration.GetConnectionString("IdentityDbContextConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
+//    options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+//     .AddEntityFrameworkStores<IdentityDbContext>();
 //Local connection string
 
 builder.Services.AddScoped<IAddMediaService, AddMediaService>();
