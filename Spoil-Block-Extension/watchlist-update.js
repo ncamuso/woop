@@ -1,5 +1,5 @@
 var titles = [];
-let notified = false;
+var notified;
 
 document.querySelectorAll('[name=ddButton]').forEach( element => {
     var observer = new MutationObserver(function(mutations) {
@@ -36,11 +36,24 @@ async function updateWatchlist() {
         
     chrome.storage.local.set({"watchlist" : titles}, function() {
         console.log("Watchlist updated!");
-        notification();
+
+        if (!notified) {
+            notification();
+            notified = true;
+        }
 
         console.log(titles);
     });
 }
+
+try {
+    const interval = setInterval(function() {
+        notified = false;
+      }, 500);
+} catch (error) {
+    
+}
+
 
 function notification() {
     

@@ -113,6 +113,7 @@ async function getContents() {
         await sleep(1000);
         getContents();
     }
+    //test
 }
 
 function addListenerToDom(div) {
