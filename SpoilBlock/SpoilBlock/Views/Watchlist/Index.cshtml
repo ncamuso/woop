@@ -24,8 +24,8 @@
                     <thead class="table-dark">
 
                         <tr>
-                            <th data-type="number">#</th>
-                            <th data-type="string" style="width:150px;"><button class="table_header">Title</button></th>
+                            <th data-type="number"><button class="table_header">#</button></th>
+                            <th style="width:150px;">Title</th>
                             <th data-type="string"><button class="table_header">Description</button></th>
                             <th data-type="string"><button class="table_header">Watch Status</button></th>
                             <th></th>
@@ -51,9 +51,9 @@
                                         
                                             <button class="btn btn-secondary dropdown-toggle" type="button" name="ddButton" data-status="0" data-mediaid="@item.Id" data-bs-toggle="dropdown" id="dd @item.Id" aria-haspopup="true" aria-expanded="false">Haven't Started</button>
                                             <div class="dropdown-menu" aria-labelledby="dd @item.Id">
-                                                <a class="dropdown-item" href="#" name="ddItem" data-status="0" data-mediaid="@item.Id">Haven't Started</a>
-                                                <a class="dropdown-item" href="#" name="ddItem" data-status="1" data-mediaid="@item.Id">Currently Watching</a>
-                                                <a class="dropdown-item" href="#" name="ddItem" data-status="2" data-mediaid="@item.Id">Completed</a>
+                                                <a class="dropdown-item" href="#" name="ddItem" data-status="0" data-mediaid="@item.Id" style="color:black !important;">Haven't Started</a>
+                                                <a class="dropdown-item" href="#" name="ddItem" data-status="1" data-mediaid="@item.Id" style="color:black !important;">Currently Watching</a>
+                                                <a class="dropdown-item" href="#" name="ddItem" data-status="2" data-mediaid="@item.Id" style="color:black !important;">Completed</a>
                                             </div>
                                         
                                     </td>
