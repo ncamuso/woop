@@ -25,7 +25,7 @@ var connectionString = builder.Configuration.GetConnectionString("WOOPServerConn
 options.UseSqlServer(connectionString));
 
 var identityConnectionString = builder.Configuration.GetConnectionString("WOOPIdServerConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
-     options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+     options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
       .AddEntityFrameworkStores<IdentityDbContext>();
 
 //server connection string
@@ -33,7 +33,7 @@ var identityConnectionString = builder.Configuration.GetConnectionString("WOOPId
 //    options.UseSqlServer(connectionString));
 
 //var identityConnectionString = builder.Configuration.GetConnectionString("IdentityDbContextConnection"); builder.Services.AddDbContext<IdentityDbContext>(options =>
-//    options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    options.UseSqlServer(identityConnectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
 //     .AddEntityFrameworkStores<IdentityDbContext>();
 //Local connection string
 

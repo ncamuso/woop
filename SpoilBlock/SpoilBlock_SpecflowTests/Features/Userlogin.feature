@@ -18,7 +18,7 @@ Background:
 	  | JoannaV  | valdezJ@example.com | d9u(*dsF4 |
 
 Scenario Outline: Existing user can login
-	Given I am a user with username '<Username>'
+	Given I am a user with username '<UserName>'
 	When I login
 	Then I am redirected to the '<Page>' page
 	And I can see a message in the homepage
@@ -27,3 +27,12 @@ Scenario Outline: Existing user can login
 	| SampleUser1	| Home |
 	| SampleUser13	| Home |
 	
+Scenario Outline: Non-user cannot login
+	Given I am a user with username '<UserName>'
+	When I login
+	Then I can see a login error message
+#	  And an unsuccessful login attempt by '<UserName>' is logged
+	Examples:
+	| UserName |
+	| AndreC   |
+	| JoannaV  |

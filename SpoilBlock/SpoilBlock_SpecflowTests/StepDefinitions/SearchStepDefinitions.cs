@@ -23,8 +23,10 @@ namespace SpoilBlock_SpecflowTests.StepDefinitions
         public void GivenIAmLoggedIn()
         {
             _loginPage.Goto();
-            _loginPage.EnterUsername("ncamuso");
-            _loginPage.EnterPassword("Hi!12345");
+            _loginPage.EnterUsername("SampleUser1");
+            _loginPage.EnterPassword("Password1!");
+            //_loginPage.EnterUsername("ncamuso");
+            //_loginPage.EnterPassword("Hi!12345");
             _loginPage.Login();
         }
 
@@ -59,10 +61,10 @@ namespace SpoilBlock_SpecflowTests.StepDefinitions
         }
 
         [Then(@"(.*) will be in the results in that table")]
-        public void ThenNameWillBeInTheResultsInThatTable(Table table)
+        public void ThenNameWillBeInTheResultsInThatTable(string name)
         {
             var titles = _searchPage.getTitles();
-            Assert.That(titles.Contains("name"));
+            Assert.That(titles.Contains(name));
         }
     }
 }

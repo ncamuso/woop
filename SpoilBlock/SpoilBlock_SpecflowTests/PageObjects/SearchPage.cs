@@ -17,6 +17,10 @@ namespace SpoilBlock_SpecflowTests.PageObjects
         private IWebElement SearchButton => _browserInteractions.WaitAndReturnElement(By.Id("searchButton"));
         private IWebElement ResultsTable => _browserInteractions.WaitAndReturnElement(By.Id("resultsTable"));
 
+        public bool GetSearchBox => SearchBox.Displayed;
+
+        public string ResultTableText => ResultsTable.Text;
+
         public SearchPage(IBrowserInteractions browserInteractions)
             : base(browserInteractions)
         {

@@ -117,10 +117,14 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Make a search")]
-        public virtual void MakeASearch()
+        [NUnit.Framework.TestCaseAttribute("Inception", null)]
+        [NUnit.Framework.TestCaseAttribute("Pulp Fiction", null)]
+        [NUnit.Framework.TestCaseAttribute("The Godfather", null)]
+        public virtual void MakeASearch(string name, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("name", name);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
@@ -149,21 +153,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I am on the search page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.When("I enter <name> into the search bar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I enter {0} into the search bar", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
  testRunner.Then("I will see a table of shows", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "name"});
-                table2.AddRow(new string[] {
-                            "Inception"});
-                table2.AddRow(new string[] {
-                            "Pulp Fiction"});
-                table2.AddRow(new string[] {
-                            "The Godfather"});
 #line 16
- testRunner.And("<name> will be in the results in that table", ((string)(null)), table2, "And ");
+ testRunner.And(string.Format("{0} will be in the results in that table", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

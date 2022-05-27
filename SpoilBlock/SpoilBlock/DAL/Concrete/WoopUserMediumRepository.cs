@@ -33,7 +33,7 @@ namespace SpoilBlock.DAL.Concrete
                         
                         if (mediaList != null)
                         {
-                            return mediaList.OrderBy(u => u.Imdbid);
+                            return mediaList.OrderBy(u => u.Title);
                         }
                         //throw new Exception();
                     }
